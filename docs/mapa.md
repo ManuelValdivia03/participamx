@@ -1,6 +1,19 @@
 # Mapa de entidades de México
 
-La primera versión permite seleccionar cualquiera de las 32 entidades por clic, toque, teclado (Tab y Enter/Espacio) o selector. La selección enfoca su geometría; Vista nacional restablece el encuadre. La ficha muestra nombre y clave estatal. No incluye municipios ni indicadores electorales todavía.
+Se pueden seleccionar las 32 entidades por clic, toque, teclado (Tab y Enter/Espacio) o selector. Al elegir un estado se carga su división municipal; se pueden buscar municipios por nombre (sin distinguir acentos) o clave de cinco dígitos, seleccionarlos en el mapa o la lista y enfocar su geometría. La ficha muestra nombre, estado y claves. Ciudad de México usa la denominación alcaldía. Volver al estado y Vista nacional restablecen cada nivel. No incluye indicadores electorales todavía.
+
+## Municipios y demarcaciones (2024)
+
+- Fuente: INEGI, Áreas geoestadísticas municipales 2024, capa `00mun` del [servicio oficial](https://lcidsig.inegi.org.mx/server/rest/services/Hosted/%C3%81reas_geoestad%C3%ADsticas_municipales_2024/FeatureServer/0).
+- Copia local: 2,478 registros en 32 archivos `public/data/municipalities/01.json` a `32.json`. La aplicación descarga solo el estado elegido y conserva sus datos en memoria durante la sesión. Cancela solicitudes al cambiar de estado y ofrece reintento ante errores.
+- Claves oficiales: `cve_ent` (2), `cve_mun` (3) y `cvegeo` (5), conservadas como cadenas; `cvegeo = cve_ent + cve_mun`. Los nombres proceden de `nomgeo`.
+- Transformaciones: reproyección del servicio a WGS84, generalización a 0.001 grados, cinco decimales, selección de atributos y separación por estado. Normalización de anillos en el navegador. Las geometrías son para exploración visual.
+- Metadatos: `public/data/municipalities/metadata.json`, con fuente, transformación, recuentos y metadatos de la capa. Reproducir descarga: `node scripts/import-municipalities.mjs` (requiere acceso a Internet).
+- Reutilización conforme a los [Términos de libre uso de INEGI](https://www.inegi.org.mx/inegi/terminos.html). Se muestra la atribución y se identifican las transformaciones de ParticipaMX.
+
+Los estados de la vista nacional representan 2020 y la división municipal corresponde a 2024: pueden existir diferencias en los bordes. Se encuadra cada estado a partir de su colección municipal cuando está disponible. Para indicadores de otros años se debe validar la correspondencia territorial, incluidas altas y cambios de municipio; no se trasladan resultados automáticamente entre años.
+
+`npm run test:map` valida las 32 entidades y todas las geometrías municipales del conjunto final: recuentos, unicidad y composición de claves, áreas esféricas y encuadres.
 
 ## Procedencia
 

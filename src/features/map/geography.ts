@@ -42,13 +42,17 @@ function normalizePolygon(rings: Position[][]): Position[][] | null {
   return normalized.length ? normalized : null
 }
 
+export function normalizeGeometry(geometry: Polygon | MultiPolygon): MultiPolygon {
+  const polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates
+  const coordinates = polygons.map(normalizePolygon).filter((polygon): polygon is Position[][] => polygon !== null)
+  if (!coordinates.length) throw new Error('Geometría sin polígonos válidos')
+  return { type: 'MultiPolygon', coordinates }
+}
+
 export const states: StateFeature[] = source.features.map((feature): StateFeature => {
   const entry = catalog[feature.properties.shapeName]
   if (!entry) throw new Error(`Entidad sin clave: ${feature.properties.shapeName}`)
-  const polygons = feature.geometry.type === 'Polygon' ? [feature.geometry.coordinates] : feature.geometry.coordinates
-  const coordinates = polygons.map(normalizePolygon).filter((polygon): polygon is Position[][] => polygon !== null)
-  if (!coordinates.length) throw new Error(`Entidad sin geometría válida: ${entry[1]}`)
-  const geometry: MultiPolygon = { type: 'MultiPolygon', coordinates }
+  const geometry = normalizeGeometry(feature.geometry)
   return { type: 'Feature', geometry, properties: { code: entry[0], name: entry[1] } }
 }).sort((a, b) => a.properties.name.localeCompare(b.properties.name, 'es'))
 
@@ -56,10 +60,10 @@ export const country: FeatureCollection<Polygon | MultiPolygon> = { type: 'Featu
 export const projection = geoMercator().fitExtent([[25, 25], [775, 475]], country)
 export const path = geoPath(projection)
 export const nationalView = '0 0 800 500'
-export function stateView(feature: StateFeature) {
+export function stateView(feature: StateFeature | FeatureCollection<Polygon | MultiPolygon>, minimumWidth = 30) {
   const [[x0, y0], [x1, y1]] = path.bounds(feature)
   // Keep a stable landscape viewport and include a little surrounding territory.
-  const width = Math.max((x1 - x0) * 1.35, (y1 - y0) * 1.35 * 1.6, 30)
+  const width = Math.max((x1 - x0) * 1.35, (y1 - y0) * 1.35 * 1.6, minimumWidth)
   const height = width / 1.6
   return `${(x0 + x1 - width) / 2} ${(y0 + y1 - height) / 2} ${width} ${height}`
 }

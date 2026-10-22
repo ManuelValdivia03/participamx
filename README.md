@@ -6,9 +6,9 @@ Frontend del Reto 1: perfiles ciudadanos de participación, Hackathon INE. React
 
 Navegación y diseño adaptable con cuatro pantallas: Dashboard, Mapa territorial, Perfiles ciudadanos y Metodología. Las rutas utilizan fragmentos de URL (`#dashboard`, `#mapa`, `#perfiles`, `#metodologia`) y admiten navegación atrás y adelante.
 
-El mapa permite seleccionar las 32 entidades, enfocar un estado y volver a la vista nacional, con acceso por teclado y selector. Fuente, licencia y adaptaciones: [docs/mapa.md](docs/mapa.md).
+El mapa permite recorrer México, sus 32 entidades y los 2,478 municipios/demarcaciones del marco 2024. Incluye búsqueda por nombre o clave, selección y enfoque municipal, regreso al estado o a México, y carga local por entidad. Fuente, licencia y adaptaciones: [docs/mapa.md](docs/mapa.md).
 
-Las gráficas, los municipios, los resultados de perfiles, la comparación, las estrategias y la exportación están pendientes. Los indicadores muestran estados vacíos explícitos; no hay resultados electorales ni conexión a un backend todavía.
+Las gráficas, los resultados de perfiles, la comparación, las estrategias y la exportación están pendientes. Los indicadores muestran estados vacíos explícitos; no hay resultados electorales ni conexión a un backend todavía.
 
 El equipo 1 prepara el análisis de datos electorales 2009–2024 y define entre 4 y 6 perfiles a partir de sus resultados. El equipo de desarrollo web construye la plataforma. Fuente del alcance: ParticipaMX_Division_Equipos(1).docx.
 
