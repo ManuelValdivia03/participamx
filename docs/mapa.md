@@ -6,7 +6,7 @@ Se pueden seleccionar las 32 entidades por clic, toque, teclado (Tab y Enter/Esp
 
 - Fuente: INEGI, Áreas geoestadísticas municipales 2024, capa `00mun` del [servicio oficial](https://lcidsig.inegi.org.mx/server/rest/services/Hosted/%C3%81reas_geoestad%C3%ADsticas_municipales_2024/FeatureServer/0).
 - Copia local: 2,478 registros en 32 archivos `public/data/municipalities/01.json` a `32.json`. La aplicación descarga solo el estado elegido y conserva sus datos en memoria durante la sesión. Cancela solicitudes al cambiar de estado y ofrece reintento ante errores.
-- Claves oficiales: `cve_ent` (2), `cve_mun` (3) y `cvegeo` (5), conservadas como cadenas; `cvegeo = cve_ent + cve_mun`. Los nombres proceden de `nomgeo`.
+- Claves geográficas INEGI: `cve_ent` (2), `cve_mun` (3) y `cvegeo` (5), conservadas como cadenas; `cvegeo = cve_ent + cve_mun`. Los nombres proceden de `nomgeo`. Son identificadores de geometría; no deben confundirse con las claves municipales INE. La interfaz usa como referencia principal la clave INE del año seleccionado mediante las [correspondencias territoriales](claves-territoriales.md).
 - Transformaciones: reproyección del servicio a WGS84, generalización a 0.001 grados, cinco decimales, selección de atributos y separación por estado. Normalización de anillos en el navegador. Las geometrías son para exploración visual.
 - Metadatos: `public/data/municipalities/metadata.json`, con fuente, transformación, recuentos y metadatos de la capa. Reproducir descarga: `node scripts/import-municipalities.mjs` (requiere acceso a Internet).
 - Reutilización conforme a los [Términos de libre uso de INEGI](https://www.inegi.org.mx/inegi/terminos.html). Se muestra la atribución y se identifican las transformaciones de ParticipaMX.

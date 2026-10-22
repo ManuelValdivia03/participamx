@@ -10,7 +10,7 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "typecheck": "tsc --noEmit",
-    "test:map": "node scripts/check-map.mjs",
+    "test:map": "node scripts/check-map.mjs && node scripts/check-ine-keys.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

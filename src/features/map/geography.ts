@@ -60,7 +60,7 @@ export const country: FeatureCollection<Polygon | MultiPolygon> = { type: 'Featu
 export const projection = geoMercator().fitExtent([[25, 25], [775, 475]], country)
 export const path = geoPath(projection)
 export const nationalView = '0 0 800 500'
-export function stateView(feature: StateFeature | FeatureCollection<Polygon | MultiPolygon>, minimumWidth = 30) {
+export function stateView(feature: Feature<Polygon | MultiPolygon> | FeatureCollection<Polygon | MultiPolygon>, minimumWidth = 30) {
   const [[x0, y0], [x1, y1]] = path.bounds(feature)
   // Keep a stable landscape viewport and include a little surrounding territory.
   const width = Math.max((x1 - x0) * 1.35, (y1 - y0) * 1.35 * 1.6, minimumWidth)

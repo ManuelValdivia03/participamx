@@ -1,0 +1,891 @@
+{
+  "source": "ZIP DatosAbiertos DECEyEC Conteos Censales proporcionados por el usuario; diccionarios EDOCVE y MPIOCVE (claves INE).",
+  "method": "Nombre único normalizado dentro de la misma entidad; equivalencia nominal, no homologación histórica de límites. No se utiliza coincidencia numérica ni aproximación difusa.",
+  "auditSha256": "62c97637e010e22423235ff6b142cba00ffdb53f67df737f98cdcff49e10e3c3",
+  "years": [
+    {
+      "year": "2009",
+      "archive": "DatosAbiertos_DECEyEC_ConteosCensales2009.zip",
+      "ineMunicipalities": 2458,
+      "mapped": 2443,
+      "unresolved": [
+        {
+          "ineCode": "07017",
+          "ineNames": [
+            "Cintalapa"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "07114",
+          "ineNames": [
+            "Maravilla Tejenapa"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "08008",
+          "ineNames": [
+            "Batopilas"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "17013",
+          "ineNames": [
+            "Jonacatepec"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20121",
+          "ineNames": [
+            "San Blas Atempa"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20208",
+          "ineNames": [
+            "San Juan Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20208",
+            "20209"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20209",
+          "ineNames": [
+            "San Juan Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20208",
+            "20209"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20238",
+          "ineNames": [
+            "San Martín de los Cansecos"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20316",
+          "ineNames": [
+            "San Pedro Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20318",
+            "20319"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20317",
+          "ineNames": [
+            "San Pedro Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20318",
+            "20319"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20332",
+          "ineNames": [
+            "Villa de Tututepec de Melchor Ocampo"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20459",
+          "ineNames": [
+            "Santiago Chazumba"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20549",
+          "ineNames": [
+            "Heroica Villa Tezoatlán de Segura y Luna, Cuna de"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20562",
+          "ineNames": [
+            "Villa Hidalgo"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "24001",
+          "ineNames": [
+            "Ahualulco"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        }
+      ]
+    },
+    {
+      "year": "2012",
+      "archive": "DatosAbiertos_DECEyEC_ConteosCensales2012.zip",
+      "ineMunicipalities": 2455,
+      "mapped": 2440,
+      "unresolved": [
+        {
+          "ineCode": "07017",
+          "ineNames": [
+            "Cintalapa"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "07114",
+          "ineNames": [
+            "Maravilla Tejenapa"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "08008",
+          "ineNames": [
+            "Batopilas"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "17013",
+          "ineNames": [
+            "Jonacatepec"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20121",
+          "ineNames": [
+            "San Blas Atempa"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20208",
+          "ineNames": [
+            "San Juan Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20208",
+            "20209"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20209",
+          "ineNames": [
+            "San Juan Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20208",
+            "20209"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20238",
+          "ineNames": [
+            "San Martín de los Cansecos"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20316",
+          "ineNames": [
+            "San Pedro Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20318",
+            "20319"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20317",
+          "ineNames": [
+            "San Pedro Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20318",
+            "20319"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20332",
+          "ineNames": [
+            "Villa de Tututepec de Melchor Ocampo"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20459",
+          "ineNames": [
+            "Santiago Chazumba"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20549",
+          "ineNames": [
+            "Heroica Villa Tezoatlán de Segura y Luna, Cuna de"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20562",
+          "ineNames": [
+            "Villa Hidalgo"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "24001",
+          "ineNames": [
+            "Ahualulco"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        }
+      ]
+    },
+    {
+      "year": "2015",
+      "archive": "DatosAbiertos_DECEyEC_ConteosCensales2015.zip",
+      "ineMunicipalities": 2458,
+      "mapped": 2443,
+      "unresolved": [
+        {
+          "ineCode": "07017",
+          "ineNames": [
+            "Cintalapa"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "07114",
+          "ineNames": [
+            "Maravilla Tejenapa"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "08008",
+          "ineNames": [
+            "Batopilas"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "17013",
+          "ineNames": [
+            "Jonacatepec"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20121",
+          "ineNames": [
+            "San Blas Atempa"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20208",
+          "ineNames": [
+            "San Juan Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20208",
+            "20209"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20209",
+          "ineNames": [
+            "San Juan Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20208",
+            "20209"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20238",
+          "ineNames": [
+            "San Martín de los Cansecos"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20316",
+          "ineNames": [
+            "San Pedro Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20318",
+            "20319"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20317",
+          "ineNames": [
+            "San Pedro Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20318",
+            "20319"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20332",
+          "ineNames": [
+            "Villa de Tututepec de Melchor Ocampo"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20459",
+          "ineNames": [
+            "Santiago Chazumba"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20549",
+          "ineNames": [
+            "Heroica Villa Tezoatlán de Segura y Luna, Cuna de"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20562",
+          "ineNames": [
+            "Villa Hidalgo"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "24001",
+          "ineNames": [
+            "Ahualulco"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        }
+      ]
+    },
+    {
+      "year": "2018",
+      "archive": "DatosAbiertos_DECEyEC_ConteosCensales2018.zip",
+      "ineMunicipalities": 2463,
+      "mapped": 2448,
+      "unresolved": [
+        {
+          "ineCode": "07017",
+          "ineNames": [
+            "Cintalapa"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "07114",
+          "ineNames": [
+            "Maravilla Tejenapa"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "08008",
+          "ineNames": [
+            "Batopilas"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "17013",
+          "ineNames": [
+            "Jonacatepec"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20121",
+          "ineNames": [
+            "San Blas Atempa"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20208",
+          "ineNames": [
+            "San Juan Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20208",
+            "20209"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20209",
+          "ineNames": [
+            "San Juan Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20208",
+            "20209"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20238",
+          "ineNames": [
+            "San Martín de los Cansecos"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20316",
+          "ineNames": [
+            "San Pedro Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20318",
+            "20319"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20317",
+          "ineNames": [
+            "San Pedro Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20318",
+            "20319"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20332",
+          "ineNames": [
+            "Villa de Tututepec de Melchor Ocampo"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20459",
+          "ineNames": [
+            "Santiago Chazumba"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20549",
+          "ineNames": [
+            "Heroica Villa Tezoatlán de Segura y Luna, Cuna de"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20562",
+          "ineNames": [
+            "Villa Hidalgo"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "24001",
+          "ineNames": [
+            "Ahualulco"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        }
+      ]
+    },
+    {
+      "year": "2021",
+      "archive": "DatosAbiertos_DECEyEC_ConteosCensales2021.zip",
+      "ineMunicipalities": 2468,
+      "mapped": 2457,
+      "unresolved": [
+        {
+          "ineCode": "04012",
+          "ineNames": [
+            "Dzitblache"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "07017",
+          "ineNames": [
+            "Cintalapa"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20043",
+          "ineNames": [
+            "Juchitán de Zaragoza"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20121",
+          "ineNames": [
+            "San Blas Atempa"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20208",
+          "ineNames": [
+            "San Juan Mixtepec Dto 08"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20209",
+          "ineNames": [
+            "San Juan Mixtepec Dto 26"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20238",
+          "ineNames": [
+            "San Martín de los Cansecos"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20316",
+          "ineNames": [
+            "San Pedro Mixtepec Dto 22"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20317",
+          "ineNames": [
+            "San Pedro Mixtepec Dto 26"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20562",
+          "ineNames": [
+            "Villa Hidalgo"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "24001",
+          "ineNames": [
+            "Ahualulco"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        }
+      ]
+    },
+    {
+      "year": "2024",
+      "archive": "DatosAbiertos_DECEyEC_ConteosCensales2024.zip",
+      "ineMunicipalities": 2477,
+      "mapped": 2451,
+      "unresolved": [
+        {
+          "ineCode": "04006",
+          "ineNames": [
+            "Hopelche}én"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "07017",
+          "ineNames": [
+            "Cintalapa"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "07038",
+          "ineNames": [
+            "Huitiupaán"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "10006",
+          "ineNames": [
+            "Simón Bolívar"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "13050",
+          "ineNames": [
+            "San Agustón Metzquititlán"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "17013",
+          "ineNames": [
+            "Jonacatepec"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "19010",
+          "ineNames": [
+            "Carmen"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "19014",
+          "ineNames": [
+            "Dr. Arroyo"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "19015",
+          "ineNames": [
+            "Dr. Coss"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "19016",
+          "ineNames": [
+            "Dr. González"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "19020",
+          "ineNames": [
+            "Gral. Bravo"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "19021",
+          "ineNames": [
+            "Gral. Escobedo"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "19022",
+          "ineNames": [
+            "Gral. Terán"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "19023",
+          "ineNames": [
+            "Gral. Treviño"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "19024",
+          "ineNames": [
+            "Gral. Zaragoza"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "19025",
+          "ineNames": [
+            "Gral. Zuazua"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20208",
+          "ineNames": [
+            "San Juan Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20208",
+            "20209"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20209",
+          "ineNames": [
+            "San Juan Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20208",
+            "20209"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20238",
+          "ineNames": [
+            "San Martín de los Cansecos"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "20316",
+          "ineNames": [
+            "San Pedro Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20318",
+            "20319"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20317",
+          "ineNames": [
+            "San Pedro Mixtepec"
+          ],
+          "candidateInegiCodes": [
+            "20318",
+            "20319"
+          ],
+          "reason": "ambiguous-name"
+        },
+        {
+          "ineCode": "20459",
+          "ineNames": [
+            "Santiago Chazumba"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "24001",
+          "ineNames": [
+            "Ahualulco"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "29037",
+          "ineNames": [
+            "Zitlaltépec de Trinidad Sánchez Santos"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "30010",
+          "ineNames": [
+            "Alto Lucero de Gutiérrez Barios"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        },
+        {
+          "ineCode": "30047",
+          "ineNames": [
+            "Cosamaloapan"
+          ],
+          "candidateInegiCodes": [],
+          "reason": "name-not-found"
+        }
+      ]
+    }
+  ]
+}
