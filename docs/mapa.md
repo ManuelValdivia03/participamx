@@ -11,7 +11,7 @@ La primera versión permite seleccionar cualquiera de las 32 entidades por clic,
 - Fuente original enlazada por el proveedor: https://data.humdata.org/dataset/mexican-administrative-level-0-country-1-estado-and-2-municipio-boundary-polygons
 - Licencia indicada en los metadatos: Creative Commons Attribution 3.0 IGO, https://creativecommons.org/licenses/by/3.0/igo/
 
-Se conserva la geometría simplificada en `src/features/map/data/mexico-states.json`. No se requieren servicios de teselas, tokens ni peticiones externas para dibujar el mapa. El módulo se carga al abrir Mapa territorial.
+La geometría simplificada se almacena en `src/features/map/data/mexico-states.json`, con coordenadas redondeadas a cuatro decimales para reducir la descarga. No se requieren servicios de teselas, tokens ni peticiones externas para dibujar el mapa. El módulo se carga al abrir Mapa territorial.
 
 ## Adaptaciones
 
