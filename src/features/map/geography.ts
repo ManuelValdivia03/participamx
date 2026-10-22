@@ -1,5 +1,5 @@
-import { geoArea, geoMercator, geoPath } from 'd3-geo'
-import type { Feature, FeatureCollection, MultiPolygon, Polygon } from 'geojson'
+import { geoMercator, geoPath } from 'd3-geo'
+import type { Feature, FeatureCollection, MultiPolygon, Polygon, Position } from 'geojson'
 import raw from './data/mexico-states.json'
 
 const catalog: Record<string, [string, string]> = {
@@ -20,15 +20,35 @@ const catalog: Record<string, [string, string]> = {
 type SourceProperties = { shapeName: string }
 export type StateFeature = Feature<Polygon | MultiPolygon, { code: string; name: string }>
 const source = raw as unknown as FeatureCollection<Polygon | MultiPolygon, SourceProperties>
+
+function normalizePolygon(rings: Position[][]): Position[][] | null {
+  const normalized: Position[][] = []
+  for (let i = 0; i < rings.length; i++) {
+    const ring = rings[i].filter((point, index, points) => index === 0 || point[0] !== points[index - 1][0] || point[1] !== points[index - 1][1])
+    if (ring.length && (ring[0][0] !== ring.at(-1)![0] || ring[0][1] !== ring.at(-1)![1])) ring.push([...ring[0]])
+    // Rounded, sub-pixel islands may collapse to lines. D3 can interpret these as the whole globe.
+    const area = ring.reduce((sum, point, index) => {
+      const next = ring[(index + 1) % ring.length]
+      return sum + point[0] * next[1] - next[0] * point[1]
+    }, 0) / 2
+    if (ring.length < 4 || Math.abs(area) < 1e-9) {
+      if (i === 0) return null
+      continue
+    }
+    // Normalize each exterior clockwise and each hole counterclockwise, separately.
+    if ((i === 0 && area > 0) || (i > 0 && area < 0)) ring.reverse()
+    normalized.push(ring)
+  }
+  return normalized.length ? normalized : null
+}
+
 export const states: StateFeature[] = source.features.map((feature): StateFeature => {
   const entry = catalog[feature.properties.shapeName]
   if (!entry) throw new Error(`Entidad sin clave: ${feature.properties.shapeName}`)
-  // D3 expects exterior rings clockwise; GeoJSON datasets may use the opposite winding.
-  const geometry = structuredClone(feature.geometry)
-  if (geoArea(geometry) > 2 * Math.PI) {
-    if (geometry.type === 'Polygon') geometry.coordinates.forEach(ring => ring.reverse())
-    else geometry.coordinates.forEach(polygon => polygon.forEach(ring => ring.reverse()))
-  }
+  const polygons = feature.geometry.type === 'Polygon' ? [feature.geometry.coordinates] : feature.geometry.coordinates
+  const coordinates = polygons.map(normalizePolygon).filter((polygon): polygon is Position[][] => polygon !== null)
+  if (!coordinates.length) throw new Error(`Entidad sin geometría válida: ${entry[1]}`)
+  const geometry: MultiPolygon = { type: 'MultiPolygon', coordinates }
   return { type: 'Feature', geometry, properties: { code: entry[0], name: entry[1] } }
 }).sort((a, b) => a.properties.name.localeCompare(b.properties.name, 'es'))
 

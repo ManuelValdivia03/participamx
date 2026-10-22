@@ -15,7 +15,7 @@ La geometría simplificada se almacena en `src/features/map/data/mexico-states.j
 
 ## Adaptaciones
 
-Se proyecta con Mercator y se ajusta la orientación de los anillos a la convención de D3 para evitar dibujar el complemento de los polígonos. Los nombres se presentan en español actual. El catálogo local asigna claves estatales 01–32, conservadas como cadenas.
+Se proyecta con Mercator y se normaliza cada anillo por separado a la convención de D3 (exteriores horarios e interiores antihorarios). Se omiten anillos degenerados por el redondeo; de otro modo, pequeñas islas colapsadas podían interpretarse como el globo y generar un rectángulo que reducía México a un punto. `npm run test:map` comprueba áreas, claves y encuadres con el archivo final distribuido, y se ejecuta también en CI. Los nombres se presentan en español actual. El catálogo local asigna claves estatales 01–32, conservadas como cadenas.
 
 La fuente denomina Distrito Federal a Ciudad de México y asigna `MX-MEX` tanto a esa entidad como a Mexico. Por ello no se usa `shapeISO` como identificador: el catálogo distingue Ciudad de México (09) y Estado de México (15) por el nombre de origen. Las claves deberán cotejarse con los archivos electorales al integrar indicadores.
 
