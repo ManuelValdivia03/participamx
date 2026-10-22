@@ -1,9 +1,10 @@
 import { Icon, type IconName } from '../components/Icon'
-import { useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { Dashboard } from '../features/dashboard/Dashboard'
-import { MapPage } from '../features/map/MapPage'
 import { Profiles } from '../features/profiles/Profiles'
 import { Methodology } from '../features/methodology/Methodology'
+
+const MapPage = lazy(() => import('../features/map/MapPage').then(module => ({ default: module.MapPage })))
 
 const pages = [
   { id: 'dashboard', label: 'Menú principal', icon: 'dashboard' as IconName, component: Dashboard },
@@ -39,7 +40,7 @@ export default function App() {
       <main id="contenido">
         <div className="page-heading"><div><p className="eyebrow">PARTICIPAMX / EXPLORAR</p><h1 ref={heading} tabIndex={-1}>{page.label}</h1></div><span className="badge">Versión inicial</span></div>
         <div className="notice"><Icon name="info" /><p><strong>Estamos preparando los datos.</strong> Esta versión presenta la estructura de la plataforma. Los indicadores y perfiles estarán disponibles al integrar el análisis.</p></div>
-        <Page />
+        <Suspense fallback={<p role="status" className="page-intro">Preparando el mapa de México…</p>}><Page /></Suspense>
         <footer>ParticipaMX <span>Participación ciudadana, una mirada desde los datos.</span></footer>
       </main>
     </div>
