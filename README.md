@@ -4,7 +4,9 @@ Frontend del Reto 1: perfiles ciudadanos de participación, Hackathon INE. React
 
 ## Estado
 
-Estructura inicial y pantalla de bienvenida. Dashboard, mapa, perfiles, comparación, estrategias, metodología y exportación están pendientes. No hay resultados electorales ni conexión a un backend todavía.
+Navegación y diseño adaptable con cuatro pantallas: Dashboard, Mapa territorial, Perfiles ciudadanos y Metodología. Las rutas utilizan fragmentos de URL (`#dashboard`, `#mapa`, `#perfiles`, `#metodologia`) y admiten navegación atrás y adelante.
+
+Las gráficas, el mapa interactivo, los resultados de perfiles, la comparación, las estrategias y la exportación están pendientes. Las pantallas muestran estados vacíos explícitos; no hay resultados electorales ni conexión a un backend todavía.
 
 El equipo 1 prepara el análisis de datos electorales 2009–2024 y define entre 4 y 6 perfiles a partir de sus resultados. El equipo de desarrollo web construye la plataforma. Fuente del alcance: ParticipaMX_Division_Equipos(1).docx.
 
