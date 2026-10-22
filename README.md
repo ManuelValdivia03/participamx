@@ -13,7 +13,9 @@ El equipo 1 prepara el análisis de datos electorales 2009–2024 y define entre
 Recomendado: Node.js 24 y npm.
 
 ```sh
-npm install
+git clone https://github.com/ManuelValdivia03/participamx.git
+cd participamx
+npm ci
 npm run dev
 ```
 
@@ -42,23 +44,13 @@ docs/           Acuerdos con el equipo 1
 
 Crear cada módulo dentro de features cuando comience su implementación; evitar carpetas por pantalla sin contenido. Consultar [CONTRIBUTING.md](CONTRIBUTING.md) para el flujo de trabajo de dos integrantes.
 
-## Crear el repositorio remoto
+## Repositorio y colaboración
 
-1. Abrir https://github.com/new con la cuenta propietaria elegida.
-2. Nombre sugerido: `participamx-equipo-2`. Elegir visibilidad conforme a las reglas del hackathon.
-3. Dejar desmarcadas las opciones de README, .gitignore y licencia: esta carpeta ya contiene los archivos iniciales.
-4. Crear el repositorio y copiar su URL HTTPS real.
-5. Desde esta carpeta, configurar la identidad real si Git la solicita (`git config user.name` y `git config user.email`). No usar identidades de ejemplo.
-6. Ejecutar:
+Repositorio: [ManuelValdivia03/participamx](https://github.com/ManuelValdivia03/participamx). Rama principal: `main`.
 
-```sh
-git add .
-git commit -m "chore: iniciar frontend ParticipaMX"
-```
+Invitar al segundo integrante desde Settings → Collaborators y acordar tareas según [CONTRIBUTING.md](CONTRIBUTING.md). La invitación y las reglas de main deben configurarse en GitHub.
 
-Después ejecutar `git remote add origin URL_HTTPS_COPIADA` sustituyendo el marcador por la URL real, y `git push -u origin main`. Autenticarse mediante el flujo de GitHub; no guardar tokens en archivos del proyecto.
-
-Invitar al segundo integrante y acordar tareas según CONTRIBUTING.md. La creación remota, invitación y reglas de main no se configuran mediante estos archivos.
+Cada integrante debe usar su propia identidad de Git y autenticarse mediante el flujo de GitHub; no guardar tokens en archivos del proyecto.
 
 ## Integración de datos
 
