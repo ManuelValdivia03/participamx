@@ -6,7 +6,7 @@ import { Profiles } from '../features/profiles/Profiles'
 import { Methodology } from '../features/methodology/Methodology'
 
 const pages = [
-  { id: 'dashboard', label: 'Dashboard', icon: 'dashboard' as IconName, component: Dashboard },
+  { id: 'dashboard', label: 'Menú principal', icon: 'dashboard' as IconName, component: Dashboard },
   { id: 'mapa', label: 'Mapa territorial', icon: 'mapa' as IconName, component: MapPage },
   { id: 'perfiles', label: 'Perfiles ciudadanos', icon: 'perfiles' as IconName, component: Profiles },
   { id: 'metodologia', label: 'Metodología', icon: 'metodologia' as IconName, component: Methodology },
