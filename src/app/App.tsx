@@ -11,7 +11,7 @@ export default function App() {
   return (
     <main>
       <header>
-        <p className="eyebrow">Hackathon INE · Equipo 2</p>
+        <p className="eyebrow">Hackathon INE</p>
         <h1>ParticipaMX</h1>
         <p>Perfiles ciudadanos de participación</p>
       </header>
