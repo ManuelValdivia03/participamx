@@ -10,9 +10,11 @@ El mapa permite recorrer México, sus 32 entidades y los 2,478 municipios/demarc
 
 La referencia electoral principal es la clave INE del año seleccionado (2009–2024); la clave INEGI se conserva como referencia de geometría. Las correspondencias pendientes se muestran explícitamente. Alcance, método y limitaciones: [docs/claves-territoriales.md](docs/claves-territoriales.md).
 
+Menú principal incluye un dashboard con filtros, indicadores, serie temporal y distribución por perfiles, con datos ficticios identificados. Contrato de integración: [docs/dashboard-frontend.md](docs/dashboard-frontend.md).
+
 La sección Perfiles incluye fichas detalladas y comparación de dos a tres perfiles, con ejemplos ficticios claramente identificados y tratamiento visual de valores faltantes. Contrato de integración y alcance: [docs/perfiles-frontend.md](docs/perfiles-frontend.md).
 
-Las gráficas, los resultados reales de perfiles y estrategias y la exportación están pendientes. Los ejemplos de perfiles son de demostración; el mapa mantiene sus indicadores sin integrar. No hay conexión a un backend todavía.
+Los indicadores y resultados reales de perfiles y estrategias, la conexión al backend y la exportación están pendientes. Dashboard y perfiles muestran solo demostraciones; el mapa mantiene sus indicadores sin integrar.
 
 El equipo 1 prepara el análisis de datos electorales 2009–2024 y define entre 4 y 6 perfiles a partir de sus resultados. El equipo de desarrollo web construye la plataforma. Fuente del alcance: ParticipaMX_Division_Equipos(1).docx.
 
