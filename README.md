@@ -1,26 +1,14 @@
 # ParticipaMX
 
-Frontend del Reto 1: perfiles ciudadanos de participación, Hackathon INE. React + TypeScript + Vite.
+Aplicación web para consultar perfiles de participación ciudadana en México. La estamos desarrollando para el Reto 1 del Hackathon INE, a partir de datos electorales de 2009 a 2024.
 
-## Estado
+Este repositorio contiene el frontend: navegación, mapas, gráficas, fichas y comparación de perfiles. El equipo de análisis entregará los indicadores y los resultados que se mostrarán en la plataforma.
 
-Navegación y diseño adaptable con cuatro pantallas: Dashboard, Mapa territorial, Perfiles ciudadanos y Metodología. Las rutas utilizan fragmentos de URL (`#dashboard`, `#mapa`, `#perfiles`, `#metodologia`) y admiten navegación atrás y adelante.
+> Por ahora, las cifras del menú principal y las fichas son ejemplos ficticios. El mapa sí utiliza geometrías de INEGI. Los resultados electorales todavía no están conectados.
 
-El mapa permite recorrer México, sus 32 entidades y los 2,478 municipios/demarcaciones del marco 2024. Incluye búsqueda por nombre o clave, selección y enfoque municipal, regreso al estado o a México, y carga local por entidad. Fuente, licencia y adaptaciones: [docs/mapa.md](docs/mapa.md).
+## Correr el proyecto
 
-La referencia electoral principal es la clave INE del año seleccionado (2009–2024); la clave INEGI se conserva como referencia de geometría. Las correspondencias pendientes se muestran explícitamente. Alcance, método y limitaciones: [docs/claves-territoriales.md](docs/claves-territoriales.md).
-
-Menú principal incluye un dashboard con filtros, indicadores, serie temporal y distribución por perfiles, con datos ficticios identificados. Contrato de integración: [docs/dashboard-frontend.md](docs/dashboard-frontend.md).
-
-La sección Perfiles incluye fichas detalladas y comparación de dos a tres perfiles, con ejemplos ficticios claramente identificados y tratamiento visual de valores faltantes. Contrato de integración y alcance: [docs/perfiles-frontend.md](docs/perfiles-frontend.md).
-
-Los indicadores y resultados reales de perfiles y estrategias, la conexión al backend y la exportación están pendientes. Dashboard y perfiles muestran solo demostraciones; el mapa mantiene sus indicadores sin integrar.
-
-El equipo 1 prepara el análisis de datos electorales 2009–2024 y define entre 4 y 6 perfiles a partir de sus resultados. El equipo de desarrollo web construye la plataforma. Fuente del alcance: ParticipaMX_Division_Equipos(1).docx.
-
-## Ejecutar
-
-Recomendado: Node.js 24 y npm.
+Necesitas Node.js 24 y npm.
 
 ```sh
 git clone https://github.com/ManuelValdivia03/participamx.git
@@ -29,41 +17,70 @@ npm ci
 npm run dev
 ```
 
-package-lock.json está incluido. Los demás integrantes deben usar `npm ci` para instalar las mismas versiones. GitHub Actions comprobará los tipos y la compilación en cada pull request hacia main.
+Abre la dirección que aparezca en la terminal. Si el puerto está ocupado, Vite elegirá otro.
 
-```sh
-npm run typecheck
-npm run build
-npm run preview
-```
+Para trabajar sobre una copia que ya tienes, entra a su carpeta y ejecuta `npm run dev`. Usa `npm ci` de nuevo cuando cambie el archivo `package-lock.json`.
 
-## Estructura
+## Qué funciona
+
+- **Menú principal:** filtros por año y territorio, tarjetas de indicadores, gráfica de evolución y distribución por perfiles. Incluye ejemplos con información incompleta.
+- **Mapa territorial:** selección de estados, municipios y alcaldías; búsqueda por nombre o clave INE y regreso a la vista nacional.
+- **Perfiles ciudadanos:** fichas con indicadores, características y acciones; comparación de dos o tres perfiles.
+- **Metodología:** explicación del proceso previsto para el análisis.
+
+La interfaz tiene modo claro y oscuro y se adapta a pantallas pequeñas.
+
+El mapa conserva las claves INEGI de sus geometrías y usa correspondencias nominales para mostrar las claves INE de cada año. Los casos que requieren revisión aparecen como pendientes. Cambiar de año no cambia los límites del mapa: la división municipal sigue siendo la de 2024.
+
+## Qué falta
+
+Conectar la entrega del equipo de análisis, completar metodología y estrategias con sus resultados, añadir la exportación de fichas y reportes y preparar la publicación de la plataforma.
+
+La limpieza de los archivos, el cálculo de indicadores y la definición de clusters quedan fuera del frontend.
+
+## Comandos
+
+| Comando | Para qué sirve |
+| --- | --- |
+| `npm run dev` | Iniciar el servidor de desarrollo |
+| `npm run typecheck` | Revisar los tipos de TypeScript |
+| `npm run test:map` | Comprobar geometrías y correspondencias de claves |
+| `npm run build` | Generar la versión de producción en `dist/` |
+| `npm run preview` | Revisar localmente la versión compilada |
+
+Antes de subir cambios, revisa los tipos, las pruebas del mapa y la compilación. GitHub Actions también ejecuta las pruebas y compila el proyecto en los pull requests hacia `main`.
+
+## Dónde está cada cosa
 
 ```text
 src/
-  app/          Composición de la aplicación
-  components/   Componentes compartidos
-  features/     Módulos por funcionalidad
-  services/     Integración de datos
-  types/        Tipos compartidos
-  styles/       Estilos globales
-public/         Archivos estáticos
-docs/           Acuerdos con el equipo 1
-.github/        Plantilla de pull request
+  app/                 Navegación y apariencia general
+  components/          Componentes compartidos
+  features/
+    dashboard/         Indicadores y gráficas del menú principal
+    map/               Mapa y selección territorial
+    profiles/          Fichas y comparación
+    methodology/       Página de metodología
+  styles/              Estilos de la aplicación
+public/data/           Geometrías y correspondencias territoriales
+scripts/               Importación de catálogos y comprobaciones
+docs/                  Fuentes, acuerdos de datos y notas de integración
 ```
 
-Crear cada módulo dentro de features cuando comience su implementación; evitar carpetas por pantalla sin contenido. Consultar [CONTRIBUTING.md](CONTRIBUTING.md) para el flujo de trabajo de dos integrantes.
+Usamos React, TypeScript y Vite. El mapa se dibuja con SVG y D3 Geo; los municipios se cargan por estado desde los archivos del proyecto.
 
-## Repositorio y colaboración
+## Para trabajar en equipo
 
-Repositorio: [ManuelValdivia03/participamx](https://github.com/ManuelValdivia03/participamx). Rama principal: `main`.
+Crea una rama por tarea y abre un pull request hacia `main` cuando esté lista. Mantén los datos de ejemplo identificados y separados de los resultados reales. El flujo de colaboración está en [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Invitar al segundo integrante desde Settings → Collaborators y acordar tareas según [CONTRIBUTING.md](CONTRIBUTING.md). La invitación y las reglas de main deben configurarse en GitHub.
+Los formatos de entrega son propuestas para acordar con el equipo de análisis. Las notas están aquí:
 
-Cada integrante debe usar su propia identidad de Git y autenticarse mediante el flujo de GitHub; no guardar tokens en archivos del proyecto.
+- [Acuerdo de datos](docs/datos.md)
+- [Dashboard](docs/dashboard-frontend.md)
+- [Fichas y comparación](docs/perfiles-frontend.md)
+- [Fuentes y geometrías del mapa](docs/mapa.md)
+- [Claves INE e INEGI](docs/claves-territoriales.md)
 
-## Integración de datos
+## Fuentes y licencia
 
-Acordar el contrato JSON, las claves territoriales, unidades, años y tratamiento de valores faltantes antes de integrar resultados. Ver [docs/datos.md](docs/datos.md).
-
-La licencia de distribución queda pendiente de acuerdo con el equipo y las reglas del hackathon.
+Las fuentes geográficas, sus licencias y las modificaciones realizadas están documentadas en [las notas del mapa](docs/mapa.md). La licencia del código sigue pendiente de acuerdo entre los integrantes y las reglas del hackathon.
