@@ -1,0 +1,673 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ParticipaMX · continuous_indicators",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "2.0.0"
+    },
+    "election_year": {
+      "type": "integer",
+      "enum": [
+        2009,
+        2012,
+        2015,
+        2018,
+        2021,
+        2024
+      ]
+    },
+    "election_type": {
+      "type": "string",
+      "enum": [
+        "presidential",
+        "midterm"
+      ]
+    },
+    "unit": {
+      "const": "municipality_sex"
+    },
+    "source_id": {
+      "const": "ine_counted_lists"
+    },
+    "rate_unit": {
+      "const": "proportion"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "election_year": {
+            "type": "integer",
+            "enum": [
+              2009,
+              2012,
+              2015,
+              2018,
+              2021,
+              2024
+            ],
+            "minimum": 0
+          },
+          "row_id": {
+            "type": "string"
+          },
+          "state_code": {
+            "type": "string"
+          },
+          "municipality_code": {
+            "type": "string"
+          },
+          "sex_code": {
+            "type": "string",
+            "enum": [
+              "0",
+              "1",
+              "2"
+            ]
+          },
+          "state_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "municipality_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "district_reference_year": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "LN": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "SV": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "NV": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "NS": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "source_row_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "sex_2_source_rows": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "sex_2_nominal_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "specified_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "participation_observed": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "unspecified_rate": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "relative_level": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "mean_observed_rate": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "young_older_difference": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "complete_profile": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "is_eligible": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "supported_coordinates": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "pending_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "has_high_ns_coordinate": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "min_section_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "min_specified_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "LN_18_34": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "SV_18_34": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "NV_18_34": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "NS_18_34": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "source_row_count_18_34": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "sex_2_source_rows_18_34": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "sex_2_nominal_count_18_34": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "section_count_18_34": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "specified_count_18_34": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "local_turnout_18_34": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "national_rate_18_34": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "participation_delta_18_34": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "unspecified_rate_18_34": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "supported_18_34": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "shape_18_34": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "present_18_34": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "LN_35_59": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "SV_35_59": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "NV_35_59": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "NS_35_59": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "source_row_count_35_59": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "sex_2_source_rows_35_59": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "sex_2_nominal_count_35_59": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "section_count_35_59": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "specified_count_35_59": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "local_turnout_35_59": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "national_rate_35_59": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "participation_delta_35_59": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "unspecified_rate_35_59": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "supported_35_59": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "shape_35_59": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "present_35_59": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "LN_60_100": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "SV_60_100": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "NV_60_100": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "NS_60_100": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "source_row_count_60_100": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "sex_2_source_rows_60_100": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "sex_2_nominal_count_60_100": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "section_count_60_100": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "specified_count_60_100": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "local_turnout_60_100": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "national_rate_60_100": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "participation_delta_60_100": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "unspecified_rate_60_100": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "supported_60_100": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "shape_60_100": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "present_60_100": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "shape_contrast_1": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "shape_contrast_2": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "election_year",
+          "row_id",
+          "state_code",
+          "municipality_code",
+          "sex_code",
+          "state_name",
+          "municipality_name",
+          "district_reference_year",
+          "LN",
+          "SV",
+          "NV",
+          "NS",
+          "source_row_count",
+          "sex_2_source_rows",
+          "sex_2_nominal_count",
+          "specified_count",
+          "participation_observed",
+          "unspecified_rate",
+          "relative_level",
+          "mean_observed_rate",
+          "young_older_difference",
+          "complete_profile",
+          "is_eligible",
+          "supported_coordinates",
+          "pending_reason",
+          "has_high_ns_coordinate",
+          "min_section_count",
+          "min_specified_count",
+          "LN_18_34",
+          "SV_18_34",
+          "NV_18_34",
+          "NS_18_34",
+          "source_row_count_18_34",
+          "sex_2_source_rows_18_34",
+          "sex_2_nominal_count_18_34",
+          "section_count_18_34",
+          "specified_count_18_34",
+          "local_turnout_18_34",
+          "national_rate_18_34",
+          "participation_delta_18_34",
+          "unspecified_rate_18_34",
+          "supported_18_34",
+          "shape_18_34",
+          "present_18_34",
+          "LN_35_59",
+          "SV_35_59",
+          "NV_35_59",
+          "NS_35_59",
+          "source_row_count_35_59",
+          "sex_2_source_rows_35_59",
+          "sex_2_nominal_count_35_59",
+          "section_count_35_59",
+          "specified_count_35_59",
+          "local_turnout_35_59",
+          "national_rate_35_59",
+          "participation_delta_35_59",
+          "unspecified_rate_35_59",
+          "supported_35_59",
+          "shape_35_59",
+          "present_35_59",
+          "LN_60_100",
+          "SV_60_100",
+          "NV_60_100",
+          "NS_60_100",
+          "source_row_count_60_100",
+          "sex_2_source_rows_60_100",
+          "sex_2_nominal_count_60_100",
+          "section_count_60_100",
+          "specified_count_60_100",
+          "local_turnout_60_100",
+          "national_rate_60_100",
+          "participation_delta_60_100",
+          "unspecified_rate_60_100",
+          "supported_60_100",
+          "shape_60_100",
+          "present_60_100",
+          "shape_contrast_1",
+          "shape_contrast_2"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "election_year",
+    "election_type",
+    "unit",
+    "source_id",
+    "rate_unit",
+    "data",
+    "warnings"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,371 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ParticipaMX · quality_summary",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "2.0.0"
+    },
+    "election_year": {
+      "type": "integer",
+      "enum": [
+        2009,
+        2012,
+        2015,
+        2018,
+        2021,
+        2024
+      ]
+    },
+    "election_type": {
+      "type": "string",
+      "enum": [
+        "presidential",
+        "midterm"
+      ]
+    },
+    "unit": {
+      "const": "election_quality"
+    },
+    "source_id": {
+      "const": "ine_counted_lists"
+    },
+    "rate_unit": {
+      "const": "proportion"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "election_year": {
+            "type": "integer",
+            "enum": [
+              2009,
+              2012,
+              2015,
+              2018,
+              2021,
+              2024
+            ],
+            "minimum": 0
+          },
+          "available_segments": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "supported_segments": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "available_municipalities": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "supported_municipalities": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "supported_states": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "LN": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "SV": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "NV": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "NS": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "source_row_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "sex_2_source_rows": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "sex_2_nominal_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "supported_LN": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "supported_nominal_fraction": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "supported_municipality_fraction": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "continuous_profiles": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "supported_continuous_profiles": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "continuous_municipalities": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "continuous_supported_LN": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "continuous_nominal_fraction": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "continuous_complete_profiles": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "high_ns_segments": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "near_reference_supported_segments": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "near_reference_supported_fraction": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "undefined_segment_rates": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "undefined_continuous_profiles": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "supported_exact_tie_segments": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "exact_tie_segments": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "few_section_supported_segments": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "observed_distinct_sections": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "section_keys_in_multiple_municipalities": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "over_100_source_rows": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "over_100_LN": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "profiles_with_support": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "unspecified_rate": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "district_reference_year": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          }
+        },
+        "required": [
+          "election_year",
+          "available_segments",
+          "supported_segments",
+          "available_municipalities",
+          "supported_municipalities",
+          "supported_states",
+          "LN",
+          "SV",
+          "NV",
+          "NS",
+          "source_row_count",
+          "sex_2_source_rows",
+          "sex_2_nominal_count",
+          "supported_LN",
+          "supported_nominal_fraction",
+          "supported_municipality_fraction",
+          "continuous_profiles",
+          "supported_continuous_profiles",
+          "continuous_municipalities",
+          "continuous_supported_LN",
+          "continuous_nominal_fraction",
+          "continuous_complete_profiles",
+          "high_ns_segments",
+          "near_reference_supported_segments",
+          "near_reference_supported_fraction",
+          "undefined_segment_rates",
+          "undefined_continuous_profiles",
+          "supported_exact_tie_segments",
+          "exact_tie_segments",
+          "few_section_supported_segments",
+          "observed_distinct_sections",
+          "section_keys_in_multiple_municipalities",
+          "over_100_source_rows",
+          "over_100_LN",
+          "profiles_with_support",
+          "unspecified_rate",
+          "district_reference_year"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "election_year",
+    "election_type",
+    "unit",
+    "source_id",
+    "rate_unit",
+    "data",
+    "warnings"
+  ],
+  "additionalProperties": false
+}

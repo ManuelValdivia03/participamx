@@ -1,0 +1,808 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "election_year": {
+      "type": "integer",
+      "enum": [
+        2009,
+        2012,
+        2015,
+        2018,
+        2021,
+        2024
+      ]
+    },
+    "election_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "election_label": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at_utc": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "method": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "profiles": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "national_references": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "national_statistics": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "age_statistics": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sex_statistics": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "section_statistics": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "municipalities": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "states": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "state_profiles": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "continuous_indicators": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sex_gaps": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quality_summary": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "assignment_status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "municipality_segments": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "municipality_profiles": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "exact_age_segments": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "metadata": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "profiles",
+        "national_references",
+        "national_statistics",
+        "age_statistics",
+        "sex_statistics",
+        "section_statistics",
+        "municipalities",
+        "states",
+        "state_profiles",
+        "continuous_indicators",
+        "sex_gaps",
+        "quality_summary",
+        "assignment_status",
+        "municipality_segments",
+        "municipality_profiles",
+        "exact_age_segments",
+        "metadata"
+      ],
+      "additionalProperties": false
+    },
+    "schemas": {
+      "type": "object",
+      "properties": {
+        "profiles": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "national_references": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "national_statistics": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "age_statistics": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sex_statistics": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "section_statistics": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "municipalities": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "states": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "state_profiles": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "municipality_profiles": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "municipality_segments": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "continuous_indicators": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sex_gaps": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quality_summary": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "assignment_status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "exact_age_segments": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "profiles",
+        "national_references",
+        "national_statistics",
+        "age_statistics",
+        "sex_statistics",
+        "section_statistics",
+        "municipalities",
+        "states",
+        "state_profiles",
+        "municipality_profiles",
+        "municipality_segments",
+        "continuous_indicators",
+        "sex_gaps",
+        "quality_summary",
+        "assignment_status",
+        "exact_age_segments"
+      ],
+      "additionalProperties": false
+    },
+    "state_codes": {
+      "type": "array",
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "units": {
+      "type": "object",
+      "properties": {
+        "profiles": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "national_references": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "national_statistics": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "age_statistics": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sex_statistics": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "section_statistics": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "municipalities": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "states": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "state_profiles": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "municipality_profiles": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "municipality_segments": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "continuous_indicators": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sex_gaps": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quality_summary": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "assignment_status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "exact_age_segments": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "profiles",
+        "national_references",
+        "national_statistics",
+        "age_statistics",
+        "sex_statistics",
+        "section_statistics",
+        "municipalities",
+        "states",
+        "state_profiles",
+        "municipality_profiles",
+        "municipality_segments",
+        "continuous_indicators",
+        "sex_gaps",
+        "quality_summary",
+        "assignment_status",
+        "exact_age_segments"
+      ],
+      "additionalProperties": false
+    },
+    "definitions": {
+      "type": "object",
+      "properties": {
+        "observed_participation": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nominal_participation": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unspecified_rate": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "national_reference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "relative_turnout": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "exact_age_reference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "relative_level": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "shape": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "adjusted_sex_gap": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "distinct_sections": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "candidate_section_union": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "empty_subset_zero": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "observed_participation",
+        "nominal_participation",
+        "unspecified_rate",
+        "national_reference",
+        "relative_turnout",
+        "exact_age_reference",
+        "relative_level",
+        "shape",
+        "adjusted_sex_gap",
+        "distinct_sections",
+        "candidate_section_union",
+        "empty_subset_zero"
+      ],
+      "additionalProperties": false
+    },
+    "quality_thresholds": {
+      "type": "object",
+      "properties": {
+        "min_LN": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "min_specified_count": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "min_source_rows": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "high_ns": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "near_reference": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "min_LN",
+        "min_specified_count",
+        "min_source_rows",
+        "high_ns",
+        "near_reference"
+      ],
+      "additionalProperties": false
+    },
+    "coordinate_order": {
+      "type": "array",
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "sex_categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "label": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "label"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "age_min": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "age_max": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "main_visual_age_range": {
+      "type": "array",
+      "items": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      }
+    },
+    "district_reference_year": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "missing_district_source_cells": {
+      "type": "object",
+      "properties": {
+        "is_federal_district_missing": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "is_local_district_missing": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "is_federal_district_missing",
+        "is_local_district_missing"
+      ],
+      "additionalProperties": false
+    },
+    "municipal_history_enabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "map_geometries": {
+      "type": "null"
+    },
+    "availability": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "election_year": {
+            "type": "integer",
+            "enum": [
+              2009,
+              2012,
+              2015,
+              2018,
+              2021,
+              2024
+            ]
+          },
+          "feature": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "unit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "available": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "status": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "supported_records": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "undefined_or_pending_records": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "note": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "election_year",
+          "feature",
+          "unit",
+          "available",
+          "status",
+          "supported_records",
+          "undefined_or_pending_records",
+          "note"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dictionary_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "technical_cleaning_manifest": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "technical_cleaning_manifest_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "dictionary_path",
+        "technical_cleaning_manifest",
+        "technical_cleaning_manifest_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "election_year",
+    "election_type",
+    "election_label",
+    "status",
+    "created_at_utc",
+    "method",
+    "resources",
+    "schemas",
+    "state_codes",
+    "units",
+    "definitions",
+    "quality_thresholds",
+    "coordinate_order",
+    "sex_categories",
+    "age_min",
+    "age_max",
+    "main_visual_age_range",
+    "district_reference_year",
+    "missing_district_source_cells",
+    "municipal_history_enabled",
+    "map_geometries",
+    "availability",
+    "source",
+    "warnings"
+  ],
+  "additionalProperties": false
+}
