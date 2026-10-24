@@ -1,0 +1,846 @@
+{
+  "schema_version": "2.0.0",
+  "unit": "election_feature",
+  "data": [
+    {
+      "election_year": 2009,
+      "feature": "national_statistics",
+      "unit": "election",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 1,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2009,
+      "feature": "state_statistics",
+      "unit": "state",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 32,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2009,
+      "feature": "municipality_statistics",
+      "unit": "municipality",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 2458,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2009,
+      "feature": "six_rule_profiles",
+      "unit": "rule_candidate",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 6,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2009,
+      "feature": "municipality_age_band_sex",
+      "unit": "municipality_age_band_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 14096,
+      "undefined_or_pending_records": 65,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2009,
+      "feature": "exact_age_statistics",
+      "unit": "municipality_exact_age_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2009,
+      "feature": "continuous_level_shape",
+      "unit": "municipality_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 4583,
+      "undefined_or_pending_records": 14,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2009,
+      "feature": "adjusted_sex_gap",
+      "unit": "municipality_age_band",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 7009,
+      "undefined_or_pending_records": 365,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2009,
+      "feature": "section_context",
+      "unit": "municipality_age_band_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 18545,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2009,
+      "feature": "distinct_sections",
+      "unit": "section",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 64934,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2009,
+      "feature": "sex_2_statistics",
+      "unit": "national_sex",
+      "available": false,
+      "status": "not_recorded",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "El diccionario histórico no registra SEXO=2; su ausencia no significa cero personas."
+    },
+    {
+      "election_year": 2009,
+      "feature": "municipal_longitudinal_comparison",
+      "unit": "municipality_history",
+      "available": false,
+      "status": "blocked_unvalidated_crosswalk",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "No existe correspondencia territorial histórica oficial validada; sólo consultas independientes por elección."
+    },
+    {
+      "election_year": 2009,
+      "feature": "learned_model_labels",
+      "unit": "model_assignment",
+      "available": false,
+      "status": "not_generated",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "No se ajustan algoritmos ni se transfieren R2 o arquetipos aprendidos en 2024."
+    },
+    {
+      "election_year": 2009,
+      "feature": "map_geometries",
+      "unit": "geometry",
+      "available": false,
+      "status": "not_packaged",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "Se preparan claves INE y estadísticas, sin geometrías ni equivalencias INE/INEGI validadas."
+    },
+    {
+      "election_year": 2012,
+      "feature": "national_statistics",
+      "unit": "election",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 1,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2012,
+      "feature": "state_statistics",
+      "unit": "state",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 32,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2012,
+      "feature": "municipality_statistics",
+      "unit": "municipality",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 2455,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2012,
+      "feature": "six_rule_profiles",
+      "unit": "rule_candidate",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 6,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2012,
+      "feature": "municipality_age_band_sex",
+      "unit": "municipality_age_band_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 14060,
+      "undefined_or_pending_records": 8,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2012,
+      "feature": "exact_age_statistics",
+      "unit": "municipality_exact_age_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2012,
+      "feature": "continuous_level_shape",
+      "unit": "municipality_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 4555,
+      "undefined_or_pending_records": 2,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2012,
+      "feature": "adjusted_sex_gap",
+      "unit": "municipality_age_band",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 6983,
+      "undefined_or_pending_records": 382,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2012,
+      "feature": "section_context",
+      "unit": "municipality_age_band_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 17313,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2012,
+      "feature": "distinct_sections",
+      "unit": "section",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 65599,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2012,
+      "feature": "sex_2_statistics",
+      "unit": "national_sex",
+      "available": false,
+      "status": "not_recorded",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "El diccionario histórico no registra SEXO=2; su ausencia no significa cero personas."
+    },
+    {
+      "election_year": 2012,
+      "feature": "municipal_longitudinal_comparison",
+      "unit": "municipality_history",
+      "available": false,
+      "status": "blocked_unvalidated_crosswalk",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "No existe correspondencia territorial histórica oficial validada; sólo consultas independientes por elección."
+    },
+    {
+      "election_year": 2012,
+      "feature": "learned_model_labels",
+      "unit": "model_assignment",
+      "available": false,
+      "status": "not_generated",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "No se ajustan algoritmos ni se transfieren R2 o arquetipos aprendidos en 2024."
+    },
+    {
+      "election_year": 2012,
+      "feature": "map_geometries",
+      "unit": "geometry",
+      "available": false,
+      "status": "not_packaged",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "Se preparan claves INE y estadísticas, sin geometrías ni equivalencias INE/INEGI validadas."
+    },
+    {
+      "election_year": 2015,
+      "feature": "national_statistics",
+      "unit": "election",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 1,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2015,
+      "feature": "state_statistics",
+      "unit": "state",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 32,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2015,
+      "feature": "municipality_statistics",
+      "unit": "municipality",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 2458,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2015,
+      "feature": "six_rule_profiles",
+      "unit": "rule_candidate",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 6,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2015,
+      "feature": "municipality_age_band_sex",
+      "unit": "municipality_age_band_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 13934,
+      "undefined_or_pending_records": 249,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2015,
+      "feature": "exact_age_statistics",
+      "unit": "municipality_exact_age_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2015,
+      "feature": "continuous_level_shape",
+      "unit": "municipality_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 4528,
+      "undefined_or_pending_records": 60,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2015,
+      "feature": "adjusted_sex_gap",
+      "unit": "municipality_age_band",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 6925,
+      "undefined_or_pending_records": 449,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2015,
+      "feature": "section_context",
+      "unit": "municipality_age_band_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 17549,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2015,
+      "feature": "distinct_sections",
+      "unit": "section",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 68362,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2015,
+      "feature": "sex_2_statistics",
+      "unit": "national_sex",
+      "available": false,
+      "status": "not_recorded",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "El diccionario histórico no registra SEXO=2; su ausencia no significa cero personas."
+    },
+    {
+      "election_year": 2015,
+      "feature": "municipal_longitudinal_comparison",
+      "unit": "municipality_history",
+      "available": false,
+      "status": "blocked_unvalidated_crosswalk",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "No existe correspondencia territorial histórica oficial validada; sólo consultas independientes por elección."
+    },
+    {
+      "election_year": 2015,
+      "feature": "learned_model_labels",
+      "unit": "model_assignment",
+      "available": false,
+      "status": "not_generated",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "No se ajustan algoritmos ni se transfieren R2 o arquetipos aprendidos en 2024."
+    },
+    {
+      "election_year": 2015,
+      "feature": "map_geometries",
+      "unit": "geometry",
+      "available": false,
+      "status": "not_packaged",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "Se preparan claves INE y estadísticas, sin geometrías ni equivalencias INE/INEGI validadas."
+    },
+    {
+      "election_year": 2018,
+      "feature": "national_statistics",
+      "unit": "election",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 1,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2018,
+      "feature": "state_statistics",
+      "unit": "state",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 32,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2018,
+      "feature": "municipality_statistics",
+      "unit": "municipality",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 2463,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2018,
+      "feature": "six_rule_profiles",
+      "unit": "rule_candidate",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 6,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2018,
+      "feature": "municipality_age_band_sex",
+      "unit": "municipality_age_band_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 14045,
+      "undefined_or_pending_records": 168,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2018,
+      "feature": "exact_age_statistics",
+      "unit": "municipality_exact_age_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2018,
+      "feature": "continuous_level_shape",
+      "unit": "municipality_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 4577,
+      "undefined_or_pending_records": 26,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2018,
+      "feature": "adjusted_sex_gap",
+      "unit": "municipality_age_band",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 6987,
+      "undefined_or_pending_records": 402,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2018,
+      "feature": "section_context",
+      "unit": "municipality_age_band_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 17451,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2018,
+      "feature": "distinct_sections",
+      "unit": "section",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 68408,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2018,
+      "feature": "sex_2_statistics",
+      "unit": "national_sex",
+      "available": false,
+      "status": "not_recorded",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "El diccionario histórico no registra SEXO=2; su ausencia no significa cero personas."
+    },
+    {
+      "election_year": 2018,
+      "feature": "municipal_longitudinal_comparison",
+      "unit": "municipality_history",
+      "available": false,
+      "status": "blocked_unvalidated_crosswalk",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "No existe correspondencia territorial histórica oficial validada; sólo consultas independientes por elección."
+    },
+    {
+      "election_year": 2018,
+      "feature": "learned_model_labels",
+      "unit": "model_assignment",
+      "available": false,
+      "status": "not_generated",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "No se ajustan algoritmos ni se transfieren R2 o arquetipos aprendidos en 2024."
+    },
+    {
+      "election_year": 2018,
+      "feature": "map_geometries",
+      "unit": "geometry",
+      "available": false,
+      "status": "not_packaged",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "Se preparan claves INE y estadísticas, sin geometrías ni equivalencias INE/INEGI validadas."
+    },
+    {
+      "election_year": 2021,
+      "feature": "national_statistics",
+      "unit": "election",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 1,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2021,
+      "feature": "state_statistics",
+      "unit": "state",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 32,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2021,
+      "feature": "municipality_statistics",
+      "unit": "municipality",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 2468,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2021,
+      "feature": "six_rule_profiles",
+      "unit": "rule_candidate",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 6,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2021,
+      "feature": "municipality_age_band_sex",
+      "unit": "municipality_age_band_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 14148,
+      "undefined_or_pending_records": 125,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2021,
+      "feature": "exact_age_statistics",
+      "unit": "municipality_exact_age_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2021,
+      "feature": "continuous_level_shape",
+      "unit": "municipality_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 4633,
+      "undefined_or_pending_records": 20,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2021,
+      "feature": "adjusted_sex_gap",
+      "unit": "municipality_age_band",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 7044,
+      "undefined_or_pending_records": 360,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2021,
+      "feature": "section_context",
+      "unit": "municipality_age_band_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 17771,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2021,
+      "feature": "distinct_sections",
+      "unit": "section",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 68812,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2021,
+      "feature": "sex_2_statistics",
+      "unit": "national_sex",
+      "available": false,
+      "status": "not_recorded",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "El diccionario histórico no registra SEXO=2; su ausencia no significa cero personas."
+    },
+    {
+      "election_year": 2021,
+      "feature": "municipal_longitudinal_comparison",
+      "unit": "municipality_history",
+      "available": false,
+      "status": "blocked_unvalidated_crosswalk",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "No existe correspondencia territorial histórica oficial validada; sólo consultas independientes por elección."
+    },
+    {
+      "election_year": 2021,
+      "feature": "learned_model_labels",
+      "unit": "model_assignment",
+      "available": false,
+      "status": "not_generated",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "No se ajustan algoritmos ni se transfieren R2 o arquetipos aprendidos en 2024."
+    },
+    {
+      "election_year": 2021,
+      "feature": "map_geometries",
+      "unit": "geometry",
+      "available": false,
+      "status": "not_packaged",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "Se preparan claves INE y estadísticas, sin geometrías ni equivalencias INE/INEGI validadas."
+    },
+    {
+      "election_year": 2024,
+      "feature": "national_statistics",
+      "unit": "election",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 1,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2024,
+      "feature": "state_statistics",
+      "unit": "state",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 32,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2024,
+      "feature": "municipality_statistics",
+      "unit": "municipality",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 2477,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2024,
+      "feature": "six_rule_profiles",
+      "unit": "rule_candidate",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 6,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2024,
+      "feature": "municipality_age_band_sex",
+      "unit": "municipality_age_band_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 14190,
+      "undefined_or_pending_records": 137,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2024,
+      "feature": "exact_age_statistics",
+      "unit": "municipality_exact_age_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2024,
+      "feature": "continuous_level_shape",
+      "unit": "municipality_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 4648,
+      "undefined_or_pending_records": 24,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2024,
+      "feature": "adjusted_sex_gap",
+      "unit": "municipality_age_band",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 7063,
+      "undefined_or_pending_records": 368,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2024,
+      "feature": "section_context",
+      "unit": "municipality_age_band_sex",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 17735,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2024,
+      "feature": "distinct_sections",
+      "unit": "section",
+      "available": true,
+      "status": "available_with_quality_flags",
+      "supported_records": 70751,
+      "undefined_or_pending_records": 0,
+      "note": "Datos propios de la elección; consultar soporte, NS y estados de cada registro."
+    },
+    {
+      "election_year": 2024,
+      "feature": "sex_2_statistics",
+      "unit": "national_sex",
+      "available": true,
+      "status": "available_small_support",
+      "supported_records": 105,
+      "undefined_or_pending_records": null,
+      "note": "Categoría no binaria conservada; no se fusiona con H/M."
+    },
+    {
+      "election_year": 2024,
+      "feature": "municipal_longitudinal_comparison",
+      "unit": "municipality_history",
+      "available": false,
+      "status": "blocked_unvalidated_crosswalk",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "No existe correspondencia territorial histórica oficial validada; sólo consultas independientes por elección."
+    },
+    {
+      "election_year": 2024,
+      "feature": "learned_model_labels",
+      "unit": "model_assignment",
+      "available": false,
+      "status": "not_generated",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "No se ajustan algoritmos ni se transfieren R2 o arquetipos aprendidos en 2024."
+    },
+    {
+      "election_year": 2024,
+      "feature": "map_geometries",
+      "unit": "geometry",
+      "available": false,
+      "status": "not_packaged",
+      "supported_records": null,
+      "undefined_or_pending_records": null,
+      "note": "Se preparan claves INE y estadísticas, sin geometrías ni equivalencias INE/INEGI validadas."
+    }
+  ]
+}

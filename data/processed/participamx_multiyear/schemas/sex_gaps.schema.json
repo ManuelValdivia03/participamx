@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ParticipaMX · sex_gaps",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "2.0.0"
+    },
+    "election_year": {
+      "type": "integer",
+      "enum": [
+        2009,
+        2012,
+        2015,
+        2018,
+        2021,
+        2024
+      ]
+    },
+    "election_type": {
+      "type": "string",
+      "enum": [
+        "presidential",
+        "midterm"
+      ]
+    },
+    "unit": {
+      "const": "municipality_age_band"
+    },
+    "source_id": {
+      "const": "ine_counted_lists"
+    },
+    "rate_unit": {
+      "const": "proportion"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "election_year": {
+            "type": "integer",
+            "enum": [
+              2009,
+              2012,
+              2015,
+              2018,
+              2021,
+              2024
+            ],
+            "minimum": 0
+          },
+          "state_code": {
+            "type": "string"
+          },
+          "municipality_code": {
+            "type": "string"
+          },
+          "age_band": {
+            "type": "string",
+            "enum": [
+              "18-34",
+              "35-59",
+              "60-100",
+              "101+"
+            ]
+          },
+          "male_local_turnout": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "male_participation_delta": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "male_sufficient_support": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "male_specified_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "male_unspecified_rate": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "female_local_turnout": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "female_participation_delta": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "female_sufficient_support": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "female_specified_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "female_unspecified_rate": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "S_available": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "raw_sex_gap_observed": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "raw_sex_gap_adjusted": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "sex_gap_observed": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "sex_gap_adjusted": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "gap_max_ns": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "election_year",
+          "state_code",
+          "municipality_code",
+          "age_band",
+          "male_local_turnout",
+          "male_participation_delta",
+          "male_sufficient_support",
+          "male_specified_count",
+          "male_unspecified_rate",
+          "female_local_turnout",
+          "female_participation_delta",
+          "female_sufficient_support",
+          "female_specified_count",
+          "female_unspecified_rate",
+          "S_available",
+          "raw_sex_gap_observed",
+          "raw_sex_gap_adjusted",
+          "sex_gap_observed",
+          "sex_gap_adjusted",
+          "gap_max_ns"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "election_year",
+    "election_type",
+    "unit",
+    "source_id",
+    "rate_unit",
+    "data",
+    "warnings"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ParticipaMX · section_statistics",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "2.0.0"
+    },
+    "election_year": {
+      "type": "integer",
+      "enum": [
+        2009,
+        2012,
+        2015,
+        2018,
+        2021,
+        2024
+      ]
+    },
+    "election_type": {
+      "type": "string",
+      "enum": [
+        "presidential",
+        "midterm"
+      ]
+    },
+    "unit": {
+      "const": "national_section_type"
+    },
+    "source_id": {
+      "const": "ine_counted_lists"
+    },
+    "rate_unit": {
+      "const": "proportion"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "election_year": {
+            "type": "integer",
+            "enum": [
+              2009,
+              2012,
+              2015,
+              2018,
+              2021,
+              2024
+            ],
+            "minimum": 0
+          },
+          "section_type": {
+            "type": "string",
+            "enum": [
+              "U",
+              "R",
+              "M"
+            ]
+          },
+          "LN": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "SV": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "NV": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "NS": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "source_row_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "sex_2_source_rows": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "sex_2_nominal_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "specified_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "participation_observed": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "nonparticipation_observed": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "participation_nominal": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "unspecified_rate": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "is_observed_undefined": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "is_nominal_undefined": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "has_low_registered_count": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "has_low_specified_count": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "has_few_source_rows": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "has_low_support": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "has_high_ns": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "election_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "section_type_label": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "election_year",
+          "section_type",
+          "LN",
+          "SV",
+          "NV",
+          "NS",
+          "source_row_count",
+          "sex_2_source_rows",
+          "sex_2_nominal_count",
+          "specified_count",
+          "participation_observed",
+          "nonparticipation_observed",
+          "participation_nominal",
+          "unspecified_rate",
+          "is_observed_undefined",
+          "is_nominal_undefined",
+          "has_low_registered_count",
+          "has_low_specified_count",
+          "has_few_source_rows",
+          "has_low_support",
+          "has_high_ns",
+          "election_type",
+          "section_type_label"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "election_year",
+    "election_type",
+    "unit",
+    "source_id",
+    "rate_unit",
+    "data",
+    "warnings"
+  ],
+  "additionalProperties": false
+}

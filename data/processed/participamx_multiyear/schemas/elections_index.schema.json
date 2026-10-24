@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "default_election_year": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "elections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "election_year": {
+            "type": "integer",
+            "enum": [
+              2009,
+              2012,
+              2015,
+              2018,
+              2021,
+              2024
+            ]
+          },
+          "election_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "label": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "base_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "metadata_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "profiles_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "municipalities_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "states_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "national_references_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "continuous_indicators_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "quality_summary_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "profiles_with_support": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "municipalities": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "supported_municipalities": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "supported_nominal_fraction": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "district_reference_year": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "municipal_history_enabled": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "election_year",
+          "election_type",
+          "label",
+          "base_path",
+          "metadata_path",
+          "profiles_path",
+          "municipalities_path",
+          "states_path",
+          "national_references_path",
+          "continuous_indicators_path",
+          "quality_summary_path",
+          "profiles_with_support",
+          "municipalities",
+          "supported_municipalities",
+          "supported_nominal_fraction",
+          "district_reference_year",
+          "municipal_history_enabled"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "historical_comparison_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "availability_matrix_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "schemas_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "municipal_history_enabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "default_election_year",
+    "elections",
+    "historical_comparison_path",
+    "availability_matrix_path",
+    "schemas_path",
+    "municipal_history_enabled",
+    "warnings"
+  ],
+  "additionalProperties": false
+}
