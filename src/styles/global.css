@@ -31,3 +31,87 @@
 @media(max-width:1150px){.dashboard-filters{flex-direction:column;align-items:start}.dashboard-filters p{max-width:none}.dashboard-filter-fields{width:100%}.dashboard-filter-fields>div:first-child{flex:1}.dashboard-filter-fields>div:first-child select{width:100%;max-width:none}.dashboard-charts{grid-template-columns:1fr}.dashboard-metric{padding:18px 12px}.dashboard-metric-value{font-size:24px}}
 @media(max-width:650px){.dashboard-metrics{grid-template-columns:1fr 1fr}.dashboard-metric{padding:18px}.dashboard-metric:first-child{padding-left:18px}.dashboard-metric:nth-child(2){border-right:0}.dashboard-metric:nth-child(-n+2){border-bottom:1px solid #d7c9dd}[data-theme=dark] .dashboard-metric:nth-child(-n+2){border-color:#5b4366}.dashboard-filter-fields{flex-wrap:wrap}.dashboard-filter-fields>div:first-child{flex:1 1 100%}.dashboard-filter-fields>div:nth-child(2){flex:1}.dashboard-filter-fields select{width:100%}.dashboard-filters{padding:19px}.dashboard-reset{padding-inline:10px}.dashboard-skeleton{grid-template-columns:1fr 1fr}.dashboard-metric-value{font-size:26px}.trend-year-buttons button{font-size:8px}.trend-year-buttons button small{font-size:7px}.dashboard-metric h2{font-size:10px}}
 .dashboard-hero{padding:24px 30px;grid-template-columns:1.3fr 1fr}.dashboard-hero h2{font-size:40px}.dashboard-hero .eyebrow{margin-bottom:12px}.dashboard-hero p:not(.eyebrow){margin:14px 0 18px}.dashboard-hero .civic-art{max-width:290px;justify-self:end}.dashboard-hero .art-footnote{font-size:11px}@media(max-width:760px){.dashboard-hero{grid-template-columns:1fr}.dashboard-hero h2{font-size:43px}.dashboard-hero .civic-art{display:none}}
+/* Texto de las tarjetas de metodología */
+main:has(.method-steps) .card > p,
+main:has(.method-steps) .card > ul {
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 14px;
+  margin-bottom: 18px;
+}
+
+main:has(.method-steps) .card > ul {
+  padding-left: 22px;
+}
+
+[data-theme="dark"] main:has(.method-steps) .card > p,
+[data-theme="dark"] main:has(.method-steps) .card > ul {
+  color: #c8acd3;
+}
+/* Consulta nacional por edad y sexo */
+
+.age-sex-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin: 22px 0;
+}
+
+.age-sex-toolbar label {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 7px;
+}
+
+.age-sex-toolbar select {
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 12px;
+  border-radius: 4px;
+  border: 1px solid #bfa8c9;
+  background: #fbf9f4;
+  color: #71517d;
+}
+
+.age-sex-table-wrap {
+  overflow-x: auto;
+}
+
+.age-sex-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.age-sex-table caption {
+  text-align: left;
+  font-size: 11px;
+  padding: 10px 0;
+}
+
+.age-sex-table th,
+.age-sex-table td {
+  text-align: left;
+  padding: 13px 10px;
+  border-bottom: 1px solid #d9c8df;
+}
+
+[data-theme="dark"] .age-sex-toolbar select {
+  background: #3b2c45;
+  color: #e0c2ed;
+  border-color: #83648f;
+}
+
+[data-theme="dark"] .age-sex-table th,
+[data-theme="dark"] .age-sex-table td {
+  border-color: #594263;
+}
+
+@media (max-width: 650px) {
+  .age-sex-toolbar {
+    justify-content: flex-start;
+  }
+
+  .age-sex-toolbar select {
+    max-width: 100%;
+  }
+}

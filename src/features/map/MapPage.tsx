@@ -4,14 +4,24 @@ import { Icon } from '../../components/Icon'
 import { SectionCard } from '../../components/SectionCard'
 import { nationalView, path, states, stateView } from './geography'
 import { loadMunicipalities, searchKey, type Municipality } from './municipalities'
+import { StateElectionSummary } from './StateElectionSummary'
+import { MunicipalElectionSummary } from './MunicipalElectionSummary'
+import { useElectionYear } from '../../context/ElectionYearContext'
+import { MunicipalityProfiles } from './MunicipalityProfiles'
 
 export function MapPage() {
   const [stateCode, setStateCode] = useState('')
-  const [year, setYear] = useState<ElectoralYear>('2024')
+const { year: sharedYear, setYear } = useElectionYear()
+const year = String(sharedYear) as ElectoralYear
   const [municipalityCode, setMunicipalityCode] = useState('')
   const [hoveredName, setHoveredName] = useState('')
   const [query, setQuery] = useState('')
   const [retry, setRetry] = useState(0)
+  useEffect(() => {
+  setMunicipalityCode('')
+  setQuery('')
+  setHoveredName('')
+}, [year])
   const [load, setLoad] = useState<{ state: string; status: 'loading' | 'ready' | 'error'; items: Municipality[] }>({ state: '', status: 'ready', items: [] })
   const state = states.find(item => item.properties.code === stateCode)
   const items = load.state === `${stateCode}:${year}` && load.status === 'ready' ? load.items : []
@@ -47,7 +57,7 @@ export function MapPage() {
     <p className="page-intro">Explora México por estado y {isCity ? 'alcaldía' : 'municipio'}. Selecciona un territorio en el mapa o búscalo por nombre y clave.</p>
     <div className="territory-layout">
       <SectionCard title="Explorador territorial" subtitle={subtitle}>
-        <div className="map-toolbar"><div className="state-picker year-picker"><label htmlFor="electoral-year">Año de claves INE</label><select id="electoral-year" value={year} onChange={event => { setYear(event.target.value as ElectoralYear); setMunicipalityCode(''); setQuery(''); setHoveredName('') }}>{electoralYears.map(value => <option key={value} value={value}>{value}</option>)}</select></div><div className="state-picker"><label htmlFor="state-picker">Seleccionar estado</label><select id="state-picker" value={stateCode} onChange={event => selectState(event.target.value)}><option value="">Todo México</option>{states.map(item => <option key={item.properties.code} value={item.properties.code}>{item.properties.name}</option>)}</select></div><button className="map-reset" disabled={!state} onClick={() => selectState('')}>Vista nacional</button></div>
+        <div className="map-toolbar"><div className="state-picker year-picker"><label htmlFor="electoral-year">Año de claves INE</label><select id="electoral-year" value={year} onChange={event => { setYear(Number(event.target.value)); setMunicipalityCode(''); setQuery(''); setHoveredName('') }}>{electoralYears.map(value => <option key={value} value={value}>{value}</option>)}</select></div><div className="state-picker"><label htmlFor="state-picker">Seleccionar estado</label><select id="state-picker" value={stateCode} onChange={event => selectState(event.target.value)}><option value="">Todo México</option>{states.map(item => <option key={item.properties.code} value={item.properties.code}>{item.properties.name}</option>)}</select></div><button className="map-reset" disabled={!state} onClick={() => selectState('')}>Vista nacional</button></div>
         {state && <div className="territory-breadcrumb"><button type="button" onClick={() => selectState('')}>México</button><span>/</span>{municipality ? <button type="button" onClick={() => selectMunicipality('')}>{state.properties.name}</button> : <strong>{state.properties.name}</strong>}{municipality && <><span>/</span><strong>{municipality.properties.name}</strong></>}{municipality && <button className="state-return" onClick={() => selectMunicipality('')}>Volver al estado</button>}</div>}
         {loading && <p className="municipal-status" role="status">Cargando {units} de {state?.properties.name}…</p>}
         {failed && <div className="municipal-status" role="alert"><p>No pudimos cargar los {units}. Puedes reintentar o elegir otro estado.</p><button className="map-reset" onClick={() => setRetry(value => value + 1)}>Reintentar carga</button></div>}
@@ -59,11 +69,34 @@ export function MapPage() {
           </svg>
           <p className="map-instruction">{municipality ? `Usa “Volver al estado” para explorar más ${units}.` : state ? `Elige ${isCity ? 'una' : 'un'} ${unit} en el mapa o en la lista inferior.` : 'Haz clic o toca un estado para explorar sus municipios.'}</p>
         </div>
-        <div className="map-legend"><span><i />Sin indicadores integrados</span><span><i className="selected-swatch" />Territorio seleccionado</span></div>
+        <div className="map-legend"><span><i />Los colores no representan niveles de participación</span><span><i className="selected-swatch" />Territorio seleccionado</span></div>
         {state && <section className="municipality-search" aria-labelledby="municipalities-title"><div className="municipality-search-heading"><h3 id="municipalities-title">{isCity ? 'Alcaldías' : 'Municipios'} de {state.properties.name}</h3>{items.length > 0 && <span>{items.length} territorios · marco 2024</span>}</div><label htmlFor="municipality-search">Buscar por nombre o clave INE</label><input id="municipality-search" type="search" placeholder={isCity ? 'Ej. Coyoacán o 09003' : 'Nombre o clave INE de cinco dígitos'} value={query} onChange={event => setQuery(event.target.value)} disabled={loading || failed} /><p className="search-count" role="status">{!loading && !failed ? `${visibleItems.length} ${visibleItems.length === 1 ? 'resultado' : 'resultados'}` : ''}</p><div className="municipality-results">{visibleItems.map(item => <button type="button" key={item.properties.inegiCode} aria-pressed={municipalityCode === item.properties.inegiCode} onClick={() => selectMunicipality(item.properties.inegiCode)}><span>{item.properties.name}</span><small>{item.properties.ineCode ? `INE ${item.properties.ineCode}` : 'Clave INE pendiente'}</small></button>)}</div>{!loading && !failed && visibleItems.length === 0 && <p className="municipal-status">No hay coincidencias. Prueba otro nombre o clave.</p>}</section>}
         <p className="map-attribution">Estados: INEGI (2020), vía <a href="https://www.geoboundaries.org/api/current/gbOpen/MEX/ADM1/" target="_blank" rel="noreferrer">geoBoundaries</a> · <a href="https://creativecommons.org/licenses/by/3.0/igo/" target="_blank" rel="noreferrer">CC BY 3.0 IGO</a>. Municipios: <a href="https://lcidsig.inegi.org.mx/server/rest/services/Hosted/%C3%81reas_geoestad%C3%ADsticas_municipales_2024/FeatureServer/0" target="_blank" rel="noreferrer">INEGI, Áreas geoestadísticas municipales 2024</a> · <a href="https://www.inegi.org.mx/inegi/terminos.html" target="_blank" rel="noreferrer">Términos de libre uso</a>. Geometrías generalizadas por ParticipaMX; cortes territoriales de años distintos.</p>
       </SectionCard>
-      <aside className="territory-detail" aria-label="Detalle del territorio" aria-live="polite" aria-atomic="true"><SectionCard title={name} subtitle={municipality ? `${isCity ? 'Alcaldía' : 'Municipio'} de ${state?.properties.name}` : state ? 'Entidad seleccionada' : 'Panorama nacional'}><div className="territory-heading"><Icon name={state ? 'location' : 'mapa'} /><span>{municipality ? `Clave INE ${municipality.properties.ineCode ?? 'pendiente'} · ${year}` : state ? `Clave estatal ${state.properties.code}` : '32 entidades federativas'}</span></div><div className="info-row"><span>Nivel territorial</span><strong>{municipality ? (isCity ? 'Alcaldía' : 'Municipal') : state ? 'Estatal' : 'Nacional'}</strong></div>{municipality && <div className="info-row"><span>Clave INEGI (geometría)</span><strong>{municipality.properties.inegiCode}</strong></div>}{state && <div className="info-row"><span>{isCity ? 'Alcaldías' : 'Municipios'} (2024)</span><strong>{loading ? 'Cargando…' : failed ? 'Sin cargar' : items.length}</strong></div>}{municipality && <div className="key-correspondence"><strong>{municipality.properties.ineCode ? `Referencia INE ${year}` : 'Correspondencia territorial pendiente'}</strong><p>{municipality.properties.ineCode ? 'Correspondencia por nombre único dentro del estado. La geometría sigue siendo de 2024; no acredita límites históricos idénticos.' : 'No se asignarán indicadores ni perfiles hasta validar la equivalencia con el catálogo INE de este año.'}</p></div>}<div className="territory-indicator"><span>Participación electoral</span><strong>—</strong><p>Pendiente de integrar datos</p></div><div className="territory-indicator"><span>Perfil ciudadano</span><strong>Por definir</strong><p>Disponible después del análisis</p></div><p className="territory-next">{municipality ? 'La integración electoral usará la clave INE y el año seleccionados, solo con equivalencia disponible.' : state ? `Selecciona ${isCity ? 'una' : 'un'} ${unit} para consultar su ficha.` : 'Selecciona un estado para explorar su división municipal.'}</p></SectionCard><p className="territory-disclaimer">Los colores indican selección, no niveles de participación ni clusters. Los límites municipales corresponden a 2024; se validará su equivalencia con cada año electoral.</p></aside>
+      <aside className="territory-detail" aria-label="Detalle del territorio" aria-live="polite" aria-atomic="true"><SectionCard title={name} subtitle={municipality ? `${isCity ? 'Alcaldía' : 'Municipio'} de ${state?.properties.name}` : state ? 'Entidad seleccionada' : 'Panorama nacional'}><div className="territory-heading"><Icon name={state ? 'location' : 'mapa'} /><span>{municipality ? `Clave INE ${municipality.properties.ineCode ?? 'pendiente'} · ${year}` : state ? `Clave estatal ${state.properties.code}` : '32 entidades federativas'}</span></div><div className="info-row"><span>Nivel territorial</span><strong>{municipality ? (isCity ? 'Alcaldía' : 'Municipal') : state ? 'Estatal' : 'Nacional'}</strong></div>{municipality && <div className="info-row"><span>Clave INEGI (geometría)</span><strong>{municipality.properties.inegiCode}</strong></div>}{state && <div className="info-row"><span>{isCity ? 'Alcaldías' : 'Municipios'} (2024)</span><strong>{loading ? 'Cargando…' : failed ? 'Sin cargar' : items.length}</strong></div>}{municipality && <div className="key-correspondence"><strong>{municipality.properties.ineCode ? `Referencia INE ${year}` : 'Correspondencia territorial pendiente'}</strong><p>{municipality.properties.ineCode ? 'Correspondencia por nombre único dentro del estado. La geometría sigue siendo de 2024; no acredita límites históricos idénticos.' : 'No se asignarán indicadores ni perfiles hasta validar la equivalencia con el catálogo INE de este año.'}</p></div>}
+
+
+{municipality ? (
+  <>
+    <MunicipalElectionSummary
+      year={year}
+      ineCode={municipality.properties.ineCode}
+    />
+
+    <MunicipalityProfiles
+      year={year}
+      stateCode={stateCode}
+      ineCode={municipality.properties.ineCode}
+    />
+  </>
+) : (
+  <StateElectionSummary
+    year={Number(year)}
+    stateCode={stateCode}
+  />
+)}
+
+<p className="territory-next">{municipality ? 'Los indicadores y perfiles se consultan según el año electoral y la clave INE correspondiente.' : state ? `Selecciona ${isCity ? 'una' : 'un'} ${unit} para consultar su ficha.` : 'Selecciona un estado para explorar su división municipal.'}</p></SectionCard><p className="territory-disclaimer">Los colores indican selección, no niveles de participación ni clusters. Los límites municipales corresponden a 2024; se validará su equivalencia con cada año electoral.</p></aside>
     </div>
   </>
 }
