@@ -1,0 +1,1742 @@
+[
+  {
+    "profile_id": "young_favorable",
+    "election_year": 2024,
+    "content_version": "1.0.0",
+    "content_status": "editorial_review_pending",
+    "public_name": "18–34 años: participación superior a sus pares",
+    "summary": "Segmentos municipales de 18–34 años que participan por encima de la referencia de su misma edad agrupada y sexo. Destacan por la magnitud de su ventaja relativa y por la diversidad de sus resultados.",
+    "methodology": {
+      "unit": "municipality_age_band_sex",
+      "age_band": "18-34",
+      "sex_codes": [
+        "0",
+        "1"
+      ],
+      "description": "Segmentos municipio × intervalo 18–34 años × sexo H/M, con participación observada mayor que la referencia nacional de 2024 de la misma banda y sexo. Requieren LN≥100, SV+NV≥100, al menos cinco filas fuente y tasa definida. NS alto advierte cobertura y no excluye automáticamente. Un empate exacto queda fuera de ambas etiquetas; el signo se decide antes de redondear.",
+      "observed_participation_formula": "SV/(SV+NV)",
+      "national_reference": "ΣSV/Σ(SV+NV) de la misma elección, banda y sexo, antes de soporte",
+      "aggregate_peer_reference": "Σ[(SV+NV) del segmento × su referencia]/Σ(SV+NV)",
+      "thresholds": {
+        "min_LN": 100,
+        "min_specified_count": 100,
+        "min_source_rows": 5,
+        "near_reference_pp": 2,
+        "high_ns_rate": 0.1
+      }
+    },
+    "statistics": {
+      "segments": 2688,
+      "municipalities": 1522,
+      "states": 31,
+      "LN": 17237993,
+      "SV": 9276190,
+      "NV": 6888087,
+      "NS": 1073716,
+      "specified_count": 16164277,
+      "source_row_count": 1091639,
+      "participation_observed": 0.5738697746889638,
+      "matched_peer_reference": 0.49693125025134954,
+      "participation_delta": 0.07693852443761429,
+      "nominal_coverage": 0.1753069459288398,
+      "delta_q1": 0.057050329039318934,
+      "delta_median": 0.11293480966304648,
+      "delta_q3": 0.18571665439924454,
+      "women_segment_fraction": 0.5505952380952381,
+      "women_nominal_fraction": 0.48577064626955124,
+      "nominal_share_U": 0.6755770813922479,
+      "nominal_share_R": 0.19109376596219757,
+      "nominal_share_M": 0.1333291526455545
+    },
+    "statistic_units": {
+      "counts": "reported_counts",
+      "rates_and_shares": "proportion",
+      "participation_delta": "proportion_difference",
+      "quartile_differences": "proportion_difference",
+      "display": "Multiplicar tasas/cuotas por 100 para porcentaje y diferencias por 100 para puntos porcentuales; redondear al mostrar."
+    },
+    "distinctive_findings": [
+      "Mayor ventaja relativa agregada entre las categorías positivas: +7.69 pp.",
+      "Mediana de diferencias de +11.29 pp; el volumen nominal y el número de segmentos ofrecen lecturas distintas.",
+      "Mayor presencia municipal que la categoría joven inferior, con menor LN."
+    ],
+    "interpretation": [
+      "La participación agregada es 57.39 %, frente a una referencia comparable de 49.69 %: una ventaja de +7.69 puntos porcentuales, la mayor entre las categorías positivas. La mediana de diferencias de los segmentos es +11.29 pp; la mitad central de la distribución va de +5.71 a +18.57 pp. Estos valores muestran intensidad variable. La mediana describe un segmento con igual peso; la ventaja agregada pondera por registros con participación especificada.",
+      "La categoría aparece en 1,522 municipios y reúne LN=17,237,993. Se extiende a más municipios que la categoría joven inferior, pero incluye menos LN. Las mujeres representan 55.06 % de sus segmentos y 48.58 % de su LN: contar segmentos no equivale a contar volumen nominal. Además, su composición U/R/M se parece a la de la categoría joven inferior; los datos no sostienen explicar la diferencia como una separación clara entre residencia urbana y rural."
+    ],
+    "territorial_distribution": {
+      "rank_basis": "LN",
+      "top_states": [
+        {
+          "state_code": "15",
+          "state_name": "MEXICO",
+          "LN": 3856223,
+          "share_of_profile_LN": 0.22370487097888947,
+          "share_of_state_total_LN": 0.2960229134278239
+        },
+        {
+          "state_code": "9",
+          "state_name": "CIUDAD DE MEXICO",
+          "LN": 2578840,
+          "share_of_profile_LN": 0.14960210275059282,
+          "share_of_state_total_LN": 0.3256690900779053
+        },
+        {
+          "state_code": "21",
+          "state_name": "PUEBLA",
+          "LN": 1345660,
+          "share_of_profile_LN": 0.07806361216181025,
+          "share_of_state_total_LN": 0.270284873097711
+        }
+      ],
+      "note": "Tres entidades con mayor volumen nominal de esta categoría; no son un ranking de prevalencia ni una descripción de todos sus habitantes. Los nombres conservan las etiquetas de la fuente."
+    },
+    "quality": {
+      "near_reference_segments": 253,
+      "near_reference_fraction": 0.09412202380952381,
+      "high_ns_segments": 606,
+      "high_ns_fraction": 0.22544642857142858,
+      "unspecified_rate": 0.06228776169012251,
+      "specified_min": 101,
+      "specified_median": 1841.0,
+      "sections_min": 1,
+      "sections_median": 9.0,
+      "low_section_segments": 660,
+      "distinct_sections": null
+    },
+    "quality_note": "253 segmentos (9.41 %) están a no más de 2 pp de su referencia; 606 (22.54 %) tienen NS/LN≥10 %. El NS agregado equivale a 6.23 % del LN de la ficha. 660 segmentos proceden de menos de cinco secciones distintas; cinco filas fuente no equivalen a cinco secciones. Estas alertas no identifican errores, abstención de los NS o incertidumbre individual.",
+    "warnings": [
+      "Son seis categorías descriptivas construidas por reglas, no seis clusters naturales demostrados.",
+      "La unidad es municipio × intervalo de edad × sexo; los resultados no describen personas individuales ni sus motivaciones.",
+      "Participación observada = SV/(SV+NV); las tasas agregadas se calculan sumando conteos antes de dividir.",
+      "NS significa no especificado y no equivale a abstención; se conserva separado de NV.",
+      "Las referencias nacionales corresponden a la misma elección, banda de edad y sexo, antes de seleccionar soporte.",
+      "La zona de ±2 puntos porcentuales es una advertencia descriptiva, no un umbral estadístico oficial ni un intervalo de confianza.",
+      "No se suman municipios entre perfiles: un municipio puede aportar segmentos a varias categorías.",
+      "U/R/M identifica secciones electorales urbanas, rurales o mixtas; no residencia individual.",
+      "No se comparan municipios longitudinalmente sin equivalencias territoriales históricas validadas.",
+      "Las asociaciones observadas no explican causas, preferencias partidistas, capacidades o necesidades individuales.",
+      "Las propuestas informativas son hipótesis abiertas a toda la ciudadanía; requieren evaluación y no tienen eficacia demostrada sobre participación."
+    ],
+    "limitations": [
+      "La intensidad positiva no informa si se trata de primeras participaciones ni permite suponer interés, liderazgo o preferencias digitales. La referencia 18–34 puede ocultar diferencias de edades exactas.",
+      "La referencia ajusta banda y sexo, pero no la edad exacta interna ni otros factores; no es un efecto causal.",
+      "La unión de secciones distintas de la ficha no está disponible: distinct_sections es NULL, no cero."
+    ],
+    "historical_note": "Su cuota del LN anual va de 15.58 % en 2021 a 21.38 % en 2012; en 2024 es 17.53 %. En estas seis elecciones, las ventajas relativas son mayores en las intermedias (+8.89 a +11.15 pp) que en las presidenciales (+5.87 a +7.69 pp). No se describe a las mismas personas a través del tiempo.",
+    "historical_evidence": [
+      {
+        "election_year": 2009,
+        "election_type": "midterm",
+        "nominal_coverage": 0.19322802270896258,
+        "participation_observed": 0.45567981696432347,
+        "matched_peer_reference": 0.3668082782254719,
+        "participation_delta": 0.08887153873885156,
+        "source_path": "data/processed/participamx_multiyear/elections/2009/profiles.json"
+      },
+      {
+        "election_year": 2012,
+        "election_type": "presidential",
+        "nominal_coverage": 0.21378546657577663,
+        "participation_observed": 0.6049974374002242,
+        "matched_peer_reference": 0.5463051450708676,
+        "participation_delta": 0.05869229232935658,
+        "source_path": "data/processed/participamx_multiyear/elections/2012/profiles.json"
+      },
+      {
+        "election_year": 2015,
+        "election_type": "midterm",
+        "nominal_coverage": 0.17247209073266975,
+        "participation_observed": 0.4889326336939455,
+        "matched_peer_reference": 0.3777427031746467,
+        "participation_delta": 0.11118993051929882,
+        "source_path": "data/processed/participamx_multiyear/elections/2015/profiles.json"
+      },
+      {
+        "election_year": 2018,
+        "election_type": "presidential",
+        "nominal_coverage": 0.19664557908012137,
+        "participation_observed": 0.6225836928120915,
+        "matched_peer_reference": 0.5517359087035955,
+        "participation_delta": 0.07084778410849601,
+        "source_path": "data/processed/participamx_multiyear/elections/2018/profiles.json"
+      },
+      {
+        "election_year": 2021,
+        "election_type": "midterm",
+        "nominal_coverage": 0.15583694643208876,
+        "participation_observed": 0.5356329341623646,
+        "matched_peer_reference": 0.42409435100717935,
+        "participation_delta": 0.11153858315518522,
+        "source_path": "data/processed/participamx_multiyear/elections/2021/profiles.json"
+      },
+      {
+        "election_year": 2024,
+        "election_type": "presidential",
+        "nominal_coverage": 0.1753069459288398,
+        "participation_observed": 0.5738697746889638,
+        "matched_peer_reference": 0.49693125025134954,
+        "participation_delta": 0.07693852443761429,
+        "source_path": "data/processed/participamx_multiyear/elections/2024/profiles.json"
+      }
+    ],
+    "information_research_reference": {
+      "path": "docs/perfiles/propuestas_informativas.md",
+      "section_id": "young_favorable",
+      "status": "hypothesis_pending_evaluation",
+      "note": "Asocia una pregunta de revisión, no define una audiencia demográfica ni una intervención para cambiar participación."
+    },
+    "provenance": {
+      "analytical_schema_version": "2.0.0",
+      "resources": [
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/profiles.json",
+          "record_selector": {
+            "profile_id": "young_favorable"
+          },
+          "sha256": "d5ec372d45294251ffff26eeda2263868f56fc7141dd5f9bfbe637597cd628f7"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/national_references.json",
+          "record_selector": {
+            "age_band": "18-34",
+            "sex_code": [
+              "0",
+              "1"
+            ]
+          },
+          "sha256": "d43882724e2b186c7908742e9c726cc2763993702a2b18d149a7dbb46dc9600a"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/state_profiles.json",
+          "record_selector": {
+            "profile_id": "young_favorable"
+          },
+          "sha256": "1809e6aa81692b7bf3f0a3471724b83ea15708b56a1983f689fb558675448702"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/states.json",
+          "record_selector": {
+            "state_code": [
+              "15",
+              "9",
+              "21"
+            ]
+          },
+          "sha256": "f4a486ea321caa3776781b37f21370a60b5f7c968e3adb422161fbe0f158f067"
+        }
+      ],
+      "reports": [
+        {
+          "path": "analysis/reports/profile_interpretation_2024.md",
+          "sha256": "d4dac0b3442eab0a97807ef4b79253728e021179d6b12de7d6a240626126ae93"
+        },
+        {
+          "path": "analysis/reports/profile_interpretation_historical_context.md",
+          "sha256": "0cc34ddf9a7c6ef2d857c4825af681ac57205075980b9cb91b64686ce240464b"
+        },
+        {
+          "path": "analysis/reports/profile_interpretation_review.md",
+          "sha256": "926b8e88e61d6e4e7009b4eee55cc856850b647efbdc5f575a615a4bfe2854c5"
+        },
+        {
+          "path": "analysis/reports/multiyear_profile_review.md",
+          "sha256": "76295fc936b8e4b62bc524074bb8330e9a405885f2538d2b9b93608816e03a8a"
+        },
+        {
+          "path": "analysis/reports/profile_candidates_review.md",
+          "sha256": "bfa8be3ef73e5c60a50211fa3ab161841ce88091e4e9f6182302b22c509525ad"
+        }
+      ],
+      "statistic_source_fields": {
+        "segments": "profiles.json:data[profile_id=young_favorable].segments",
+        "municipalities": "profiles.json:data[profile_id=young_favorable].municipalities",
+        "states": "profiles.json:data[profile_id=young_favorable].states",
+        "LN": "profiles.json:data[profile_id=young_favorable].LN",
+        "SV": "profiles.json:data[profile_id=young_favorable].SV",
+        "NV": "profiles.json:data[profile_id=young_favorable].NV",
+        "NS": "profiles.json:data[profile_id=young_favorable].NS",
+        "specified_count": "profiles.json:data[profile_id=young_favorable].specified_count",
+        "source_row_count": "profiles.json:data[profile_id=young_favorable].source_row_count",
+        "participation_observed": "profiles.json:data[profile_id=young_favorable].participation_observed",
+        "matched_peer_reference": "profiles.json:data[profile_id=young_favorable].matched_peer_reference",
+        "participation_delta": "profiles.json:data[profile_id=young_favorable].participation_delta",
+        "nominal_coverage": "profiles.json:data[profile_id=young_favorable].nominal_coverage",
+        "delta_q1": "profiles.json:data[profile_id=young_favorable].delta_q1",
+        "delta_median": "profiles.json:data[profile_id=young_favorable].delta_median",
+        "delta_q3": "profiles.json:data[profile_id=young_favorable].delta_q3",
+        "women_segment_fraction": "profiles.json:data[profile_id=young_favorable].women_segment_fraction",
+        "women_nominal_fraction": "profiles.json:data[profile_id=young_favorable].women_nominal_fraction",
+        "nominal_share_U": "profiles.json:data[profile_id=young_favorable].nominal_share_U",
+        "nominal_share_R": "profiles.json:data[profile_id=young_favorable].nominal_share_R",
+        "nominal_share_M": "profiles.json:data[profile_id=young_favorable].nominal_share_M",
+        "near_reference_segments": "profiles.json:data[profile_id=young_favorable].near_reference_segments",
+        "near_reference_fraction": "profiles.json:data[profile_id=young_favorable].near_reference_fraction",
+        "high_ns_segments": "profiles.json:data[profile_id=young_favorable].high_ns_segments",
+        "high_ns_fraction": "profiles.json:data[profile_id=young_favorable].high_ns_fraction",
+        "unspecified_rate": "profiles.json:data[profile_id=young_favorable].unspecified_rate",
+        "specified_min": "profiles.json:data[profile_id=young_favorable].specified_min",
+        "specified_median": "profiles.json:data[profile_id=young_favorable].specified_median",
+        "sections_min": "profiles.json:data[profile_id=young_favorable].sections_min",
+        "sections_median": "profiles.json:data[profile_id=young_favorable].sections_median",
+        "low_section_segments": "profiles.json:data[profile_id=young_favorable].low_section_segments",
+        "distinct_sections": "profiles.json:data[profile_id=young_favorable].distinct_sections"
+      },
+      "historical_source_rule": "elections/{election_year}/profiles.json, mismo profile_id; cada año conserva su referencia propia.",
+      "derived_fields": {
+        "share_of_profile_LN": "state_profiles.LN / profiles.LN para la misma elección y profile_id."
+      },
+      "note": "Contenido narrativo editorial nuevo. No sustituye ni modifica los JSON analíticos, sus contratos o sus resultados."
+    }
+  },
+  {
+    "profile_id": "young_unfavorable",
+    "election_year": 2024,
+    "content_version": "1.0.0",
+    "content_status": "editorial_review_pending",
+    "public_name": "18–34 años: participación inferior a sus pares",
+    "summary": "Segmentos municipales de 18–34 años con participación inferior a la referencia comparable. Reúnen más lista nominal que su contraparte positiva, aunque aparecen en menos municipios.",
+    "methodology": {
+      "unit": "municipality_age_band_sex",
+      "age_band": "18-34",
+      "sex_codes": [
+        "0",
+        "1"
+      ],
+      "description": "Segmentos municipio × intervalo 18–34 años × sexo H/M, con participación observada menor que la referencia nacional de 2024 de la misma banda y sexo. Requieren LN≥100, SV+NV≥100, al menos cinco filas fuente y tasa definida. NS alto advierte cobertura y no excluye automáticamente. Un empate exacto queda fuera de ambas etiquetas; el signo se decide antes de redondear.",
+      "observed_participation_formula": "SV/(SV+NV)",
+      "national_reference": "ΣSV/Σ(SV+NV) de la misma elección, banda y sexo, antes de soporte",
+      "aggregate_peer_reference": "Σ[(SV+NV) del segmento × su referencia]/Σ(SV+NV)",
+      "thresholds": {
+        "min_LN": 100,
+        "min_specified_count": 100,
+        "min_source_rows": 5,
+        "near_reference_pp": 2,
+        "high_ns_rate": 0.1
+      }
+    },
+    "statistics": {
+      "segments": 2036,
+      "municipalities": 1200,
+      "states": 31,
+      "LN": 19495482,
+      "SV": 7870373,
+      "NV": 10321265,
+      "NS": 1303844,
+      "specified_count": 18191638,
+      "source_row_count": 1268365,
+      "participation_observed": 0.4326368521625156,
+      "matched_peer_reference": 0.5009521338434503,
+      "participation_delta": -0.0683152816809347,
+      "nominal_coverage": 0.1982651581788361,
+      "delta_q1": -0.14495583113070132,
+      "delta_median": -0.07817395314573664,
+      "delta_q3": -0.03483406448328885,
+      "women_segment_fraction": 0.43418467583497056,
+      "women_nominal_fraction": 0.5204705377379231,
+      "nominal_share_U": 0.6853317091621536,
+      "nominal_share_R": 0.1745906564402973,
+      "nominal_share_M": 0.14007763439754914
+    },
+    "statistic_units": {
+      "counts": "reported_counts",
+      "rates_and_shares": "proportion",
+      "participation_delta": "proportion_difference",
+      "quartile_differences": "proportion_difference",
+      "display": "Multiplicar tasas/cuotas por 100 para porcentaje y diferencias por 100 para puntos porcentuales; redondear al mostrar."
+    },
+    "distinctive_findings": [
+      "Menor participación absoluta de las seis categorías: 43.26 %.",
+      "LN de 19,495,482, superior al de jóvenes por encima, en menos municipios.",
+      "Las mujeres aportan 52.05 % del LN, aunque sólo 43.42 % de los segmentos."
+    ],
+    "interpretation": [
+      "La participación observada es 43.26 %, frente a una referencia comparable de 50.10 %, con una diferencia de −6.83 pp. Es la tasa absoluta más baja de las seis categorías. La mediana de diferencias es −7.82 pp y el intervalo entre el primer y tercer cuartil va de −14.50 a −3.48 pp. El resultado describe una distancia observada respecto de pares; no mide desinterés, desconocimiento o falta de capacidad para participar.",
+      "Sus 2,036 segmentos reúnen LN=19,495,482 en 1,200 municipios. Aunque tiene menos segmentos que la categoría joven superior, incluye más volumen nominal. Las mujeres son 43.42 % de los segmentos y aportan 52.05 % del LN; no corresponde describir este conjunto nominal como predominantemente masculino. La información de secciones U/R/M tampoco permite atribuir el resultado a la residencia de las personas."
+    ],
+    "territorial_distribution": {
+      "rank_basis": "LN",
+      "top_states": [
+        {
+          "state_code": "30",
+          "state_name": "VERACRUZ",
+          "LN": 1856783,
+          "share_of_profile_LN": 0.095241707796709,
+          "share_of_state_total_LN": 0.3053659746366962
+        },
+        {
+          "state_code": "11",
+          "state_name": "GUANAJUATO",
+          "LN": 1354661,
+          "share_of_profile_LN": 0.06948589421897854,
+          "share_of_state_total_LN": 0.2804008313533047
+        },
+        {
+          "state_code": "14",
+          "state_name": "JALISCO",
+          "LN": 1325025,
+          "share_of_profile_LN": 0.06796574714079909,
+          "share_of_state_total_LN": 0.20017361145207127
+        }
+      ],
+      "note": "Tres entidades con mayor volumen nominal de esta categoría; no son un ranking de prevalencia ni una descripción de todos sus habitantes. Los nombres conservan las etiquetas de la fuente."
+    },
+    "quality": {
+      "near_reference_segments": 311,
+      "near_reference_fraction": 0.15275049115913555,
+      "high_ns_segments": 322,
+      "high_ns_fraction": 0.1581532416502947,
+      "unspecified_rate": 0.06687929028889873,
+      "specified_min": 100,
+      "specified_median": 2230.0,
+      "sections_min": 1,
+      "sections_median": 12.0,
+      "low_section_segments": 640,
+      "distinct_sections": null
+    },
+    "quality_note": "311 segmentos (15.28 %) están a no más de 2 pp de su referencia; 322 (15.82 %) tienen NS/LN≥10 %. El NS agregado equivale a 6.69 % del LN de la ficha. 640 segmentos proceden de menos de cinco secciones distintas; cinco filas fuente no equivalen a cinco secciones. Estas alertas no identifican errores, abstención de los NS o incertidumbre individual.",
+    "warnings": [
+      "Son seis categorías descriptivas construidas por reglas, no seis clusters naturales demostrados.",
+      "La unidad es municipio × intervalo de edad × sexo; los resultados no describen personas individuales ni sus motivaciones.",
+      "Participación observada = SV/(SV+NV); las tasas agregadas se calculan sumando conteos antes de dividir.",
+      "NS significa no especificado y no equivale a abstención; se conserva separado de NV.",
+      "Las referencias nacionales corresponden a la misma elección, banda de edad y sexo, antes de seleccionar soporte.",
+      "La zona de ±2 puntos porcentuales es una advertencia descriptiva, no un umbral estadístico oficial ni un intervalo de confianza.",
+      "No se suman municipios entre perfiles: un municipio puede aportar segmentos a varias categorías.",
+      "U/R/M identifica secciones electorales urbanas, rurales o mixtas; no residencia individual.",
+      "No se comparan municipios longitudinalmente sin equivalencias territoriales históricas validadas.",
+      "Las asociaciones observadas no explican causas, preferencias partidistas, capacidades o necesidades individuales.",
+      "Las propuestas informativas son hipótesis abiertas a toda la ciudadanía; requieren evaluación y no tienen eficacia demostrada sobre participación."
+    ],
+    "limitations": [
+      "Una tasa menor no identifica barreras ni apatía. Su composición por segmentos difiere de la composición del LN y los agregados no describen a cada persona o municipio completo.",
+      "La referencia ajusta banda y sexo, pero no la edad exacta interna ni otros factores; no es un efecto causal.",
+      "La unión de secciones distintas de la ficha no está disponible: distinct_sections es NULL, no cero."
+    ],
+    "historical_note": "La cuota nacional varía entre 19.83 % y 23.76 %, y la diferencia agregada entre −7.99 y −5.99 pp. En cada par intermedia–presidencial siguiente baja su cuota, pero la serie completa no desciende de forma continua. En 2024 la cuota es 19.83 % y la diferencia, −6.83 pp.",
+    "historical_evidence": [
+      {
+        "election_year": 2009,
+        "election_type": "midterm",
+        "nominal_coverage": 0.2243817650617988,
+        "participation_observed": 0.28633080140893447,
+        "matched_peer_reference": 0.363191146399691,
+        "participation_delta": -0.07686034499075656,
+        "source_path": "data/processed/participamx_multiyear/elections/2009/profiles.json"
+      },
+      {
+        "election_year": 2012,
+        "election_type": "presidential",
+        "nominal_coverage": 0.20939526162581143,
+        "participation_observed": 0.4825179990701885,
+        "matched_peer_reference": 0.5423688357962633,
+        "participation_delta": -0.059850836726074774,
+        "source_path": "data/processed/participamx_multiyear/elections/2012/profiles.json"
+      },
+      {
+        "election_year": 2015,
+        "election_type": "midterm",
+        "nominal_coverage": 0.2376242980454783,
+        "participation_observed": 0.2968878986414284,
+        "matched_peer_reference": 0.3768356115235287,
+        "participation_delta": -0.07994771288210029,
+        "source_path": "data/processed/participamx_multiyear/elections/2015/profiles.json"
+      },
+      {
+        "election_year": 2018,
+        "election_type": "presidential",
+        "nominal_coverage": 0.1996502356149938,
+        "participation_observed": 0.4797573604719628,
+        "matched_peer_reference": 0.5502752890790132,
+        "participation_delta": -0.07051792860705042,
+        "source_path": "data/processed/participamx_multiyear/elections/2018/profiles.json"
+      },
+      {
+        "election_year": 2021,
+        "election_type": "midterm",
+        "nominal_coverage": 0.2279624907089417,
+        "participation_observed": 0.34818409246513154,
+        "matched_peer_reference": 0.42408559730853784,
+        "participation_delta": -0.0759015048434063,
+        "source_path": "data/processed/participamx_multiyear/elections/2021/profiles.json"
+      },
+      {
+        "election_year": 2024,
+        "election_type": "presidential",
+        "nominal_coverage": 0.1982651581788361,
+        "participation_observed": 0.4326368521625156,
+        "matched_peer_reference": 0.5009521338434503,
+        "participation_delta": -0.0683152816809347,
+        "source_path": "data/processed/participamx_multiyear/elections/2024/profiles.json"
+      }
+    ],
+    "information_research_reference": {
+      "path": "docs/perfiles/propuestas_informativas.md",
+      "section_id": "young_unfavorable",
+      "status": "hypothesis_pending_evaluation",
+      "note": "Asocia una pregunta de revisión, no define una audiencia demográfica ni una intervención para cambiar participación."
+    },
+    "provenance": {
+      "analytical_schema_version": "2.0.0",
+      "resources": [
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/profiles.json",
+          "record_selector": {
+            "profile_id": "young_unfavorable"
+          },
+          "sha256": "d5ec372d45294251ffff26eeda2263868f56fc7141dd5f9bfbe637597cd628f7"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/national_references.json",
+          "record_selector": {
+            "age_band": "18-34",
+            "sex_code": [
+              "0",
+              "1"
+            ]
+          },
+          "sha256": "d43882724e2b186c7908742e9c726cc2763993702a2b18d149a7dbb46dc9600a"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/state_profiles.json",
+          "record_selector": {
+            "profile_id": "young_unfavorable"
+          },
+          "sha256": "1809e6aa81692b7bf3f0a3471724b83ea15708b56a1983f689fb558675448702"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/states.json",
+          "record_selector": {
+            "state_code": [
+              "30",
+              "11",
+              "14"
+            ]
+          },
+          "sha256": "f4a486ea321caa3776781b37f21370a60b5f7c968e3adb422161fbe0f158f067"
+        }
+      ],
+      "reports": [
+        {
+          "path": "analysis/reports/profile_interpretation_2024.md",
+          "sha256": "d4dac0b3442eab0a97807ef4b79253728e021179d6b12de7d6a240626126ae93"
+        },
+        {
+          "path": "analysis/reports/profile_interpretation_historical_context.md",
+          "sha256": "0cc34ddf9a7c6ef2d857c4825af681ac57205075980b9cb91b64686ce240464b"
+        },
+        {
+          "path": "analysis/reports/profile_interpretation_review.md",
+          "sha256": "926b8e88e61d6e4e7009b4eee55cc856850b647efbdc5f575a615a4bfe2854c5"
+        },
+        {
+          "path": "analysis/reports/multiyear_profile_review.md",
+          "sha256": "76295fc936b8e4b62bc524074bb8330e9a405885f2538d2b9b93608816e03a8a"
+        },
+        {
+          "path": "analysis/reports/profile_candidates_review.md",
+          "sha256": "bfa8be3ef73e5c60a50211fa3ab161841ce88091e4e9f6182302b22c509525ad"
+        }
+      ],
+      "statistic_source_fields": {
+        "segments": "profiles.json:data[profile_id=young_unfavorable].segments",
+        "municipalities": "profiles.json:data[profile_id=young_unfavorable].municipalities",
+        "states": "profiles.json:data[profile_id=young_unfavorable].states",
+        "LN": "profiles.json:data[profile_id=young_unfavorable].LN",
+        "SV": "profiles.json:data[profile_id=young_unfavorable].SV",
+        "NV": "profiles.json:data[profile_id=young_unfavorable].NV",
+        "NS": "profiles.json:data[profile_id=young_unfavorable].NS",
+        "specified_count": "profiles.json:data[profile_id=young_unfavorable].specified_count",
+        "source_row_count": "profiles.json:data[profile_id=young_unfavorable].source_row_count",
+        "participation_observed": "profiles.json:data[profile_id=young_unfavorable].participation_observed",
+        "matched_peer_reference": "profiles.json:data[profile_id=young_unfavorable].matched_peer_reference",
+        "participation_delta": "profiles.json:data[profile_id=young_unfavorable].participation_delta",
+        "nominal_coverage": "profiles.json:data[profile_id=young_unfavorable].nominal_coverage",
+        "delta_q1": "profiles.json:data[profile_id=young_unfavorable].delta_q1",
+        "delta_median": "profiles.json:data[profile_id=young_unfavorable].delta_median",
+        "delta_q3": "profiles.json:data[profile_id=young_unfavorable].delta_q3",
+        "women_segment_fraction": "profiles.json:data[profile_id=young_unfavorable].women_segment_fraction",
+        "women_nominal_fraction": "profiles.json:data[profile_id=young_unfavorable].women_nominal_fraction",
+        "nominal_share_U": "profiles.json:data[profile_id=young_unfavorable].nominal_share_U",
+        "nominal_share_R": "profiles.json:data[profile_id=young_unfavorable].nominal_share_R",
+        "nominal_share_M": "profiles.json:data[profile_id=young_unfavorable].nominal_share_M",
+        "near_reference_segments": "profiles.json:data[profile_id=young_unfavorable].near_reference_segments",
+        "near_reference_fraction": "profiles.json:data[profile_id=young_unfavorable].near_reference_fraction",
+        "high_ns_segments": "profiles.json:data[profile_id=young_unfavorable].high_ns_segments",
+        "high_ns_fraction": "profiles.json:data[profile_id=young_unfavorable].high_ns_fraction",
+        "unspecified_rate": "profiles.json:data[profile_id=young_unfavorable].unspecified_rate",
+        "specified_min": "profiles.json:data[profile_id=young_unfavorable].specified_min",
+        "specified_median": "profiles.json:data[profile_id=young_unfavorable].specified_median",
+        "sections_min": "profiles.json:data[profile_id=young_unfavorable].sections_min",
+        "sections_median": "profiles.json:data[profile_id=young_unfavorable].sections_median",
+        "low_section_segments": "profiles.json:data[profile_id=young_unfavorable].low_section_segments",
+        "distinct_sections": "profiles.json:data[profile_id=young_unfavorable].distinct_sections"
+      },
+      "historical_source_rule": "elections/{election_year}/profiles.json, mismo profile_id; cada año conserva su referencia propia.",
+      "derived_fields": {
+        "share_of_profile_LN": "state_profiles.LN / profiles.LN para la misma elección y profile_id."
+      },
+      "note": "Contenido narrativo editorial nuevo. No sustituye ni modifica los JSON analíticos, sus contratos o sus resultados."
+    }
+  },
+  {
+    "profile_id": "adult_favorable",
+    "election_year": 2024,
+    "content_version": "1.0.0",
+    "content_status": "editorial_review_pending",
+    "public_name": "35–59 años: participación superior a sus pares",
+    "summary": "Segmentos municipales de 35–59 años con participación superior a la referencia comparable. Es la categoría con mayor presencia en número de segmentos y municipios.",
+    "methodology": {
+      "unit": "municipality_age_band_sex",
+      "age_band": "35-59",
+      "sex_codes": [
+        "0",
+        "1"
+      ],
+      "description": "Segmentos municipio × intervalo 35–59 años × sexo H/M, con participación observada mayor que la referencia nacional de 2024 de la misma banda y sexo. Requieren LN≥100, SV+NV≥100, al menos cinco filas fuente y tasa definida. NS alto advierte cobertura y no excluye automáticamente. Un empate exacto queda fuera de ambas etiquetas; el signo se decide antes de redondear.",
+      "observed_participation_formula": "SV/(SV+NV)",
+      "national_reference": "ΣSV/Σ(SV+NV) de la misma elección, banda y sexo, antes de soporte",
+      "aggregate_peer_reference": "Σ[(SV+NV) del segmento × su referencia]/Σ(SV+NV)",
+      "thresholds": {
+        "min_LN": 100,
+        "min_specified_count": 100,
+        "min_source_rows": 5,
+        "near_reference_pp": 2,
+        "high_ns_rate": 0.1
+      }
+    },
+    "statistics": {
+      "segments": 3015,
+      "municipalities": 1641,
+      "states": 31,
+      "LN": 20337701,
+      "SV": 13282203,
+      "NV": 5876703,
+      "NS": 1178795,
+      "specified_count": 19158906,
+      "source_row_count": 1626836,
+      "participation_observed": 0.6932652104457321,
+      "matched_peer_reference": 0.6282095607768702,
+      "participation_delta": 0.0650556496688619,
+      "nominal_coverage": 0.20683035719552217,
+      "delta_q1": 0.048425100082695294,
+      "delta_median": 0.09962579874155097,
+      "delta_q3": 0.16347238818024962,
+      "women_segment_fraction": 0.5097844112769486,
+      "women_nominal_fraction": 0.5157356281322063,
+      "nominal_share_U": 0.6630668333652855,
+      "nominal_share_R": 0.2034058323504707,
+      "nominal_share_M": 0.13352733428424382
+    },
+    "statistic_units": {
+      "counts": "reported_counts",
+      "rates_and_shares": "proportion",
+      "participation_delta": "proportion_difference",
+      "quartile_differences": "proportion_difference",
+      "display": "Multiplicar tasas/cuotas por 100 para porcentaje y diferencias por 100 para puntos porcentuales; redondear al mostrar."
+    },
+    "distinctive_findings": [
+      "Mayor presencia: 3,015 segmentos y 1,641 municipios.",
+      "Ventaja agregada de +6.51 pp, con mediana de segmentos de +9.96 pp.",
+      "Estado de México y Ciudad de México concentran 38.87 % del LN de la categoría."
+    ],
+    "interpretation": [
+      "La participación de 69.33 % supera en +6.51 pp una referencia comparable de 62.82 %. Esta categoría tiene la mayor presencia entre las seis: 3,015 segmentos en 1,641 municipios. La mediana de diferencias es +9.96 pp; su distancia respecto de la ventaja agregada recuerda que el segmento típico con igual peso y el resultado ponderado por registros especificados son medidas diferentes.",
+      "El LN incluido es 20,337,701, menor que el de adultos por debajo pese a su mayor extensión territorial. El Estado de México y la Ciudad de México aportan 38.87 % del LN de esta categoría; esa concentración debe distinguirse de su presencia en muchos municipios. El 66.31 % del LN se asocia a secciones U, frente a 73.87 % en la categoría adulta inferior. Ambas composiciones se superponen y ninguna demuestra un efecto del contexto territorial sobre la participación."
+    ],
+    "territorial_distribution": {
+      "rank_basis": "LN",
+      "top_states": [
+        {
+          "state_code": "15",
+          "state_name": "MEXICO",
+          "LN": 4376534,
+          "share_of_profile_LN": 0.21519315285439589,
+          "share_of_state_total_LN": 0.3359645812485242
+        },
+        {
+          "state_code": "9",
+          "state_name": "CIUDAD DE MEXICO",
+          "LN": 3529579,
+          "share_of_profile_LN": 0.1735485736563833,
+          "share_of_state_total_LN": 0.4457332681702172
+        },
+        {
+          "state_code": "21",
+          "state_name": "PUEBLA",
+          "LN": 1493554,
+          "share_of_profile_LN": 0.07343770075093542,
+          "share_of_state_total_LN": 0.2999903789624263
+        }
+      ],
+      "note": "Tres entidades con mayor volumen nominal de esta categoría; no son un ranking de prevalencia ni una descripción de todos sus habitantes. Los nombres conservan las etiquetas de la fuente."
+    },
+    "quality": {
+      "near_reference_segments": 319,
+      "near_reference_fraction": 0.10580431177446104,
+      "high_ns_segments": 641,
+      "high_ns_fraction": 0.21260364842454393,
+      "unspecified_rate": 0.05796107436135481,
+      "specified_min": 101,
+      "specified_median": 2036.0,
+      "sections_min": 1,
+      "sections_median": 9.0,
+      "low_section_segments": 792,
+      "distinct_sections": null
+    },
+    "quality_note": "319 segmentos (10.58 %) están a no más de 2 pp de su referencia; 641 (21.26 %) tienen NS/LN≥10 %. El NS agregado equivale a 5.80 % del LN de la ficha. 792 segmentos proceden de menos de cinco secciones distintas; cinco filas fuente no equivalen a cinco secciones. Estas alertas no identifican errores, abstención de los NS o incertidumbre individual.",
+    "warnings": [
+      "Son seis categorías descriptivas construidas por reglas, no seis clusters naturales demostrados.",
+      "La unidad es municipio × intervalo de edad × sexo; los resultados no describen personas individuales ni sus motivaciones.",
+      "Participación observada = SV/(SV+NV); las tasas agregadas se calculan sumando conteos antes de dividir.",
+      "NS significa no especificado y no equivale a abstención; se conserva separado de NV.",
+      "Las referencias nacionales corresponden a la misma elección, banda de edad y sexo, antes de seleccionar soporte.",
+      "La zona de ±2 puntos porcentuales es una advertencia descriptiva, no un umbral estadístico oficial ni un intervalo de confianza.",
+      "No se suman municipios entre perfiles: un municipio puede aportar segmentos a varias categorías.",
+      "U/R/M identifica secciones electorales urbanas, rurales o mixtas; no residencia individual.",
+      "No se comparan municipios longitudinalmente sin equivalencias territoriales históricas validadas.",
+      "Las asociaciones observadas no explican causas, preferencias partidistas, capacidades o necesidades individuales.",
+      "Las propuestas informativas son hipótesis abiertas a toda la ciudadanía; requieren evaluación y no tienen eficacia demostrada sobre participación."
+    ],
+    "limitations": [
+      "La extensión municipal no demuestra persistencia de conducta. La referencia 35–59 no controla las edades exactas internas ni mide empleo, cuidados o experiencia electoral.",
+      "La referencia ajusta banda y sexo, pero no la edad exacta interna ni otros factores; no es un efecto causal.",
+      "La unión de secciones distintas de la ficha no está disponible: distinct_sections es NULL, no cero."
+    ],
+    "historical_note": "La cuota va de 18.59 % en 2021 a 23.09 % en 2012; en 2024 es 20.68 %. Las ventajas relativas observadas son mayores en intermedias (+8.79 a +10.15 pp) que en presidenciales (+4.70 a +6.51 pp). Esa regularidad describe las seis bases, sin probar un efecto del tipo de elección.",
+    "historical_evidence": [
+      {
+        "election_year": 2009,
+        "election_type": "midterm",
+        "nominal_coverage": 0.19998235457290625,
+        "participation_observed": 0.5742184071786247,
+        "matched_peer_reference": 0.4862908007619294,
+        "participation_delta": 0.08792760641669534,
+        "source_path": "data/processed/participamx_multiyear/elections/2009/profiles.json"
+      },
+      {
+        "election_year": 2012,
+        "election_type": "presidential",
+        "nominal_coverage": 0.23087464895525828,
+        "participation_observed": 0.7222774343927013,
+        "matched_peer_reference": 0.6752877035452662,
+        "participation_delta": 0.046989730847435074,
+        "source_path": "data/processed/participamx_multiyear/elections/2012/profiles.json"
+      },
+      {
+        "election_year": 2015,
+        "election_type": "midterm",
+        "nominal_coverage": 0.19148349789528826,
+        "participation_observed": 0.6228272465236746,
+        "matched_peer_reference": 0.5213400067386779,
+        "participation_delta": 0.10148723978499674,
+        "source_path": "data/processed/participamx_multiyear/elections/2015/profiles.json"
+      },
+      {
+        "election_year": 2018,
+        "election_type": "presidential",
+        "nominal_coverage": 0.22433567471171653,
+        "participation_observed": 0.7290505295088912,
+        "matched_peer_reference": 0.6675818557202238,
+        "participation_delta": 0.06146867378866738,
+        "source_path": "data/processed/participamx_multiyear/elections/2018/profiles.json"
+      },
+      {
+        "election_year": 2021,
+        "election_type": "midterm",
+        "nominal_coverage": 0.18590770297091375,
+        "participation_observed": 0.6514704553037385,
+        "matched_peer_reference": 0.555121241340812,
+        "participation_delta": 0.0963492139629265,
+        "source_path": "data/processed/participamx_multiyear/elections/2021/profiles.json"
+      },
+      {
+        "election_year": 2024,
+        "election_type": "presidential",
+        "nominal_coverage": 0.20683035719552217,
+        "participation_observed": 0.6932652104457321,
+        "matched_peer_reference": 0.6282095607768702,
+        "participation_delta": 0.0650556496688619,
+        "source_path": "data/processed/participamx_multiyear/elections/2024/profiles.json"
+      }
+    ],
+    "information_research_reference": {
+      "path": "docs/perfiles/propuestas_informativas.md",
+      "section_id": "adult_favorable",
+      "status": "hypothesis_pending_evaluation",
+      "note": "Asocia una pregunta de revisión, no define una audiencia demográfica ni una intervención para cambiar participación."
+    },
+    "provenance": {
+      "analytical_schema_version": "2.0.0",
+      "resources": [
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/profiles.json",
+          "record_selector": {
+            "profile_id": "adult_favorable"
+          },
+          "sha256": "d5ec372d45294251ffff26eeda2263868f56fc7141dd5f9bfbe637597cd628f7"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/national_references.json",
+          "record_selector": {
+            "age_band": "35-59",
+            "sex_code": [
+              "0",
+              "1"
+            ]
+          },
+          "sha256": "d43882724e2b186c7908742e9c726cc2763993702a2b18d149a7dbb46dc9600a"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/state_profiles.json",
+          "record_selector": {
+            "profile_id": "adult_favorable"
+          },
+          "sha256": "1809e6aa81692b7bf3f0a3471724b83ea15708b56a1983f689fb558675448702"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/states.json",
+          "record_selector": {
+            "state_code": [
+              "15",
+              "9",
+              "21"
+            ]
+          },
+          "sha256": "f4a486ea321caa3776781b37f21370a60b5f7c968e3adb422161fbe0f158f067"
+        }
+      ],
+      "reports": [
+        {
+          "path": "analysis/reports/profile_interpretation_2024.md",
+          "sha256": "d4dac0b3442eab0a97807ef4b79253728e021179d6b12de7d6a240626126ae93"
+        },
+        {
+          "path": "analysis/reports/profile_interpretation_historical_context.md",
+          "sha256": "0cc34ddf9a7c6ef2d857c4825af681ac57205075980b9cb91b64686ce240464b"
+        },
+        {
+          "path": "analysis/reports/profile_interpretation_review.md",
+          "sha256": "926b8e88e61d6e4e7009b4eee55cc856850b647efbdc5f575a615a4bfe2854c5"
+        },
+        {
+          "path": "analysis/reports/multiyear_profile_review.md",
+          "sha256": "76295fc936b8e4b62bc524074bb8330e9a405885f2538d2b9b93608816e03a8a"
+        },
+        {
+          "path": "analysis/reports/profile_candidates_review.md",
+          "sha256": "bfa8be3ef73e5c60a50211fa3ab161841ce88091e4e9f6182302b22c509525ad"
+        }
+      ],
+      "statistic_source_fields": {
+        "segments": "profiles.json:data[profile_id=adult_favorable].segments",
+        "municipalities": "profiles.json:data[profile_id=adult_favorable].municipalities",
+        "states": "profiles.json:data[profile_id=adult_favorable].states",
+        "LN": "profiles.json:data[profile_id=adult_favorable].LN",
+        "SV": "profiles.json:data[profile_id=adult_favorable].SV",
+        "NV": "profiles.json:data[profile_id=adult_favorable].NV",
+        "NS": "profiles.json:data[profile_id=adult_favorable].NS",
+        "specified_count": "profiles.json:data[profile_id=adult_favorable].specified_count",
+        "source_row_count": "profiles.json:data[profile_id=adult_favorable].source_row_count",
+        "participation_observed": "profiles.json:data[profile_id=adult_favorable].participation_observed",
+        "matched_peer_reference": "profiles.json:data[profile_id=adult_favorable].matched_peer_reference",
+        "participation_delta": "profiles.json:data[profile_id=adult_favorable].participation_delta",
+        "nominal_coverage": "profiles.json:data[profile_id=adult_favorable].nominal_coverage",
+        "delta_q1": "profiles.json:data[profile_id=adult_favorable].delta_q1",
+        "delta_median": "profiles.json:data[profile_id=adult_favorable].delta_median",
+        "delta_q3": "profiles.json:data[profile_id=adult_favorable].delta_q3",
+        "women_segment_fraction": "profiles.json:data[profile_id=adult_favorable].women_segment_fraction",
+        "women_nominal_fraction": "profiles.json:data[profile_id=adult_favorable].women_nominal_fraction",
+        "nominal_share_U": "profiles.json:data[profile_id=adult_favorable].nominal_share_U",
+        "nominal_share_R": "profiles.json:data[profile_id=adult_favorable].nominal_share_R",
+        "nominal_share_M": "profiles.json:data[profile_id=adult_favorable].nominal_share_M",
+        "near_reference_segments": "profiles.json:data[profile_id=adult_favorable].near_reference_segments",
+        "near_reference_fraction": "profiles.json:data[profile_id=adult_favorable].near_reference_fraction",
+        "high_ns_segments": "profiles.json:data[profile_id=adult_favorable].high_ns_segments",
+        "high_ns_fraction": "profiles.json:data[profile_id=adult_favorable].high_ns_fraction",
+        "unspecified_rate": "profiles.json:data[profile_id=adult_favorable].unspecified_rate",
+        "specified_min": "profiles.json:data[profile_id=adult_favorable].specified_min",
+        "specified_median": "profiles.json:data[profile_id=adult_favorable].specified_median",
+        "sections_min": "profiles.json:data[profile_id=adult_favorable].sections_min",
+        "sections_median": "profiles.json:data[profile_id=adult_favorable].sections_median",
+        "low_section_segments": "profiles.json:data[profile_id=adult_favorable].low_section_segments",
+        "distinct_sections": "profiles.json:data[profile_id=adult_favorable].distinct_sections"
+      },
+      "historical_source_rule": "elections/{election_year}/profiles.json, mismo profile_id; cada año conserva su referencia propia.",
+      "derived_fields": {
+        "share_of_profile_LN": "state_profiles.LN / profiles.LN para la misma elección y profile_id."
+      },
+      "note": "Contenido narrativo editorial nuevo. No sustituye ni modifica los JSON analíticos, sus contratos o sus resultados."
+    }
+  },
+  {
+    "profile_id": "adult_unfavorable",
+    "election_year": 2024,
+    "content_version": "1.0.0",
+    "content_status": "editorial_review_pending",
+    "public_name": "35–59 años: participación inferior a sus pares",
+    "summary": "Segmentos municipales de 35–59 años por debajo de su referencia comparable. Es la categoría de mayor lista nominal, con una diferencia agregada moderada y más segmentos próximos a la referencia.",
+    "methodology": {
+      "unit": "municipality_age_band_sex",
+      "age_band": "35-59",
+      "sex_codes": [
+        "0",
+        "1"
+      ],
+      "description": "Segmentos municipio × intervalo 35–59 años × sexo H/M, con participación observada menor que la referencia nacional de 2024 de la misma banda y sexo. Requieren LN≥100, SV+NV≥100, al menos cinco filas fuente y tasa definida. NS alto advierte cobertura y no excluye automáticamente. Un empate exacto queda fuera de ambas etiquetas; el signo se decide antes de redondear.",
+      "observed_participation_formula": "SV/(SV+NV)",
+      "national_reference": "ΣSV/Σ(SV+NV) de la misma elección, banda y sexo, antes de soporte",
+      "aggregate_peer_reference": "Σ[(SV+NV) del segmento × su referencia]/Σ(SV+NV)",
+      "thresholds": {
+        "min_LN": 100,
+        "min_specified_count": 100,
+        "min_source_rows": 5,
+        "near_reference_pp": 2,
+        "high_ns_rate": 0.1
+      }
+    },
+    "statistics": {
+      "segments": 1767,
+      "municipalities": 1018,
+      "states": 31,
+      "LN": 22444975,
+      "SV": 11914868,
+      "NV": 8989939,
+      "NS": 1540168,
+      "specified_count": 20904807,
+      "source_row_count": 1835164,
+      "participation_observed": 0.5699582875842862,
+      "matched_peer_reference": 0.6295762494645192,
+      "participation_delta": -0.05961796188023294,
+      "nominal_coverage": 0.22826091289740985,
+      "delta_q1": -0.1086599346335177,
+      "delta_median": -0.05954514850440529,
+      "delta_q3": -0.02826446109217501,
+      "women_segment_fraction": 0.48670062252405205,
+      "women_nominal_fraction": 0.5280655469654121,
+      "nominal_share_U": 0.7386976817750966,
+      "nominal_share_R": 0.132657755243657,
+      "nominal_share_M": 0.12864456298124635
+    },
+    "statistic_units": {
+      "counts": "reported_counts",
+      "rates_and_shares": "proportion",
+      "participation_delta": "proportion_difference",
+      "quartile_differences": "proportion_difference",
+      "display": "Multiplicar tasas/cuotas por 100 para porcentaje y diferencias por 100 para puntos porcentuales; redondear al mostrar."
+    },
+    "distinctive_findings": [
+      "Mayor LN: 22,444,975, con el menor número de segmentos y municipios.",
+      "Déficit agregado de −5.96 pp, menos intenso que los otros dos negativos.",
+      "Mayor proporción cerca de la referencia: 18.22 % de sus segmentos."
+    ],
+    "interpretation": [
+      "Con LN=22,444,975, esta categoría reúne el mayor volumen nominal: 22.83 % del LN anual reportado. A la vez, tiene el menor número de segmentos y municipios, 1,767 y 1,018. Su participación es 57.00 %, frente a 62.96 % de referencia, con −5.96 pp de diferencia: el déficit agregado menos intenso entre las tres categorías negativas. Su volumen no debe confundirse con una mayor distancia a pares.",
+      "El 18.22 % de los segmentos está a no más de 2 pp de la referencia, la mayor proporción entre las seis categorías. La mediana de registros especificados por segmento es 2,694, también la mayor. Hay, por tanto, una combinación de volumen y diferencias cercanas a cero que exige precisión al redactar: la etiqueta no describe un bloque uniforme ni identifica una causa común de menor participación."
+    ],
+    "territorial_distribution": {
+      "rank_basis": "LN",
+      "top_states": [
+        {
+          "state_code": "14",
+          "state_name": "JALISCO",
+          "LN": 2322873,
+          "share_of_profile_LN": 0.1034918951792105,
+          "share_of_state_total_LN": 0.3509200787566326
+        },
+        {
+          "state_code": "19",
+          "state_name": "NUEVO LEON",
+          "LN": 1649162,
+          "share_of_profile_LN": 0.07347577798594117,
+          "share_of_state_total_LN": 0.3692480819009863
+        },
+        {
+          "state_code": "30",
+          "state_name": "VERACRUZ",
+          "LN": 1625540,
+          "share_of_profile_LN": 0.07242333751764037,
+          "share_of_state_total_LN": 0.2673358202929126
+        }
+      ],
+      "note": "Tres entidades con mayor volumen nominal de esta categoría; no son un ranking de prevalencia ni una descripción de todos sus habitantes. Los nombres conservan las etiquetas de la fuente."
+    },
+    "quality": {
+      "near_reference_segments": 322,
+      "near_reference_fraction": 0.18222976796830787,
+      "high_ns_segments": 295,
+      "high_ns_fraction": 0.16694963214487832,
+      "unspecified_rate": 0.0686197244594837,
+      "specified_min": 100,
+      "specified_median": 2694.0,
+      "sections_min": 1,
+      "sections_median": 13.0,
+      "low_section_segments": 566,
+      "distinct_sections": null
+    },
+    "quality_note": "322 segmentos (18.22 %) están a no más de 2 pp de su referencia; 295 (16.69 %) tienen NS/LN≥10 %. El NS agregado equivale a 6.86 % del LN de la ficha. 566 segmentos proceden de menos de cinco secciones distintas; cinco filas fuente no equivalen a cinco secciones. Estas alertas no identifican errores, abstención de los NS o incertidumbre individual.",
+    "warnings": [
+      "Son seis categorías descriptivas construidas por reglas, no seis clusters naturales demostrados.",
+      "La unidad es municipio × intervalo de edad × sexo; los resultados no describen personas individuales ni sus motivaciones.",
+      "Participación observada = SV/(SV+NV); las tasas agregadas se calculan sumando conteos antes de dividir.",
+      "NS significa no especificado y no equivale a abstención; se conserva separado de NV.",
+      "Las referencias nacionales corresponden a la misma elección, banda de edad y sexo, antes de seleccionar soporte.",
+      "La zona de ±2 puntos porcentuales es una advertencia descriptiva, no un umbral estadístico oficial ni un intervalo de confianza.",
+      "No se suman municipios entre perfiles: un municipio puede aportar segmentos a varias categorías.",
+      "U/R/M identifica secciones electorales urbanas, rurales o mixtas; no residencia individual.",
+      "No se comparan municipios longitudinalmente sin equivalencias territoriales históricas validadas.",
+      "Las asociaciones observadas no explican causas, preferencias partidistas, capacidades o necesidades individuales.",
+      "Las propuestas informativas son hipótesis abiertas a toda la ciudadanía; requieren evaluación y no tienen eficacia demostrada sobre participación."
+    ],
+    "limitations": [
+      "La combinación de mayor LN y más diferencias pequeñas impide tratar toda la categoría como un rezago sustantivo uniforme. No hay datos de horarios, desconfianza o responsabilidades familiares que lo expliquen.",
+      "La referencia ajusta banda y sexo, pero no la edad exacta interna ni otros factores; no es un efecto causal.",
+      "La unión de secciones distintas de la ficha no está disponible: distinct_sections es NULL, no cero."
+    ],
+    "historical_note": "Es la categoría de mayor cuota nacional en 2009, 2015, 2021 y 2024; en 2012 y 2018 la adulta superior es mayor. Su cuota oscila de 19.98 % a 25.07 %, y llega a 22.83 % en 2024. Las diferencias de referencia y composición no permiten hablar de trayectorias de un mismo grupo adulto.",
+    "historical_evidence": [
+      {
+        "election_year": 2009,
+        "election_type": "midterm",
+        "nominal_coverage": 0.23469555075434395,
+        "participation_observed": 0.40998178926669593,
+        "matched_peer_reference": 0.48547203368844816,
+        "participation_delta": -0.07549024442175223,
+        "source_path": "data/processed/participamx_multiyear/elections/2009/profiles.json"
+      },
+      {
+        "election_year": 2012,
+        "election_type": "presidential",
+        "nominal_coverage": 0.1998248760422179,
+        "participation_observed": 0.6169018723463876,
+        "matched_peer_reference": 0.671162965582079,
+        "participation_delta": -0.05426109323569139,
+        "source_path": "data/processed/participamx_multiyear/elections/2012/profiles.json"
+      },
+      {
+        "election_year": 2015,
+        "election_type": "midterm",
+        "nominal_coverage": 0.2399527678735953,
+        "participation_observed": 0.4366133904752057,
+        "matched_peer_reference": 0.5170156129737379,
+        "participation_delta": -0.08040222249853218,
+        "source_path": "data/processed/participamx_multiyear/elections/2015/profiles.json"
+      },
+      {
+        "election_year": 2018,
+        "election_type": "presidential",
+        "nominal_coverage": 0.2104139696517426,
+        "participation_observed": 0.598810029358456,
+        "matched_peer_reference": 0.6650577336972148,
+        "participation_delta": -0.06624770433875882,
+        "source_path": "data/processed/participamx_multiyear/elections/2018/profiles.json"
+      },
+      {
+        "election_year": 2021,
+        "election_type": "midterm",
+        "nominal_coverage": 0.2507088873938115,
+        "participation_observed": 0.4835926098576874,
+        "matched_peer_reference": 0.5549293716131062,
+        "participation_delta": -0.07133676175541875,
+        "source_path": "data/processed/participamx_multiyear/elections/2021/profiles.json"
+      },
+      {
+        "election_year": 2024,
+        "election_type": "presidential",
+        "nominal_coverage": 0.22826091289740985,
+        "participation_observed": 0.5699582875842862,
+        "matched_peer_reference": 0.6295762494645192,
+        "participation_delta": -0.05961796188023294,
+        "source_path": "data/processed/participamx_multiyear/elections/2024/profiles.json"
+      }
+    ],
+    "information_research_reference": {
+      "path": "docs/perfiles/propuestas_informativas.md",
+      "section_id": "adult_unfavorable",
+      "status": "hypothesis_pending_evaluation",
+      "note": "Asocia una pregunta de revisión, no define una audiencia demográfica ni una intervención para cambiar participación."
+    },
+    "provenance": {
+      "analytical_schema_version": "2.0.0",
+      "resources": [
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/profiles.json",
+          "record_selector": {
+            "profile_id": "adult_unfavorable"
+          },
+          "sha256": "d5ec372d45294251ffff26eeda2263868f56fc7141dd5f9bfbe637597cd628f7"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/national_references.json",
+          "record_selector": {
+            "age_band": "35-59",
+            "sex_code": [
+              "0",
+              "1"
+            ]
+          },
+          "sha256": "d43882724e2b186c7908742e9c726cc2763993702a2b18d149a7dbb46dc9600a"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/state_profiles.json",
+          "record_selector": {
+            "profile_id": "adult_unfavorable"
+          },
+          "sha256": "1809e6aa81692b7bf3f0a3471724b83ea15708b56a1983f689fb558675448702"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/states.json",
+          "record_selector": {
+            "state_code": [
+              "14",
+              "19",
+              "30"
+            ]
+          },
+          "sha256": "f4a486ea321caa3776781b37f21370a60b5f7c968e3adb422161fbe0f158f067"
+        }
+      ],
+      "reports": [
+        {
+          "path": "analysis/reports/profile_interpretation_2024.md",
+          "sha256": "d4dac0b3442eab0a97807ef4b79253728e021179d6b12de7d6a240626126ae93"
+        },
+        {
+          "path": "analysis/reports/profile_interpretation_historical_context.md",
+          "sha256": "0cc34ddf9a7c6ef2d857c4825af681ac57205075980b9cb91b64686ce240464b"
+        },
+        {
+          "path": "analysis/reports/profile_interpretation_review.md",
+          "sha256": "926b8e88e61d6e4e7009b4eee55cc856850b647efbdc5f575a615a4bfe2854c5"
+        },
+        {
+          "path": "analysis/reports/multiyear_profile_review.md",
+          "sha256": "76295fc936b8e4b62bc524074bb8330e9a405885f2538d2b9b93608816e03a8a"
+        },
+        {
+          "path": "analysis/reports/profile_candidates_review.md",
+          "sha256": "bfa8be3ef73e5c60a50211fa3ab161841ce88091e4e9f6182302b22c509525ad"
+        }
+      ],
+      "statistic_source_fields": {
+        "segments": "profiles.json:data[profile_id=adult_unfavorable].segments",
+        "municipalities": "profiles.json:data[profile_id=adult_unfavorable].municipalities",
+        "states": "profiles.json:data[profile_id=adult_unfavorable].states",
+        "LN": "profiles.json:data[profile_id=adult_unfavorable].LN",
+        "SV": "profiles.json:data[profile_id=adult_unfavorable].SV",
+        "NV": "profiles.json:data[profile_id=adult_unfavorable].NV",
+        "NS": "profiles.json:data[profile_id=adult_unfavorable].NS",
+        "specified_count": "profiles.json:data[profile_id=adult_unfavorable].specified_count",
+        "source_row_count": "profiles.json:data[profile_id=adult_unfavorable].source_row_count",
+        "participation_observed": "profiles.json:data[profile_id=adult_unfavorable].participation_observed",
+        "matched_peer_reference": "profiles.json:data[profile_id=adult_unfavorable].matched_peer_reference",
+        "participation_delta": "profiles.json:data[profile_id=adult_unfavorable].participation_delta",
+        "nominal_coverage": "profiles.json:data[profile_id=adult_unfavorable].nominal_coverage",
+        "delta_q1": "profiles.json:data[profile_id=adult_unfavorable].delta_q1",
+        "delta_median": "profiles.json:data[profile_id=adult_unfavorable].delta_median",
+        "delta_q3": "profiles.json:data[profile_id=adult_unfavorable].delta_q3",
+        "women_segment_fraction": "profiles.json:data[profile_id=adult_unfavorable].women_segment_fraction",
+        "women_nominal_fraction": "profiles.json:data[profile_id=adult_unfavorable].women_nominal_fraction",
+        "nominal_share_U": "profiles.json:data[profile_id=adult_unfavorable].nominal_share_U",
+        "nominal_share_R": "profiles.json:data[profile_id=adult_unfavorable].nominal_share_R",
+        "nominal_share_M": "profiles.json:data[profile_id=adult_unfavorable].nominal_share_M",
+        "near_reference_segments": "profiles.json:data[profile_id=adult_unfavorable].near_reference_segments",
+        "near_reference_fraction": "profiles.json:data[profile_id=adult_unfavorable].near_reference_fraction",
+        "high_ns_segments": "profiles.json:data[profile_id=adult_unfavorable].high_ns_segments",
+        "high_ns_fraction": "profiles.json:data[profile_id=adult_unfavorable].high_ns_fraction",
+        "unspecified_rate": "profiles.json:data[profile_id=adult_unfavorable].unspecified_rate",
+        "specified_min": "profiles.json:data[profile_id=adult_unfavorable].specified_min",
+        "specified_median": "profiles.json:data[profile_id=adult_unfavorable].specified_median",
+        "sections_min": "profiles.json:data[profile_id=adult_unfavorable].sections_min",
+        "sections_median": "profiles.json:data[profile_id=adult_unfavorable].sections_median",
+        "low_section_segments": "profiles.json:data[profile_id=adult_unfavorable].low_section_segments",
+        "distinct_sections": "profiles.json:data[profile_id=adult_unfavorable].distinct_sections"
+      },
+      "historical_source_rule": "elections/{election_year}/profiles.json, mismo profile_id; cada año conserva su referencia propia.",
+      "derived_fields": {
+        "share_of_profile_LN": "state_profiles.LN / profiles.LN para la misma elección y profile_id."
+      },
+      "note": "Contenido narrativo editorial nuevo. No sustituye ni modifica los JSON analíticos, sus contratos o sus resultados."
+    }
+  },
+  {
+    "profile_id": "older_favorable",
+    "election_year": 2024,
+    "content_version": "1.0.0",
+    "content_status": "editorial_review_pending",
+    "public_name": "60–100 años: participación superior a sus pares",
+    "summary": "Segmentos municipales de 60–100 años que superan una referencia nacional también alta. Presentan la mayor participación absoluta de las seis categorías, sin que eso implique la mayor ventaja relativa.",
+    "methodology": {
+      "unit": "municipality_age_band_sex",
+      "age_band": "60-100",
+      "sex_codes": [
+        "0",
+        "1"
+      ],
+      "description": "Segmentos municipio × intervalo 60–100 años × sexo H/M, con participación observada mayor que la referencia nacional de 2024 de la misma banda y sexo. Requieren LN≥100, SV+NV≥100, al menos cinco filas fuente y tasa definida. NS alto advierte cobertura y no excluye automáticamente. Un empate exacto queda fuera de ambas etiquetas; el signo se decide antes de redondear.",
+      "observed_participation_formula": "SV/(SV+NV)",
+      "national_reference": "ΣSV/Σ(SV+NV) de la misma elección, banda y sexo, antes de soporte",
+      "aggregate_peer_reference": "Σ[(SV+NV) del segmento × su referencia]/Σ(SV+NV)",
+      "thresholds": {
+        "min_LN": 100,
+        "min_specified_count": 100,
+        "min_source_rows": 5,
+        "near_reference_pp": 2,
+        "high_ns_rate": 0.1
+      }
+    },
+    "statistics": {
+      "segments": 2606,
+      "municipalities": 1445,
+      "states": 30,
+      "LN": 10367836,
+      "SV": 7581710,
+      "NV": 2231358,
+      "NS": 554768,
+      "specified_count": 9813068,
+      "source_row_count": 2054164,
+      "participation_observed": 0.7726136209389357,
+      "matched_peer_reference": 0.7147895491208001,
+      "participation_delta": 0.05782407181813565,
+      "nominal_coverage": 0.10543882139011651,
+      "delta_q1": 0.03699907032291705,
+      "delta_median": 0.07028800987591766,
+      "delta_q3": 0.10898119405520071,
+      "women_segment_fraction": 0.4693016116653876,
+      "women_nominal_fraction": 0.5315693651018399,
+      "nominal_share_U": 0.73844339358763,
+      "nominal_share_R": 0.15946239890368635,
+      "nominal_share_M": 0.10209420750868359
+    },
+    "statistic_units": {
+      "counts": "reported_counts",
+      "rates_and_shares": "proportion",
+      "participation_delta": "proportion_difference",
+      "quartile_differences": "proportion_difference",
+      "display": "Multiplicar tasas/cuotas por 100 para porcentaje y diferencias por 100 para puntos porcentuales; redondear al mostrar."
+    },
+    "distinctive_findings": [
+      "Mayor participación absoluta: 77.26 %, frente a una referencia también alta.",
+      "Ventaja relativa de +5.78 pp, menor que las otras dos positivas.",
+      "Mujeres: 53.16 % del LN y 46.93 % de los segmentos."
+    ],
+    "interpretation": [
+      "La tasa observada de 77.26 % es la más alta de las seis categorías. Su referencia también es alta, 71.48 %, de modo que la ventaja relativa de +5.78 pp es la menor entre las categorías positivas. La mediana de diferencias es +7.03 pp y el tramo entre cuartiles va de +3.70 a +10.90 pp. Una tasa absoluta elevada no demuestra una motivación cívica distinta ni una clase natural más homogénea.",
+      "Reúne LN=10,367,836 en 2,606 segmentos y 1,445 municipios. Las mujeres aportan 53.16 % del LN, aunque representan 46.93 % de los segmentos. El contexto U reúne 73.84 % del LN, casi la misma proporción que adultos por debajo. La edad agrupada y el contexto electoral sirven para describir estos resultados, pero no justifican atribuirlos a salud, dependencia, experiencia o preferencias de información."
+    ],
+    "territorial_distribution": {
+      "rank_basis": "LN",
+      "top_states": [
+        {
+          "state_code": "15",
+          "state_name": "MEXICO",
+          "LN": 2217018,
+          "share_of_profile_LN": 0.21383613706852617,
+          "share_of_state_total_LN": 0.17018936080250732
+        },
+        {
+          "state_code": "9",
+          "state_name": "CIUDAD DE MEXICO",
+          "LN": 1808586,
+          "share_of_profile_LN": 0.1744419954173658,
+          "share_of_state_total_LN": 0.228397479854368
+        },
+        {
+          "state_code": "30",
+          "state_name": "VERACRUZ",
+          "LN": 1031177,
+          "share_of_profile_LN": 0.09945923141531174,
+          "share_of_state_total_LN": 0.16958705978455452
+        }
+      ],
+      "note": "Tres entidades con mayor volumen nominal de esta categoría; no son un ranking de prevalencia ni una descripción de todos sus habitantes. Los nombres conservan las etiquetas de la fuente."
+    },
+    "quality": {
+      "near_reference_segments": 345,
+      "near_reference_fraction": 0.13238679969301612,
+      "high_ns_segments": 525,
+      "high_ns_fraction": 0.2014581734458941,
+      "unspecified_rate": 0.05350856244253863,
+      "specified_min": 100,
+      "specified_median": 1010.5,
+      "sections_min": 1,
+      "sections_median": 9.0,
+      "low_section_segments": 717,
+      "distinct_sections": null
+    },
+    "quality_note": "345 segmentos (13.24 %) están a no más de 2 pp de su referencia; 525 (20.15 %) tienen NS/LN≥10 %. El NS agregado equivale a 5.35 % del LN de la ficha. 717 segmentos proceden de menos de cinco secciones distintas; cinco filas fuente no equivalen a cinco secciones. Estas alertas no identifican errores, abstención de los NS o incertidumbre individual.",
+    "warnings": [
+      "Son seis categorías descriptivas construidas por reglas, no seis clusters naturales demostrados.",
+      "La unidad es municipio × intervalo de edad × sexo; los resultados no describen personas individuales ni sus motivaciones.",
+      "Participación observada = SV/(SV+NV); las tasas agregadas se calculan sumando conteos antes de dividir.",
+      "NS significa no especificado y no equivale a abstención; se conserva separado de NV.",
+      "Las referencias nacionales corresponden a la misma elección, banda de edad y sexo, antes de seleccionar soporte.",
+      "La zona de ±2 puntos porcentuales es una advertencia descriptiva, no un umbral estadístico oficial ni un intervalo de confianza.",
+      "No se suman municipios entre perfiles: un municipio puede aportar segmentos a varias categorías.",
+      "U/R/M identifica secciones electorales urbanas, rurales o mixtas; no residencia individual.",
+      "No se comparan municipios longitudinalmente sin equivalencias territoriales históricas validadas.",
+      "Las asociaciones observadas no explican causas, preferencias partidistas, capacidades o necesidades individuales.",
+      "Las propuestas informativas son hipótesis abiertas a toda la ciudadanía; requieren evaluación y no tienen eficacia demostrada sobre participación."
+    ],
+    "limitations": [
+      "El intervalo 60–100 reúne 41 edades posibles y una referencia alta limita el margen positivo. No se infieren salud, discapacidad, dependencia o necesidad de asistencia.",
+      "La referencia ajusta banda y sexo, pero no la edad exacta interna ni otros factores; no es un efecto causal.",
+      "La unión de secciones distintas de la ficha no está disponible: distinct_sections es NULL, no cero."
+    ],
+    "historical_note": "Su cuota pasa de 7.53 % en 2009 a 10.54 % en 2024, con una caída entre 2012 y 2015. En 2024 alcanza su mayor tasa absoluta de la serie, 77.26 %, pero no su mayor ventaja relativa: +5.78 pp. También cambia el peso de la banda mayor en la base reportada.",
+    "historical_evidence": [
+      {
+        "election_year": 2009,
+        "election_type": "midterm",
+        "nominal_coverage": 0.07533997228330859,
+        "participation_observed": 0.5887674440856858,
+        "matched_peer_reference": 0.5231790259592421,
+        "participation_delta": 0.06558841812644367,
+        "source_path": "data/processed/participamx_multiyear/elections/2009/profiles.json"
+      },
+      {
+        "election_year": 2012,
+        "election_type": "presidential",
+        "nominal_coverage": 0.0845009505828937,
+        "participation_observed": 0.7317353815992531,
+        "matched_peer_reference": 0.6882331616129976,
+        "participation_delta": 0.043502219986255475,
+        "source_path": "data/processed/participamx_multiyear/elections/2012/profiles.json"
+      },
+      {
+        "election_year": 2015,
+        "election_type": "midterm",
+        "nominal_coverage": 0.08094408534677512,
+        "participation_observed": 0.650386347321941,
+        "matched_peer_reference": 0.5820750790966602,
+        "participation_delta": 0.06831126822528077,
+        "source_path": "data/processed/participamx_multiyear/elections/2015/profiles.json"
+      },
+      {
+        "election_year": 2018,
+        "election_type": "presidential",
+        "nominal_coverage": 0.08896162949244747,
+        "participation_observed": 0.7458458546578257,
+        "matched_peer_reference": 0.6848760392045541,
+        "participation_delta": 0.060969815453271625,
+        "source_path": "data/processed/participamx_multiyear/elections/2018/profiles.json"
+      },
+      {
+        "election_year": 2021,
+        "election_type": "midterm",
+        "nominal_coverage": 0.09249567739463399,
+        "participation_observed": 0.6938307169766904,
+        "matched_peer_reference": 0.6322110213996683,
+        "participation_delta": 0.06161969557702207,
+        "source_path": "data/processed/participamx_multiyear/elections/2021/profiles.json"
+      },
+      {
+        "election_year": 2024,
+        "election_type": "presidential",
+        "nominal_coverage": 0.10543882139011651,
+        "participation_observed": 0.7726136209389357,
+        "matched_peer_reference": 0.7147895491208001,
+        "participation_delta": 0.05782407181813565,
+        "source_path": "data/processed/participamx_multiyear/elections/2024/profiles.json"
+      }
+    ],
+    "information_research_reference": {
+      "path": "docs/perfiles/propuestas_informativas.md",
+      "section_id": "older_favorable",
+      "status": "hypothesis_pending_evaluation",
+      "note": "Asocia una pregunta de revisión, no define una audiencia demográfica ni una intervención para cambiar participación."
+    },
+    "provenance": {
+      "analytical_schema_version": "2.0.0",
+      "resources": [
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/profiles.json",
+          "record_selector": {
+            "profile_id": "older_favorable"
+          },
+          "sha256": "d5ec372d45294251ffff26eeda2263868f56fc7141dd5f9bfbe637597cd628f7"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/national_references.json",
+          "record_selector": {
+            "age_band": "60-100",
+            "sex_code": [
+              "0",
+              "1"
+            ]
+          },
+          "sha256": "d43882724e2b186c7908742e9c726cc2763993702a2b18d149a7dbb46dc9600a"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/state_profiles.json",
+          "record_selector": {
+            "profile_id": "older_favorable"
+          },
+          "sha256": "1809e6aa81692b7bf3f0a3471724b83ea15708b56a1983f689fb558675448702"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/states.json",
+          "record_selector": {
+            "state_code": [
+              "15",
+              "9",
+              "30"
+            ]
+          },
+          "sha256": "f4a486ea321caa3776781b37f21370a60b5f7c968e3adb422161fbe0f158f067"
+        }
+      ],
+      "reports": [
+        {
+          "path": "analysis/reports/profile_interpretation_2024.md",
+          "sha256": "d4dac0b3442eab0a97807ef4b79253728e021179d6b12de7d6a240626126ae93"
+        },
+        {
+          "path": "analysis/reports/profile_interpretation_historical_context.md",
+          "sha256": "0cc34ddf9a7c6ef2d857c4825af681ac57205075980b9cb91b64686ce240464b"
+        },
+        {
+          "path": "analysis/reports/profile_interpretation_review.md",
+          "sha256": "926b8e88e61d6e4e7009b4eee55cc856850b647efbdc5f575a615a4bfe2854c5"
+        },
+        {
+          "path": "analysis/reports/multiyear_profile_review.md",
+          "sha256": "76295fc936b8e4b62bc524074bb8330e9a405885f2538d2b9b93608816e03a8a"
+        },
+        {
+          "path": "analysis/reports/profile_candidates_review.md",
+          "sha256": "bfa8be3ef73e5c60a50211fa3ab161841ce88091e4e9f6182302b22c509525ad"
+        }
+      ],
+      "statistic_source_fields": {
+        "segments": "profiles.json:data[profile_id=older_favorable].segments",
+        "municipalities": "profiles.json:data[profile_id=older_favorable].municipalities",
+        "states": "profiles.json:data[profile_id=older_favorable].states",
+        "LN": "profiles.json:data[profile_id=older_favorable].LN",
+        "SV": "profiles.json:data[profile_id=older_favorable].SV",
+        "NV": "profiles.json:data[profile_id=older_favorable].NV",
+        "NS": "profiles.json:data[profile_id=older_favorable].NS",
+        "specified_count": "profiles.json:data[profile_id=older_favorable].specified_count",
+        "source_row_count": "profiles.json:data[profile_id=older_favorable].source_row_count",
+        "participation_observed": "profiles.json:data[profile_id=older_favorable].participation_observed",
+        "matched_peer_reference": "profiles.json:data[profile_id=older_favorable].matched_peer_reference",
+        "participation_delta": "profiles.json:data[profile_id=older_favorable].participation_delta",
+        "nominal_coverage": "profiles.json:data[profile_id=older_favorable].nominal_coverage",
+        "delta_q1": "profiles.json:data[profile_id=older_favorable].delta_q1",
+        "delta_median": "profiles.json:data[profile_id=older_favorable].delta_median",
+        "delta_q3": "profiles.json:data[profile_id=older_favorable].delta_q3",
+        "women_segment_fraction": "profiles.json:data[profile_id=older_favorable].women_segment_fraction",
+        "women_nominal_fraction": "profiles.json:data[profile_id=older_favorable].women_nominal_fraction",
+        "nominal_share_U": "profiles.json:data[profile_id=older_favorable].nominal_share_U",
+        "nominal_share_R": "profiles.json:data[profile_id=older_favorable].nominal_share_R",
+        "nominal_share_M": "profiles.json:data[profile_id=older_favorable].nominal_share_M",
+        "near_reference_segments": "profiles.json:data[profile_id=older_favorable].near_reference_segments",
+        "near_reference_fraction": "profiles.json:data[profile_id=older_favorable].near_reference_fraction",
+        "high_ns_segments": "profiles.json:data[profile_id=older_favorable].high_ns_segments",
+        "high_ns_fraction": "profiles.json:data[profile_id=older_favorable].high_ns_fraction",
+        "unspecified_rate": "profiles.json:data[profile_id=older_favorable].unspecified_rate",
+        "specified_min": "profiles.json:data[profile_id=older_favorable].specified_min",
+        "specified_median": "profiles.json:data[profile_id=older_favorable].specified_median",
+        "sections_min": "profiles.json:data[profile_id=older_favorable].sections_min",
+        "sections_median": "profiles.json:data[profile_id=older_favorable].sections_median",
+        "low_section_segments": "profiles.json:data[profile_id=older_favorable].low_section_segments",
+        "distinct_sections": "profiles.json:data[profile_id=older_favorable].distinct_sections"
+      },
+      "historical_source_rule": "elections/{election_year}/profiles.json, mismo profile_id; cada año conserva su referencia propia.",
+      "derived_fields": {
+        "share_of_profile_LN": "state_profiles.LN / profiles.LN para la misma elección y profile_id."
+      },
+      "note": "Contenido narrativo editorial nuevo. No sustituye ni modifica los JSON analíticos, sus contratos o sus resultados."
+    }
+  },
+  {
+    "profile_id": "older_unfavorable",
+    "election_year": 2024,
+    "content_version": "1.0.0",
+    "content_status": "editorial_review_pending",
+    "public_name": "60–100 años: participación inferior a sus pares",
+    "summary": "Segmentos municipales de 60–100 años por debajo de sus pares. Su participación absoluta es relativamente alta, pero la distancia a la referencia es la más negativa de las seis categorías.",
+    "methodology": {
+      "unit": "municipality_age_band_sex",
+      "age_band": "60-100",
+      "sex_codes": [
+        "0",
+        "1"
+      ],
+      "description": "Segmentos municipio × intervalo 60–100 años × sexo H/M, con participación observada menor que la referencia nacional de 2024 de la misma banda y sexo. Requieren LN≥100, SV+NV≥100, al menos cinco filas fuente y tasa definida. NS alto advierte cobertura y no excluye automáticamente. Un empate exacto queda fuera de ambas etiquetas; el signo se decide antes de redondear.",
+      "observed_participation_formula": "SV/(SV+NV)",
+      "national_reference": "ΣSV/Σ(SV+NV) de la misma elección, banda y sexo, antes de soporte",
+      "aggregate_peer_reference": "Σ[(SV+NV) del segmento × su referencia]/Σ(SV+NV)",
+      "thresholds": {
+        "min_LN": 100,
+        "min_specified_count": 100,
+        "min_source_rows": 5,
+        "near_reference_pp": 2,
+        "high_ns_rate": 0.1
+      }
+    },
+    "statistics": {
+      "segments": 2078,
+      "municipalities": 1189,
+      "states": 30,
+      "LN": 8319793,
+      "SV": 4949523,
+      "NV": 2772367,
+      "NS": 597903,
+      "specified_count": 7721890,
+      "source_row_count": 1862121,
+      "participation_observed": 0.640973000133387,
+      "matched_peer_reference": 0.7144055387923262,
+      "participation_delta": -0.07343253865893917,
+      "nominal_coverage": 0.0846106331282383,
+      "delta_q1": -0.1318727707890403,
+      "delta_median": -0.07543657121989716,
+      "delta_q3": -0.033437513619845316,
+      "women_segment_fraction": 0.546679499518768,
+      "women_nominal_fraction": 0.5608228473953619,
+      "nominal_share_U": 0.6642671277999345,
+      "nominal_share_R": 0.2050934440316003,
+      "nominal_share_M": 0.13063942816846524
+    },
+    "statistic_units": {
+      "counts": "reported_counts",
+      "rates_and_shares": "proportion",
+      "participation_delta": "proportion_difference",
+      "quartile_differences": "proportion_difference",
+      "display": "Multiplicar tasas/cuotas por 100 para porcentaje y diferencias por 100 para puntos porcentuales; redondear al mostrar."
+    },
+    "distinctive_findings": [
+      "Mayor déficit relativo agregado negativo: −7.34 pp, pese a una tasa absoluta de 64.10 %.",
+      "Menor LN entre las seis categorías y mayor NS/LN agregado, 7.19 %.",
+      "Diferencias relativas cercanas por sexo, sin demostrar igualdad individual."
+    ],
+    "interpretation": [
+      "Su participación observada es 64.10 %, superior al 57.39 % de la categoría joven positiva. Sin embargo, queda −7.34 pp por debajo de una referencia comparable de 71.44 %. Es el mayor déficit relativo agregado entre las tres categorías negativas. Este contraste muestra por qué el nivel absoluto y la comparación con pares deben leerse juntos.",
+      "La categoría de menor LN reúne 8,319,793 registros nominales, en 2,078 segmentos y 1,189 municipios. Las diferencias relativas por sexo son próximas: −7.36 pp en hombres y −7.33 pp en mujeres. El NS equivale a 7.19 % del LN, la mayor proporción agregada entre las seis categorías. La distancia a pares requiere revisar cobertura y composición; no demuestra barreras individuales, vulnerabilidad o una explicación rural del resultado."
+    ],
+    "territorial_distribution": {
+      "rank_basis": "LN",
+      "top_states": [
+        {
+          "state_code": "14",
+          "state_name": "JALISCO",
+          "LN": 897250,
+          "share_of_profile_LN": 0.107845231245537,
+          "share_of_state_total_LN": 0.13554896917067297
+        },
+        {
+          "state_code": "16",
+          "state_name": "MICHOACAN",
+          "LN": 759796,
+          "share_of_profile_LN": 0.09132390673662193,
+          "share_of_state_total_LN": 0.20266712190099453
+        },
+        {
+          "state_code": "19",
+          "state_name": "NUEVO LEON",
+          "LN": 694893,
+          "share_of_profile_LN": 0.08352287130220667,
+          "share_of_state_total_LN": 0.15558684190905567
+        }
+      ],
+      "note": "Tres entidades con mayor volumen nominal de esta categoría; no son un ranking de prevalencia ni una descripción de todos sus habitantes. Los nombres conservan las etiquetas de la fuente."
+    },
+    "quality": {
+      "near_reference_segments": 323,
+      "near_reference_fraction": 0.1554379210779596,
+      "high_ns_segments": 393,
+      "high_ns_fraction": 0.18912415784408085,
+      "unspecified_rate": 0.07186512933675153,
+      "specified_min": 100,
+      "specified_median": 1339.0,
+      "sections_min": 1,
+      "sections_median": 13.0,
+      "low_section_segments": 546,
+      "distinct_sections": null
+    },
+    "quality_note": "323 segmentos (15.54 %) están a no más de 2 pp de su referencia; 393 (18.91 %) tienen NS/LN≥10 %. El NS agregado equivale a 7.19 % del LN de la ficha. 546 segmentos proceden de menos de cinco secciones distintas; cinco filas fuente no equivalen a cinco secciones. Estas alertas no identifican errores, abstención de los NS o incertidumbre individual.",
+    "warnings": [
+      "Son seis categorías descriptivas construidas por reglas, no seis clusters naturales demostrados.",
+      "La unidad es municipio × intervalo de edad × sexo; los resultados no describen personas individuales ni sus motivaciones.",
+      "Participación observada = SV/(SV+NV); las tasas agregadas se calculan sumando conteos antes de dividir.",
+      "NS significa no especificado y no equivale a abstención; se conserva separado de NV.",
+      "Las referencias nacionales corresponden a la misma elección, banda de edad y sexo, antes de seleccionar soporte.",
+      "La zona de ±2 puntos porcentuales es una advertencia descriptiva, no un umbral estadístico oficial ni un intervalo de confianza.",
+      "No se suman municipios entre perfiles: un municipio puede aportar segmentos a varias categorías.",
+      "U/R/M identifica secciones electorales urbanas, rurales o mixtas; no residencia individual.",
+      "No se comparan municipios longitudinalmente sin equivalencias territoriales históricas validadas.",
+      "Las asociaciones observadas no explican causas, preferencias partidistas, capacidades o necesidades individuales.",
+      "Las propuestas informativas son hipótesis abiertas a toda la ciudadanía; requieren evaluación y no tienen eficacia demostrada sobre participación."
+    ],
+    "limitations": [
+      "El déficit depende de una referencia alta y de la cobertura de especificados local y nacional. La edad o U/R/M no permiten atribuirlo a movilidad, aislamiento, discapacidad o residencia individual.",
+      "La referencia ajusta banda y sexo, pero no la edad exacta interna ni otros factores; no es un efecto causal.",
+      "La unión de secciones distintas de la ficha no está disponible: distinct_sections es NULL, no cero."
+    ],
+    "historical_note": "La cuota nacional oscila de 6.08 % a 8.49 % y en 2024 es 8.46 %. Sus diferencias relativas van de −7.34 a −6.02 pp. En 2024 el déficit es mayor que en 2021, aunque la participación absoluta alcanza el máximo de la serie para esta categoría: 64.10 %.",
+    "historical_evidence": [
+      {
+        "election_year": 2009,
+        "election_type": "midterm",
+        "nominal_coverage": 0.07060508159648421,
+        "participation_observed": 0.4535591072982042,
+        "matched_peer_reference": 0.5239697491300656,
+        "participation_delta": -0.07041064183186135,
+        "source_path": "data/processed/participamx_multiyear/elections/2009/profiles.json"
+      },
+      {
+        "election_year": 2012,
+        "election_type": "presidential",
+        "nominal_coverage": 0.06081670145552621,
+        "participation_observed": 0.6277528641461907,
+        "matched_peer_reference": 0.6879329909925389,
+        "participation_delta": -0.060180126846348214,
+        "source_path": "data/processed/participamx_multiyear/elections/2012/profiles.json"
+      },
+      {
+        "election_year": 2015,
+        "election_type": "midterm",
+        "nominal_coverage": 0.07592263231027935,
+        "participation_observed": 0.5096360151111092,
+        "matched_peer_reference": 0.5824073831568884,
+        "participation_delta": -0.07277136804577922,
+        "source_path": "data/processed/participamx_multiyear/elections/2015/profiles.json"
+      },
+      {
+        "election_year": 2018,
+        "election_type": "presidential",
+        "nominal_coverage": 0.07835066014824268,
+        "participation_observed": 0.613963678118303,
+        "matched_peer_reference": 0.6845781154013799,
+        "participation_delta": -0.07061443728307693,
+        "source_path": "data/processed/participamx_multiyear/elections/2018/profiles.json"
+      },
+      {
+        "election_year": 2021,
+        "election_type": "midterm",
+        "nominal_coverage": 0.0849189123057848,
+        "participation_observed": 0.5644136949843739,
+        "matched_peer_reference": 0.632214669816281,
+        "participation_delta": -0.06780097483190717,
+        "source_path": "data/processed/participamx_multiyear/elections/2021/profiles.json"
+      },
+      {
+        "election_year": 2024,
+        "election_type": "presidential",
+        "nominal_coverage": 0.0846106331282383,
+        "participation_observed": 0.640973000133387,
+        "matched_peer_reference": 0.7144055387923262,
+        "participation_delta": -0.07343253865893917,
+        "source_path": "data/processed/participamx_multiyear/elections/2024/profiles.json"
+      }
+    ],
+    "information_research_reference": {
+      "path": "docs/perfiles/propuestas_informativas.md",
+      "section_id": "older_unfavorable",
+      "status": "hypothesis_pending_evaluation",
+      "note": "Asocia una pregunta de revisión, no define una audiencia demográfica ni una intervención para cambiar participación."
+    },
+    "provenance": {
+      "analytical_schema_version": "2.0.0",
+      "resources": [
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/profiles.json",
+          "record_selector": {
+            "profile_id": "older_unfavorable"
+          },
+          "sha256": "d5ec372d45294251ffff26eeda2263868f56fc7141dd5f9bfbe637597cd628f7"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/national_references.json",
+          "record_selector": {
+            "age_band": "60-100",
+            "sex_code": [
+              "0",
+              "1"
+            ]
+          },
+          "sha256": "d43882724e2b186c7908742e9c726cc2763993702a2b18d149a7dbb46dc9600a"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/state_profiles.json",
+          "record_selector": {
+            "profile_id": "older_unfavorable"
+          },
+          "sha256": "1809e6aa81692b7bf3f0a3471724b83ea15708b56a1983f689fb558675448702"
+        },
+        {
+          "path": "data/processed/participamx_multiyear/elections/2024/states.json",
+          "record_selector": {
+            "state_code": [
+              "14",
+              "16",
+              "19"
+            ]
+          },
+          "sha256": "f4a486ea321caa3776781b37f21370a60b5f7c968e3adb422161fbe0f158f067"
+        }
+      ],
+      "reports": [
+        {
+          "path": "analysis/reports/profile_interpretation_2024.md",
+          "sha256": "d4dac0b3442eab0a97807ef4b79253728e021179d6b12de7d6a240626126ae93"
+        },
+        {
+          "path": "analysis/reports/profile_interpretation_historical_context.md",
+          "sha256": "0cc34ddf9a7c6ef2d857c4825af681ac57205075980b9cb91b64686ce240464b"
+        },
+        {
+          "path": "analysis/reports/profile_interpretation_review.md",
+          "sha256": "926b8e88e61d6e4e7009b4eee55cc856850b647efbdc5f575a615a4bfe2854c5"
+        },
+        {
+          "path": "analysis/reports/multiyear_profile_review.md",
+          "sha256": "76295fc936b8e4b62bc524074bb8330e9a405885f2538d2b9b93608816e03a8a"
+        },
+        {
+          "path": "analysis/reports/profile_candidates_review.md",
+          "sha256": "bfa8be3ef73e5c60a50211fa3ab161841ce88091e4e9f6182302b22c509525ad"
+        }
+      ],
+      "statistic_source_fields": {
+        "segments": "profiles.json:data[profile_id=older_unfavorable].segments",
+        "municipalities": "profiles.json:data[profile_id=older_unfavorable].municipalities",
+        "states": "profiles.json:data[profile_id=older_unfavorable].states",
+        "LN": "profiles.json:data[profile_id=older_unfavorable].LN",
+        "SV": "profiles.json:data[profile_id=older_unfavorable].SV",
+        "NV": "profiles.json:data[profile_id=older_unfavorable].NV",
+        "NS": "profiles.json:data[profile_id=older_unfavorable].NS",
+        "specified_count": "profiles.json:data[profile_id=older_unfavorable].specified_count",
+        "source_row_count": "profiles.json:data[profile_id=older_unfavorable].source_row_count",
+        "participation_observed": "profiles.json:data[profile_id=older_unfavorable].participation_observed",
+        "matched_peer_reference": "profiles.json:data[profile_id=older_unfavorable].matched_peer_reference",
+        "participation_delta": "profiles.json:data[profile_id=older_unfavorable].participation_delta",
+        "nominal_coverage": "profiles.json:data[profile_id=older_unfavorable].nominal_coverage",
+        "delta_q1": "profiles.json:data[profile_id=older_unfavorable].delta_q1",
+        "delta_median": "profiles.json:data[profile_id=older_unfavorable].delta_median",
+        "delta_q3": "profiles.json:data[profile_id=older_unfavorable].delta_q3",
+        "women_segment_fraction": "profiles.json:data[profile_id=older_unfavorable].women_segment_fraction",
+        "women_nominal_fraction": "profiles.json:data[profile_id=older_unfavorable].women_nominal_fraction",
+        "nominal_share_U": "profiles.json:data[profile_id=older_unfavorable].nominal_share_U",
+        "nominal_share_R": "profiles.json:data[profile_id=older_unfavorable].nominal_share_R",
+        "nominal_share_M": "profiles.json:data[profile_id=older_unfavorable].nominal_share_M",
+        "near_reference_segments": "profiles.json:data[profile_id=older_unfavorable].near_reference_segments",
+        "near_reference_fraction": "profiles.json:data[profile_id=older_unfavorable].near_reference_fraction",
+        "high_ns_segments": "profiles.json:data[profile_id=older_unfavorable].high_ns_segments",
+        "high_ns_fraction": "profiles.json:data[profile_id=older_unfavorable].high_ns_fraction",
+        "unspecified_rate": "profiles.json:data[profile_id=older_unfavorable].unspecified_rate",
+        "specified_min": "profiles.json:data[profile_id=older_unfavorable].specified_min",
+        "specified_median": "profiles.json:data[profile_id=older_unfavorable].specified_median",
+        "sections_min": "profiles.json:data[profile_id=older_unfavorable].sections_min",
+        "sections_median": "profiles.json:data[profile_id=older_unfavorable].sections_median",
+        "low_section_segments": "profiles.json:data[profile_id=older_unfavorable].low_section_segments",
+        "distinct_sections": "profiles.json:data[profile_id=older_unfavorable].distinct_sections"
+      },
+      "historical_source_rule": "elections/{election_year}/profiles.json, mismo profile_id; cada año conserva su referencia propia.",
+      "derived_fields": {
+        "share_of_profile_LN": "state_profiles.LN / profiles.LN para la misma elección y profile_id."
+      },
+      "note": "Contenido narrativo editorial nuevo. No sustituye ni modifica los JSON analíticos, sus contratos o sus resultados."
+    }
+  }
+]
