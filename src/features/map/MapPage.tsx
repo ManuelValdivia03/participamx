@@ -11,8 +11,10 @@ import { TerritorySearch } from './TerritorySearch'
 import { ElectionTimeline } from './ElectionTimeline'
 import { TerritorialRanking } from './TerritorialRanking'
 import type { SearchPlace } from './territorySearchData'
+import { AtlasContext, type AtlasContextData } from './AtlasContext'
 import '../../styles/territorial.css'
 import '../../styles/territorial-navigation.css'
+import '../../styles/territorial-atlas.css'
 
 export function MapPage() {
   const { year: sharedYear, setYear } = useElectionYear()
@@ -21,6 +23,7 @@ export function MapPage() {
   const [municipalityCode, setMunicipalityCode] = useState('')
   const [requestedName, setRequestedName] = useState('')
   const [retry, setRetry] = useState(0)
+  const [context, setContext] = useState<AtlasContextData | null>(null)
   const [load, setLoad] = useState<{ key: string; status: 'loading' | 'ready' | 'error'; items: Municipality[] }>({ key: '', status: 'ready', items: [] })
   const key = `${stateCode}:${year}`
   const state = states.find(item => item.properties.code === stateCode)
@@ -31,6 +34,8 @@ export function MapPage() {
   const municipality = items.find(item => item.properties.inegiCode === municipalityCode)
   const loading = !!state && (load.key !== key || load.status === 'loading')
   const failed = !!state && load.key === key && load.status === 'error'
+  const currentTerritory = municipality?.properties.name || (municipalityCode ? requestedName : '') || state?.properties.name || 'Todo México'
+  const contextKey = `${sharedYear}:${stateCode}:${municipalityCode}`
 
   useEffect(() => {
     if (!stateCode) return
@@ -55,14 +60,15 @@ export function MapPage() {
   }
 
   return <div className="territory-explorer" data-state-code={stateCode} data-municipality-code={municipalityCode} data-election-year={year}>
-    <header className="territorial-intro"><div><p className="territorial-kicker"><Icon name="mapa" /> Observatorio territorial</p><h2>Acércate al territorio.<br /><span>Explora su participación.</span></h2><p>De México a cada municipio: conteos, participación y diferencias por edad y sexo, con su contexto y calidad visibles.</p></div><div className="territorial-edition"><strong>{year}</strong><span>Elección {['2012', '2018', '2024'].includes(year) ? 'presidencial' : 'intermedia'}</span><small>Información agregada · fuente INE</small></div></header>
-    <div className="explorer-command"><TerritorySearch year={sharedYear} onSelect={selectPlace} /><ElectionTimeline year={year} onChange={setYear} /></div>
+    <header className="territorial-intro"><div><p className="territorial-kicker"><Icon name="mapa" /> Atlas Electoral · ParticipaMX</p><h2>Descubre cómo <span>participa México.</span></h2></div><span className="territorial-source"><Icon name="ballot" /> Seis elecciones · INE</span></header>
+    <div className="explorer-command"><TerritorySearch year={sharedYear} currentTerritory={currentTerritory} onSelect={selectPlace} /><ElectionTimeline year={year} onChange={setYear} /></div>
+    <AtlasContext data={context?.key === contextKey ? context : null} territory={currentTerritory} year={sharedYear} />
     <div className="territory-layout">
-      <SectionCard title="Explorador territorial" subtitle={['México', state?.properties.name, municipality?.properties.name].filter(Boolean).join(' / ')}>
-        <TerritoryMap stateCode={stateCode} municipalityCode={municipalityCode} items={items} loading={loading} failed={failed} onState={selectState} onMunicipality={setMunicipalityCode} onRetry={() => setRetry(value => value + 1)} />
-        <TerritorialRanking year={sharedYear} stateCode={stateCode} stateName={state?.properties.name} items={items} loading={loading} failed={failed} selectedCode={municipalityCode} onState={selectState} onMunicipality={setMunicipalityCode} />
+      <SectionCard title="Explora el mapa">
+        <TerritoryMap year={sharedYear} stateCode={stateCode} municipalityCode={municipalityCode} items={items} loading={loading} failed={failed} onState={selectState} onMunicipality={setMunicipalityCode} onRetry={() => setRetry(value => value + 1)} onContextChange={setContext} />
       </SectionCard>
       <TerritoryPanel year={year} stateCode={stateCode} stateName={state?.properties.name} municipality={municipality} municipalityCount={items.length} loading={loading} failed={failed} pendingMunicipalityName={municipalityCode && !municipality ? requestedName || 'Municipio seleccionado' : undefined} />
     </div>
+    <div className="territory-comparison"><TerritorialRanking year={sharedYear} stateCode={stateCode} stateName={state?.properties.name} items={items} loading={loading} failed={failed} selectedCode={municipalityCode} onState={selectState} onMunicipality={setMunicipalityCode} /></div>
   </div>
 }

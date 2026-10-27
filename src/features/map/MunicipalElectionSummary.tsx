@@ -5,7 +5,7 @@ import { DataQuality, ElectionMetricCards, ElectionLoading } from './ElectionMet
 import { DemographicPanel } from './DemographicPanel'
 import { useTerritorialResource } from './useTerritorialResource'
 
-export function MunicipalElectionSummary({ year, ineCode }: { year: string; ineCode: string | null }) {
+export function MunicipalElectionSummary({ year, ineCode, view }: { year: string; ineCode: string | null; view: 'summary' | 'demographics' }) {
   const valid = ineCode !== null && /^\d{5}$/.test(ineCode)
   const loader = useCallback(async (signal: AbortSignal) => {
     const [response, national] = await Promise.all([
@@ -21,10 +21,10 @@ export function MunicipalElectionSummary({ year, ineCode }: { year: string; ineC
   const { municipality, national } = active.data
   if (!municipality) return <p className="territorial-status">No hay datos para esta clave INE en {year}. No se sustituyen por otra elección.</p>
   return <div className="territorial-data-content" key={`${year}:${ineCode}`}>
-    <ElectionMetricCards totals={municipality.totals} nationalRate={national.participation_observed} territory={municipality.municipality_name} year={Number(year)} />
-    <DemographicPanel data={municipality} territory={municipality.municipality_name} year={Number(year)} />
+    <div hidden={view !== 'summary'}><ElectionMetricCards totals={municipality.totals} nationalRate={national.participation_observed} territory={municipality.municipality_name} year={Number(year)} />
     <DataQuality totals={municipality.totals} sourceRows={municipality.totals.source_row_count}>
       <p>Consulta de {municipality.municipality_name}, INE {ineCode}, elección {year}. La correspondencia por nombre único permite consultar la clave; no valida límites territoriales históricos idénticos.</p>
-    </DataQuality>
+    </DataQuality></div>
+    <div hidden={view !== 'demographics'}><DemographicPanel data={municipality} territory={municipality.municipality_name} year={Number(year)} /></div>
   </div>
 }

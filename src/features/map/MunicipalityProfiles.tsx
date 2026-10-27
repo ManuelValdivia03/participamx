@@ -3,6 +3,7 @@ import { getMunicipalityProfiles } from '../../services/municipalityProfiles'
 import { useTerritorialResource } from './useTerritorialResource'
 import { profileLabels } from './profileLabels'
 import { formatCount, formatPercent, formatPoints } from './territorialData'
+import { Icon } from '../../components/Icon'
 
 export function MunicipalityProfiles({ year, stateCode, ineCode }: { year: string; stateCode: string; ineCode: string | null }) {
   const valid = ineCode !== null && /^\d{5}$/.test(ineCode) && ineCode.startsWith(stateCode)
@@ -14,7 +15,7 @@ export function MunicipalityProfiles({ year, stateCode, ineCode }: { year: strin
   if (!valid) return null
   if (!active) return <p className="territorial-status" role="status">Cargando perfiles municipales de {year}…</p>
   if (active.status === 'error') return <div className="territorial-status" role="alert"><p>No se pudieron cargar los perfiles de {year}.</p><button className="map-reset" onClick={retry}>Reintentar perfiles</button></div>
-  return <details className="territorial-profiles"><summary>Perfiles presentes · {year} <span>{active.data.length}</span></summary>
+  return <details className="territorial-profiles"><summary><Icon name="perfiles" /> Perfiles presentes · {year} <span>{active.data.length}</span></summary>
     <p>Segmentos agregados del municipio; no clasificaciones exclusivas del territorio ni de personas. Referencias del mismo año, banda y sexo.</p>
     {!active.data.length && <p>No hay segmentos con perfil disponible para esta clave y elección.</p>}
     <div className="territorial-profile-list">{active.data.map(profile => <article className="territorial-profile-card" key={profile.profile_id}>

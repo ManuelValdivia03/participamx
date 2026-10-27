@@ -5,6 +5,7 @@ import { useTerritorialResource } from './useTerritorialResource'
 import { formatCount, formatPercent, normalizeStateCode, ratio } from './territorialData'
 import { municipalRanking, rankStatus, sortRanking, type RankRow, type RankingOrder } from './territorialRankingData'
 import type { Municipality } from './municipalities'
+import { Icon } from '../../components/Icon'
 
 export function TerritorialRanking({ year, stateCode, stateName, items, loading, failed, selectedCode, onState, onMunicipality }: {
   year: number; stateCode: string; stateName?: string; items: Municipality[]; loading: boolean; failed: boolean; selectedCode: string;
@@ -37,7 +38,7 @@ export function TerritorialRanking({ year, stateCode, stateName, items, loading,
   const pages = Math.max(1, Math.ceil(ranked.length / 10)), currentPage = Math.min(page, pages - 1)
   function choose(row: RankRow) { if (row.geometry_code) { if (stateCode) onMunicipality(row.geometry_code); else onState(row.geometry_code) } }
   return <section className="territorial-ranking" aria-labelledby="ranking-title">
-    <header className="ranking-heading"><div><span className="territorial-kicker">Comparar territorios · {year}</span><h3 id="ranking-title">{stateCode ? `Participación municipal · ${stateName}` : 'Las 32 entidades en perspectiva'}</h3></div><span className="ranking-count">{active?.status === 'ready' && (!stateCode || (!loading && !failed)) ? `${ranked.length} con soporte` : 'Preparando'}</span></header>
+    <header className="ranking-heading"><div><span className="territorial-kicker"><Icon name="dashboard" /> Comparar territorios · {year}</span><h3 id="ranking-title">{stateCode ? `Participación municipal · ${stateName}` : 'Las 32 entidades en perspectiva'}</h3></div><span className="ranking-count">{active?.status === 'ready' && (!stateCode || (!loading && !failed)) ? `${ranked.length} con soporte` : 'Preparando'}</span></header>
     <div className="ranking-order" role="group" aria-label="Orden del ranking"><button type="button" aria-pressed={order === 'highest'} onClick={() => setOrder('highest')}>↓ Mayor participación</button><button type="button" aria-pressed={order === 'lowest'} onClick={() => setOrder('lowest')}>↑ Menor participación</button></div>
     {(!active || (stateCode && loading)) ? <p className="ranking-status" role="status">Preparando ranking de {year}…</p> : (active.status === 'error' || (stateCode && failed)) ? <div className="ranking-status" role="alert"><p>No se pudo cargar el ranking. Si falta la cartografía, reintenta la carga del mapa.</p><button className="map-reset" onClick={retry}>Reintentar ranking</button></div> : <>
       <p className="ranking-description">Participaron / (participaron + no participaron), sobre los totales completos de {stateCode ? 'cada municipio' : 'cada entidad'} en {year}. Las barras no representan volumen de población.</p>

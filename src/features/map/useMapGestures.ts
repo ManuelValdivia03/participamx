@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
+import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent, type MouseEvent as ReactMouseEvent } from 'react'
 import type { MapCamera } from './useAnimatedViewBox'
 import { panViewBox, parseViewBox, zoomViewBox } from './viewBoxMotion'
 
 type Point = { x: number; y: number }
+type MapPointerEvent = ReactPointerEvent<SVGSVGElement | HTMLDivElement>
 type Gesture = { view: string; first: Point; scale: number; distance: number; anchor: Point }
 const midpoint = (a: Point, b: Point) => ({ x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 })
 const distance = (a: Point, b: Point) => Math.hypot(a.x - b.x, a.y - b.y)
@@ -25,7 +26,8 @@ export function useMapGestures(camera: MapCamera) {
   }
   useEffect(() => {
     const svg = svgRef.current
-    if (!svg) return
+    const surface = svg?.parentElement
+    if (!svg || !surface) return
     let timer = 0
     const wheel = (event: WheelEvent) => {
       if (!event.ctrlKey && !event.metaKey && !wheelActive.current) return
@@ -37,8 +39,8 @@ export function useMapGestures(camera: MapCamera) {
       clearTimeout(timer)
       timer = window.setTimeout(() => setCamera(getView(), true), 100)
     }
-    svg.addEventListener('wheel', wheel, { passive: false })
-    return () => { svg.removeEventListener('wheel', wheel); clearTimeout(timer) }
+    surface.addEventListener('wheel', wheel, { passive: false })
+    return () => { surface.removeEventListener('wheel', wheel); clearTimeout(timer) }
   }, [svgRef, zoom, setCamera, getView])
   useEffect(() => {
     const releaseOutside = (event: PointerEvent) => {
@@ -51,11 +53,11 @@ export function useMapGestures(camera: MapCamera) {
     return () => { window.removeEventListener('pointerup', releaseOutside); window.removeEventListener('pointercancel', releaseOutside) }
   }, [getView, setCamera])
 
-  function onPointerDown(event: ReactPointerEvent<SVGSVGElement>) {
-    if (event.button !== 0) return
+  function onPointerDown(event: MapPointerEvent) {
+    if (event.button !== 0 || (event.target as Element).closest('button, a, summary, input')) return
     stop()
     wheelActive.current = true; setActive(true)
-    event.currentTarget.focus({ preventScroll: true })
+    svgRef.current?.focus({ preventScroll: true })
     points.current.set(event.pointerId, { x: event.clientX, y: event.clientY })
     moved.current = points.current.size > 1
     if (points.current.size > 1) {
@@ -64,7 +66,7 @@ export function useMapGestures(camera: MapCamera) {
     }
     begin()
   }
-  function onPointerMove(event: ReactPointerEvent<SVGSVGElement>) {
+  function onPointerMove(event: MapPointerEvent) {
     if (!points.current.has(event.pointerId) || !gesture.current) return
     points.current.set(event.pointerId, { x: event.clientX, y: event.clientY })
     const values = [...points.current.values()], base = gesture.current
@@ -83,7 +85,7 @@ export function useMapGestures(camera: MapCamera) {
     }
     if (moved.current) blockedUntil.current = performance.now() + 500
   }
-  function finish(event: ReactPointerEvent<SVGSVGElement>, cancelled = false) {
+  function finish(event: MapPointerEvent, cancelled = false) {
     if (!points.current.has(event.pointerId)) return
     const point = { x: event.clientX, y: event.clientY }
     const wasMoved = moved.current
@@ -101,8 +103,8 @@ export function useMapGestures(camera: MapCamera) {
   }
   function deactivate() { wheelActive.current = false; setActive(false) }
   return { active, dragging, shouldSuppressClick: () => performance.now() < blockedUntil.current,
-    onPointerDown, onPointerMove, onPointerUp: (event: ReactPointerEvent<SVGSVGElement>) => finish(event),
-    onPointerCancel: (event: ReactPointerEvent<SVGSVGElement>) => finish(event, true),
+    onPointerDown, onPointerMove, onPointerUp: (event: MapPointerEvent) => finish(event),
+    onPointerCancel: (event: MapPointerEvent) => finish(event, true),
     onPointerLeave: () => { if (!points.current.size) deactivate() }, deactivate,
-    onDoubleClick: (event: React.MouseEvent<SVGSVGElement>) => { event.preventDefault(); if (performance.now() >= blockedUntil.current) zoom(2, world({ x: event.clientX, y: event.clientY })) } }
+    onDoubleClick: (event: ReactMouseEvent<SVGSVGElement | HTMLDivElement>) => { event.preventDefault(); if (performance.now() >= blockedUntil.current) zoom(2, world({ x: event.clientX, y: event.clientY })) } }
 }

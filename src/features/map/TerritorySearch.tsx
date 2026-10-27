@@ -4,7 +4,7 @@ import { getTerritorySearch } from '../../services/territorySearch'
 import { searchTerritories, type SearchPlace } from './territorySearchData'
 import { useTerritorialResource } from './useTerritorialResource'
 
-export function TerritorySearch({ year, onSelect }: { year: number; onSelect: (place: SearchPlace) => void }) {
+export function TerritorySearch({ year, currentTerritory, onSelect }: { year: number; currentTerritory: string; onSelect: (place: SearchPlace) => void }) {
   const loader = useCallback((signal: AbortSignal) => getTerritorySearch(signal), [])
   const { active, retry } = useTerritorialResource('national-search', loader)
   const [query, setQuery] = useState(''), [open, setOpen] = useState(false), [highlight, setHighlight] = useState(-1)
@@ -12,6 +12,7 @@ export function TerritorySearch({ year, onSelect }: { year: number; onSelect: (p
   const id = useId()
   const results = active?.status === 'ready' ? searchTerritories(active.data, query, year) : []
   const selected = results[highlight]
+  useEffect(() => { setHighlight(-1) }, [year])
   useEffect(() => {
     const close = (event: PointerEvent) => { if (!root.current?.contains(event.target as Node)) setOpen(false) }
     document.addEventListener('pointerdown', close)
@@ -19,7 +20,7 @@ export function TerritorySearch({ year, onSelect }: { year: number; onSelect: (p
   }, [])
   useEffect(() => { if (open && selected) document.getElementById(`${id}-${selected.kind}-${selected.code}`)?.scrollIntoView({ block: 'nearest' }) }, [highlight, open, selected?.code, selected?.kind, id])
   function choose(place: SearchPlace) {
-    setQuery(place.name); setOpen(false); setHighlight(-1); onSelect(place)
+    setQuery(''); setOpen(false); setHighlight(-1); onSelect(place)
   }
   return <div className="territory-search" ref={root} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOpen(false) }}>
     <label htmlFor="territory-search-input">Encuentra tu territorio</label>
@@ -27,12 +28,12 @@ export function TerritorySearch({ year, onSelect }: { year: number; onSelect: (p
       onFocus={() => setOpen(true)} onChange={event => { setQuery(event.target.value); setOpen(true); setHighlight(-1) }}
       onKeyDown={event => {
         if (event.key === 'Escape') { setOpen(false); setHighlight(-1); return }
-        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') { event.preventDefault(); setOpen(true); setHighlight(index => Math.max(0, Math.min(results.length - 1, index + (event.key === 'ArrowDown' ? 1 : -1)))) }
-        if (event.key === 'Enter' && open && results.length) { event.preventDefault(); choose(results[Math.max(0, highlight)]) }
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') { event.preventDefault(); setOpen(true); setHighlight(index => !results.length ? -1 : index < 0 ? (event.key === 'ArrowDown' ? 0 : results.length - 1) : (index + (event.key === 'ArrowDown' ? 1 : -1) + results.length) % results.length) }
+        if (event.key === 'Enter' && open && results.length) { event.preventDefault(); choose(results[Math.max(0, Math.min(highlight, results.length - 1))]) }
       }} />
       {query && <button type="button" aria-label="Limpiar búsqueda" onClick={() => { setQuery(''); setOpen(true); setHighlight(-1); document.getElementById('territory-search-input')?.focus() }}>×</button>}
     </div>
-    <p className="search-scope">Todo México · nombres y claves de los catálogos disponibles</p>
+    <p className="search-scope" role="status"><span className="selection-dot" aria-hidden="true" /> Explorando: <strong>{currentTerritory}</strong></p>
     {open && <div className="territory-suggestions">
       {!active ? <p role="status">Cargando catálogo territorial…</p> : active.status === 'error' ? <div role="alert"><p>No se pudo cargar la búsqueda.</p><button className="map-reset" onClick={retry}>Reintentar catálogo</button></div> : !query.trim() ? <p>Escribe un nombre o clave. Por ejemplo, «Chih» o «Xalapa».</p> : !results.length ? <p role="status">Sin coincidencias. Prueba otro nombre, clave o agrega la entidad.</p> : <p className="suggestion-count" role="status">{results.length} sugerencias · usa flechas y Enter</p>}
       <ul id={`${id}-listbox`} role="listbox" aria-label="Territorios encontrados">{results.map((place, index) => {
