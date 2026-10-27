@@ -214,7 +214,7 @@ export function NationalAgeSex({ year }: { year: number }) {
             <option value="all">Todos los registros</option>
             <option value="0">Hombres</option>
             <option value="1">Mujeres</option>
-            <option value="2">SEXO=2 · No binario</option>
+            <option value="2">No binario{year !== 2024 ? ' · no registrado en esta elección' : ''}</option>
           </select>
         </div>
       </div>
@@ -272,7 +272,7 @@ export function NationalAgeSex({ year }: { year: number }) {
 
           {sex === '2' && year !== 2024 && (
             <p className="dashboard-chart-definition">
-              La categoría SEXO=2 no está registrada
+              La categoría No binario no está registrada
               en esta elección. Su ausencia no significa
               cero personas.
             </p>
@@ -280,7 +280,7 @@ export function NationalAgeSex({ year }: { year: number }) {
 
           {sex === '2' && year === 2024 && (
             <p className="dashboard-chart-definition">
-              La categoría SEXO=2 tiene pocos registros.
+              La categoría No binario tiene pocos registros.
               Sus tasas deben interpretarse con cautela,
               especialmente cuando existe soporte reducido.
             </p>
