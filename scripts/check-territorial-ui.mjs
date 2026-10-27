@@ -77,6 +77,8 @@ async function select(id, value) {
   await evaluate(`(() => { const select = document.getElementById(${JSON.stringify(id)}); select.value = ${JSON.stringify(value)}; select.dispatchEvent(new Event('change', {bubbles:true})); })()`)
 }
 async function typeSearch(query) {
+  // Este flujo prueba teclado: un cursor residual no debe activar otra sugerencia por hover.
+  await send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 20, y: 20 })
   await evaluate(`(() => { const input=document.getElementById('territory-search-input'); input.focus(); Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(input,${JSON.stringify(query)}); input.dispatchEvent(new Event('input',{bubbles:true})); })()`)
 }
 async function pickMunicipality(name) {
@@ -96,9 +98,13 @@ async function chooseMunicipality(name) {
   await pickMunicipality(name)
   await wait(`document.querySelector('.demographic-heading > p')?.textContent.includes(${JSON.stringify(name)})`)
 }
+async function chooseView(view) {
+  await evaluate(`document.querySelector('[data-territory-view="${view}"]').click()`)
+  await wait(`document.querySelector('.territory-detail').dataset.view === '${view}'`)
+}
 async function changeAxis(axis) {
-  const id = await evaluate(`document.querySelector('.demographic-axis select').id`)
-  await select(id, axis)
+  await chooseView('demographics')
+  await evaluate(`document.querySelector('[data-demographic-axis="${axis}"]').click()`)
   await wait(`document.querySelector('.demographic-panel')?.dataset.axis === ${JSON.stringify(axis)}`)
 }
 async function pressKey(key, code, windowsVirtualKeyCode, text) {
@@ -107,7 +113,64 @@ async function pressKey(key, code, windowsVirtualKeyCode, text) {
 }
 async function mapPoint() {
   await evaluate(`document.querySelector('.mexico-map').scrollIntoView({block:'center',behavior:'instant'})`)
-  return evaluate(`(() => {const r=document.querySelector('.mexico-map').getBoundingClientRect();return {x:r.left+r.width*.45,y:r.top+r.height*.5}})()`)
+  return evaluate(`(() => {const r=document.querySelector('.mexico-map').getBoundingClientRect();return {x:r.left+r.width*.85,y:r.top+r.height*.8}})()`)
+}
+const layerGroup = layer => ['women', 'men', 'nonbinary','women_participants','men_participants'].includes(layer) ? 'sex' : layer.startsWith('age') ? 'age' : 'participation'
+async function chooseLayer(layer) {
+  await evaluate(`document.querySelector('[data-layer-group="${layerGroup(layer)}"]').click()`)
+  if (layer.endsWith('_participants')) await evaluate(`document.querySelector('[data-sex-basis="participants"]').click()`)
+  await evaluate(`document.querySelector('button[data-map-layer="${layer}"]').click()`)
+  await wait(`document.querySelector('.mexico-map').dataset.mapLayer === '${layer}' && document.querySelector('.mexico-map').dataset.layerReady === 'true'`)
+}
+async function assertMapValues(year, layer, state = '') {
+  await wait(`document.querySelector('.mexico-map').dataset.layerReady === 'true' && document.querySelector('.mexico-map').dataset.layerYear === '${year}'`)
+  const rows = await evaluate(`[...document.querySelectorAll('.mexico-map path[role="button"]')].map(node=>({code:node.dataset.mapCode,value:node.getAttribute('data-thematic-value'),status:node.dataset.thematicStatus,fill:node.style.fill,classIndex:node.getAttribute('data-thematic-class'),label:node.getAttribute('aria-label')}))`)
+  const legend = await evaluate(`({mode:document.querySelector('.thematic-legend').dataset.legendMode,breaks:JSON.parse(document.querySelector('.thematic-legend').dataset.scaleBreaks),classes:[...document.querySelectorAll('[data-scale-class]')].map(node=>({lower:Number(node.dataset.classLower),upper:Number(node.dataset.classUpper),count:Number(node.querySelector('small').textContent.split(' ')[0])}))})`)
+  const expectedValues = []
+  const data = JSON.parse(readFileSync(state ? `public/data/territorial/${year}/${state}.json` : `public/data/territorial/layers/${year}.json`, 'utf8'))
+  const records = new Map((state ? data.data : data.states).map(row => [state ? row.ine_code : row.state_code, row]))
+  const crosswalk = state ? JSON.parse(readFileSync(`public/data/ine-crosswalk/${state}.json`, 'utf8')).years[year] : null
+  for (const row of rows) {
+    const key = state ? crosswalk[row.code]?.ineCode : row.code
+    const record = records.get(key)
+    let expected = null, status = key ? 'missing' : 'unmapped'
+    if (record) {
+      const cells = [...record.segments, ...record.complementary], sex = { women: '1', men: '0', nonbinary: '2',women_participants:'1',men_participants:'0' }[layer], band = { age18_34: '18-34', age35_59: '35-59', age60_100: '60-100' }[layer]
+      if (layer === 'nonbinary' && year !== 2024) status = 'unavailable_category'
+      else {
+        const matching = sex ? cells.filter(cell=>cell.sex_code===sex) : band ? cells.filter(cell=>cell.age_band===band) : null
+        if (!matching || matching.length) {
+          const counts = matching ? Object.fromEntries(['LN','SV','NV','NS','source_row_count'].map(field=>[field,matching.reduce((sum,cell)=>sum+cell[field],0)])) : record.totals
+          const denominator = layerGroup(layer) === 'participation' ? counts.SV+counts.NV : layer.endsWith('_participants') ? record.totals.SV : record.totals.LN
+          const numerator = layer === 'participation' ? counts.SV : layer === 'nonparticipation' ? counts.NV : layer.endsWith('_participants') ? counts.SV : counts.LN
+          expected = denominator ? numerator/denominator : null
+          status = expected === null ? 'undefined' : counts.LN>=100&&counts.SV+counts.NV>=100&&counts.source_row_count>=5 ? 'defined' : 'low_support'
+        }
+      }
+    }
+    assert.equal(row.status, status, `${year}:${row.code}:${layer}:status`)
+    if (expected === null) assert.equal(row.value, null)
+    else assert.ok(Math.abs(Number(row.value)-expected)<1e-13, `${year}:${row.code}:${layer}:value`)
+    if (status === 'defined') {
+      expectedValues.push(expected)
+      const classIndex = legend.classes.findIndex((item,i)=>(i===0?expected>=item.lower:expected>item.lower)&&expected<=item.upper)
+      assert.notEqual(classIndex,-1)
+      assert.equal(Number(row.classIndex),classIndex)
+      const level=legend.classes.length===1?2:Math.round(classIndex*4/(legend.classes.length-1))
+      assert.equal(row.fill,`var(--atlas-color-${level})`,`${row.code}:color`)
+    } else { assert.equal(row.fill,status==='low_support'?'var(--atlas-low-support)':'var(--atlas-no-data)', `${row.code}:neutro`); assert.equal(row.classIndex,null) }
+    assert.ok(row.label.includes(String(year)))
+  }
+  assert.equal(await evaluate(`document.querySelector('.thematic-legend').dataset.legendLayer`), layer)
+  expectedValues.sort((a,b)=>a-b)
+  const unique=[...new Set(expectedValues)]
+  assert.equal(legend.mode,'relative')
+  const cuts=unique.length<=5?unique.slice(0,-1):[...new Set([.2,.4,.6,.8].map(q=>expectedValues[Math.ceil(q*expectedValues.length)-1]))].filter(value=>value<expectedValues.at(-1))
+  assert.deepEqual(legend.breaks,cuts)
+  assert.equal(legend.classes.reduce((n,item)=>n+item.count,0),expectedValues.length)
+  assert.equal(await evaluate(`document.querySelectorAll('.thematic-ramp i').length`),legend.classes.length)
+  if(legend.classes.length) assert.ok((await evaluate(`document.querySelector('.thematic-explanation').textContent`)).length>20)
+  return rows.length
 }
 async function mapWidth() { return evaluate(`Number(document.querySelector('.mexico-map').getAttribute('viewBox').split(' ')[2])`) }
 async function waitCamera() { await sleep(550) }
@@ -118,12 +181,13 @@ async function clickGeometry(code) {
   await send('Input.dispatchMouseEvent', { type: 'mousePressed', ...point, button: 'left', clickCount: 1 })
   await send('Input.dispatchMouseEvent', { type: 'mouseReleased', ...point, button: 'left', clickCount: 1 })
 }
-async function screenshot(name) {
+async function screenshot(name, selector) {
   await evaluate(`document.activeElement?.blur(); window.scrollTo({top:0,left:0,behavior:'instant'})`)
   await waitCamera()
   const { cssContentSize } = await send('Page.getLayoutMetrics')
+  const clip = selector ? await evaluate(`(() => {const r=document.querySelector(${JSON.stringify(selector)}).getBoundingClientRect();return {x:Math.floor(r.left+scrollX),y:Math.floor(r.top+scrollY),width:Math.ceil(r.width),height:Math.ceil(r.height),scale:1}})()`) : { x: 0, y: 0, width: cssContentSize.width, height: cssContentSize.height, scale: 1 }
   const { data } = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true,
-    clip: { x: 0, y: 0, width: cssContentSize.width, height: cssContentSize.height, scale: 1 } })
+    clip })
   writeFileSync(join(cache, name + '.png'), Buffer.from(data, 'base64'))
 }
 function record(name, data) { checks.push({ name, ...data }); console.log(`OK: ${name}`) }
@@ -167,12 +231,16 @@ try {
   await send('Page.enable'); await send('Runtime.enable'); await send('Network.enable'); await send('Page.bringToFront')
   await send('Emulation.setFocusEmulationEnabled', { enabled: true })
   await send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1100, deviceScaleFactor: 1, mobile: false })
-  await send('Fetch.enable', { patterns: [{ urlPattern: '*/territorial/search-index.json', requestStage: 'Request' }] })
+  await send('Fetch.enable', { patterns: [{ urlPattern: '*/territorial/search-index.json', requestStage: 'Request' }, { urlPattern: '*/territorial/layers/2024.json', requestStage: 'Request' }] })
   await send('Page.navigate', { url })
   await wait(`!!document.querySelector('#territory-search-input')`)
   await evaluate(`document.querySelector('#territory-search-input').focus()`)
   await wait(`document.querySelector('.territory-suggestions [role="alert"]')?.textContent.includes('No se pudo cargar')`)
   await send('Fetch.disable')
+  await wait(`!!document.querySelector('.thematic-error')`)
+  await evaluate(`[...document.querySelectorAll('button')].find(button=>button.textContent==='Reintentar capa').click()`)
+  await wait(`document.querySelector('.mexico-map').dataset.layerReady === 'true'`)
+  record('Capas: error de red explícito, reintento y recuperación sin bloquear el mapa', {})
   await evaluate(`[...document.querySelectorAll('button')].find(button=>button.textContent==='Reintentar catálogo').click()`)
   await typeSearch('Chih')
   await wait(`!!document.querySelector('[role="option"][data-place-kind="state"][data-place-code="08"]')`)
@@ -184,6 +252,12 @@ try {
   await typeSearch('San Pedro')
   await wait(`document.querySelectorAll('.territory-suggestions [role="option"]').length > 1`)
   assert.ok((await evaluate(`[...new Set([...document.querySelectorAll('.territory-suggestions [role="option"]')].map(node=>node.dataset.placeState))].length`)) > 1)
+  await pressKey('ArrowUp', 'ArrowUp', 38)
+  assert.equal(await evaluate(`document.querySelector('#territory-search-input').getAttribute('aria-activedescendant') === [...document.querySelectorAll('.territory-suggestions [role="option"]')].at(-1).id`), true)
+  await select('electoral-year', '2009')
+  await wait(`document.querySelector('#territory-search-input').getAttribute('aria-activedescendant') === null`)
+  assert.equal(await evaluate(`document.querySelector('#territory-search-input').getAttribute('aria-activedescendant')`), null)
+  await select('electoral-year', '2024')
   await typeSearch('zzzzzzzzzz')
   await wait(`document.querySelector('.territory-suggestions')?.textContent.includes('Sin coincidencias')`)
   await typeSearch('')
@@ -196,6 +270,20 @@ try {
   await wait(`document.querySelector('.demographic-heading > p')?.textContent.includes('México')`)
   assert.equal(await evaluate(`document.querySelector('.territory-detail .card-heading h2').textContent`), 'México')
   assert.deepEqual(await evaluate(`[...document.querySelectorAll('.territorial-counts dd')].map(node=>node.textContent)`), ['98,330,348', '54,899,228', '37,105,466', '6,325,654'])
+  assert.ok((await evaluate(`document.querySelector('.quality-coverage').textContent`)).includes('93.57 %'))
+  assert.equal(await evaluate(`document.querySelector('.quality-details').open`), false)
+  assert.equal(await evaluate(`document.querySelector('.map-sources').open`), false)
+  assert.equal(await evaluate(`document.querySelector('.map-keyboard-tools details').open`), false)
+  assert.equal(await evaluate(`document.querySelectorAll('.territorial-counts dt .icon').length`), 4)
+  assert.equal(await evaluate(`document.querySelector('.demographic-panel').checkVisibility()`), false)
+  await evaluate(`document.querySelector('[data-territory-view="summary"]').focus()`)
+  await pressKey('ArrowRight', 'ArrowRight', 39)
+  assert.equal(await evaluate(`document.querySelector('.demographic-panel').checkVisibility()`), true)
+  assert.equal(await evaluate(`document.querySelector('.election-metrics').checkVisibility()`), false)
+  assert.equal(await evaluate(`document.querySelectorAll('.territory-view-tabs [tabindex="0"]').length`), 1)
+  await pressKey('Home', 'Home', 36)
+  assert.equal(await evaluate(`document.querySelector('.election-metrics').checkVisibility()`), true)
+  record('Ficha por vistas: resumen inicial, demografía accesible con teclado y panel inactivo oculto', {})
   assert.equal(await evaluate(`document.querySelectorAll('.demographic-bar-row').length`), 9)
   await changeAxis('sex')
   assert.equal(await evaluate(`document.querySelectorAll('.demographic-bar-row').length`), 3)
@@ -203,6 +291,12 @@ try {
   await changeAxis('age')
   assert.equal(await evaluate(`document.querySelectorAll('.demographic-bar-row').length`), 3)
   assert.ok((await evaluate(`document.querySelector('.demographic-coverage').textContent`)).includes('98,317,151'))
+  assert.equal(await evaluate(`document.querySelector('.demographic-method').open`), false)
+  await evaluate(`document.querySelector('.coverage-details summary').click()`)
+  assert.ok(await evaluate(`[...document.querySelectorAll('.coverage-details p')].some(p=>p.checkVisibility()&&p.textContent.includes('98,317,151'))`))
+  await screenshot('national-demographics-light')
+  await evaluate(`document.querySelector('.coverage-details summary').click()`)
+  record('Tarjetas, cobertura y detalle progresivo: cifras reales, iconos, alcance y fórmulas accesibles', {})
   for (const year of [2009, 2012, 2015, 2018, 2021, 2024]) {
     await select('electoral-year', String(year))
     await wait(`document.querySelector('.demographic-heading > p')?.textContent.includes('México') && document.querySelector('.demographic-heading > p')?.textContent.includes('${year}')`)
@@ -211,16 +305,118 @@ try {
     assert.equal(await evaluate(`[...document.querySelectorAll('.demographic-legend span')].some(node=>node.textContent==='No binario')`), year === 2024)
   }
   record('Ficha de México, tres vistas y seis elecciones; No binario sólo donde está registrado', {})
+  assert.equal(await evaluate(`document.querySelector('.demographic-axis select') === null && document.querySelectorAll('.demographic-axis button .icon').length === 3`), true)
+  await evaluate(`document.querySelector('[data-demographic-axis="sex"]').focus()`)
+  await pressKey('Enter', 'Enter', 13, '\r')
+  await wait(`document.querySelector('.demographic-panel').dataset.axis === 'sex'`)
+  assert.equal(await evaluate(`document.querySelector('.mexico-map').dataset.mapScale`),'relative')
+  assert.equal(await evaluate(`document.querySelector('[data-context-metric="nominal"]').textContent`),'98,330,348')
+  for (const layer of ['participation','nonparticipation','women','men','women_participants','men_participants','nonbinary','age18_34','age35_59','age60_100']) {
+    await chooseLayer(layer)
+    assert.equal(await assertMapValues(2024,layer),32)
+  }
+  await chooseLayer('participation')
+  const relativeValues=await evaluate(`[...document.querySelectorAll('.mexico-map path[role="button"]')].map(node=>node.dataset.thematicValue)`)
+  await wait(`new Set([...document.querySelectorAll('.mexico-map path[role="button"]')].map(node=>getComputedStyle(node).fill)).size===5`)
+  assert.equal(await evaluate(`new Set([...document.querySelectorAll('.mexico-map path[role="button"]')].map(node=>getComputedStyle(node).fill)).size`),5)
+  await chooseView('summary')
+  await screenshot('atlas-national-participation')
+  assert.equal(await evaluate(`document.querySelector('.thematic-scale-control')===null && document.querySelectorAll('button[data-map-scale]').length===0 && !document.body.textContent.includes('Escala absoluta')`),true)
+  assert.deepEqual(await evaluate(`[...document.querySelectorAll('[data-layer-group]')].map(node=>node.textContent)`),['Participación','Sexo','Edad'])
+  assert.equal(await evaluate(`document.querySelector('.thematic-values').open`),false)
+  assert.equal(await evaluate(`document.querySelector('.thematic-class-list').checkVisibility()`),false)
+  await evaluate(`document.querySelector('.thematic-values summary').focus()`)
+  await pressKey('Enter','Enter',13,'\r')
+  await wait(`document.querySelector('.thematic-values').open`)
+  assert.equal(await evaluate(`document.querySelector('.thematic-class-list').checkVisibility()`),true)
+  assert.equal(await evaluate(`document.querySelectorAll('.thematic-values tbody tr').length`),0)
+  await screenshot('atlas-legend-methodology','.territory-layout > .card')
+  await evaluate(`document.querySelector('.thematic-territories summary').click()`)
+  await wait(`document.querySelectorAll('.thematic-values tbody tr').length===32`)
+  assert.equal(await evaluate(`document.querySelectorAll('.thematic-values tbody tr').length`),32)
+  await assertMapValues(2024,'participation')
+  assert.deepEqual(await evaluate(`[...document.querySelectorAll('.mexico-map path[role="button"]')].map(node=>node.dataset.thematicValue)`),relativeValues)
+  await evaluate(`document.querySelector('.thematic-territories summary').click()`)
+  await evaluate(`document.querySelector('.thematic-values summary').click()`)
+  await chooseLayer('nonparticipation')
+  await screenshot('atlas-national-nonparticipation')
+  record('Cuantiles permanentes: controles conservados, selector retirado y metodología accesible sin alterar porcentajes',{})
+  await chooseLayer('nonbinary')
+  await assertMapValues(2024,'nonbinary')
+  assert.equal(await evaluate(`document.querySelectorAll('.mexico-map pattern').length`),0)
+  assert.equal(await evaluate(`document.querySelectorAll('.thematic-ramp i').length`),0)
+  assert.ok((await evaluate(`document.querySelector('.thematic-availability').textContent`)).includes('registros disponibles de No binario en 2024'))
+  await wait(`new Set([...document.querySelectorAll('.mexico-map path[role="button"]')].map(node=>getComputedStyle(node).fill)).size===2`)
+  assert.equal(await evaluate(`new Set([...document.querySelectorAll('.mexico-map path[role="button"]')].map(node=>getComputedStyle(node).fill)).size`),2)
+  await screenshot('atlas-nonbinary-support','.territory-layout > .card')
+  await send('Input.dispatchMouseEvent',{type:'mouseMoved',x:20,y:20})
+  await evaluate(`document.querySelector('.mexico-map path[data-thematic-status="low_support"]').focus({preventScroll:true})`)
+  await wait(`document.querySelector('.map-value-card')?.dataset.tooltipStatus==='low_support'`)
+  assert.ok((await evaluate(`document.querySelector('.map-value-support').textContent`)).includes('insuficiente'))
+  assert.ok(!(await evaluate(`document.querySelector('.map-value-number').textContent`)).includes('Sin información'))
+  assert.equal(await evaluate(`document.querySelector('.map-value-track')===null`),true)
+  await setTheme('dark')
+  await assertMapValues(2024,'nonbinary')
+  await screenshot('atlas-nonbinary-dark','.territory-layout > .card')
+  await setTheme('light')
+  await select('electoral-year','2018')
+  await assertMapValues(2018,'nonbinary')
+  assert.ok((await evaluate(`document.querySelector('.thematic-availability').textContent`)).includes('no está registrado en los datos de 2018'))
+  assert.equal(await evaluate(`document.querySelector('.mexico-map [data-thematic-status="unavailable_category"]').getAttribute('data-thematic-value')`),null)
+  await screenshot('atlas-nonbinary-unregistered','.territory-layout > .card')
+  record('No binario: neutros sin patrones, registros escasos conservados y ausencia histórica sin cero',{})
+  for (const year of [2009,2012,2015,2018,2021,2024]) {
+    await select('electoral-year',String(year))
+    for (const layer of ['participation','nonparticipation','women','men','women_participants','men_participants','age18_34','age35_59','age60_100']) {
+      await chooseLayer(layer); await assertMapValues(year,layer)
+    }
+    await evaluate(`document.querySelector('[data-layer-group="sex"]').click()`)
+    assert.equal(await evaluate(`document.querySelector('button[data-map-layer="nonbinary"]').disabled`),year!==2024)
+  }
+  await chooseLayer('participation')
+  await mapPoint()
+  const hoverPoint = await evaluate(`(() => {const path=document.querySelector('.mexico-map path[data-map-code="30"]'), b=path.getBBox(), m=path.getScreenCTM();for(let i=1;i<10;i++)for(let j=1;j<10;j++){const p=new DOMPoint(b.x+b.width*i/10,b.y+b.height*j/10);if(path.isPointInFill(p)){const c=p.matrixTransform(m);if(document.elementFromPoint(c.x,c.y)===path)return {x:c.x,y:c.y}}}return null})()`)
+  assert.ok(hoverPoint)
+  await send('Input.dispatchMouseEvent',{type:'mouseMoved',...hoverPoint})
+  await wait(`document.querySelector('.map-value-card')?.dataset.tooltipCode === '30'`)
+  const veracruzReference = JSON.parse(readFileSync('public/data/territorial/summaries/2024/30.json','utf8')).totals
+  const veracruzRate = veracruzReference.SV/(veracruzReference.SV+veracruzReference.NV)
+  assert.equal(await evaluate(`document.querySelector('.map-value-number').textContent`),`${(veracruzRate*100).toLocaleString('es-MX',{minimumFractionDigits:1,maximumFractionDigits:2})} %`)
+  await evaluate(`document.querySelector('.mexico-map path[data-map-code="30"][role="button"]').focus()`)
+  await wait(`document.querySelector('.map-value-card').dataset.tooltipCode === '30'`)
+  assert.equal(await evaluate(`document.querySelector('.map-value-card').dataset.tooltipYear`),'2024')
+  await pressKey('Escape','Escape',27)
+  assert.equal(await evaluate(`document.querySelector('.map-value-card') === null`),true)
+  await evaluate(`document.querySelector('.map-detail-action').click()`)
+  assert.equal(await evaluate(`document.activeElement.id`),'territory-detail')
+  await chooseView('summary')
+  await screenshot('atlas-national-light')
+  await send('Input.dispatchMouseEvent',{type:'mouseMoved',x:20,y:20})
+  await evaluate(`document.querySelector('.mexico-map path[data-map-code="30"][role="button"]').focus({preventScroll:true})`)
+  await wait(`document.querySelector('.map-value-card')?.dataset.tooltipCode === '30'`)
+  await evaluate(`document.querySelector('.map-value-open').scrollIntoView({block:'center',behavior:'instant'})`)
+  const openPoint=await evaluate(`(() => {const r=document.querySelector('.map-value-open').getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+r.height/2}})()`)
+  await send('Input.dispatchMouseEvent',{type:'mouseMoved',...openPoint})
+  await send('Input.dispatchMouseEvent',{type:'mousePressed',...openPoint,button:'left',clickCount:1})
+  await send('Input.dispatchMouseEvent',{type:'mouseReleased',...openPoint,button:'left',clickCount:1})
+  await wait(`document.querySelector('.territory-explorer').dataset.stateCode==='30' && document.querySelector('.territory-detail .card-heading h2')?.textContent==='Veracruz'`)
+  assert.equal(await evaluate(`document.activeElement.id`),'territory-detail')
+  await select('state-picker','')
+  await wait(`document.querySelector('.territory-detail .card-heading h2')?.textContent==='México'`)
+  record('Acción contextual: abre la ficha del territorio consultado y lleva el foco a su panel',{})
+  record('Atlas nacional: diez capas, seis elecciones, cifras y clases fuente, categorías, leyenda, teclado y acción de ficha', {})
   await wait(`document.querySelectorAll('.ranking-list .ranking-row').length === 10`)
   const statesReference = JSON.parse(readFileSync('public/data/participamx_multiyear/elections/2024/states.json', 'utf8')).data.sort((a,b)=>b.SV/(b.SV+b.NV)-a.SV/(a.SV+a.NV))
   assert.equal(await evaluate(`document.querySelector('.ranking-row').dataset.rankCode`), statesReference[0].state_code.padStart(2,'0'))
   await evaluate(`[...document.querySelectorAll('.ranking-order button')].find(button=>button.textContent.includes('Menor')).click()`)
+  await wait(`document.querySelector('.ranking-row')?.dataset.rankCode === '${statesReference.at(-1).state_code.padStart(2,'0')}'`)
   assert.equal(await evaluate(`document.querySelector('.ranking-row').dataset.rankCode`), statesReference.at(-1).state_code.padStart(2,'0'))
   await evaluate(`[...document.querySelectorAll('.ranking-pagination button')].find(button=>button.textContent==='Siguiente').click()`)
   assert.equal(await evaluate(`document.querySelector('.ranking-position').textContent`), '11')
   await evaluate(`[...document.querySelectorAll('.ranking-order button')].find(button=>button.textContent.includes('Mayor')).click()`)
   await wait(`document.querySelector('.ranking-position')?.textContent === '1'`)
   record('Ranking nacional de 32 entidades: orden ascendente/descendente y páginas de diez', {})
+  await chooseView('summary')
   await screenshot('national-overview-light')
 
   await typeSearch('Chih')
@@ -230,6 +426,7 @@ try {
   const chihuahua = JSON.parse(readFileSync('public/data/territorial/2024/08.json', 'utf8')).data.filter(row=>row.totals.LN>=100&&row.totals.SV+row.totals.NV>=100&&row.totals.source_row_count>=5).sort((a,b)=>b.totals.SV/(b.totals.SV+b.totals.NV)-a.totals.SV/(a.totals.SV+a.totals.NV)||a.ine_code.localeCompare(b.ine_code))
   assert.equal(await evaluate(`document.querySelector('.ranking-row').dataset.rankCode`), chihuahua[0].ine_code)
   await evaluate(`[...document.querySelectorAll('.ranking-order button')].find(button=>button.textContent.includes('Menor')).click()`)
+  await wait(`document.querySelector('.ranking-row')?.dataset.rankCode === '${chihuahua.at(-1).ine_code}'`)
   assert.equal(await evaluate(`document.querySelector('.ranking-row').dataset.rankCode`), chihuahua.at(-1).ine_code)
   await evaluate(`document.querySelector('.ranking-row').click()`)
   await wait(`!!document.querySelector('.demographic-panel') && !!document.querySelector('.ranking-row[aria-pressed="true"]') && !!document.querySelector('.territory-explorer').dataset.municipalityCode`)
@@ -241,9 +438,50 @@ try {
   await wait(`document.querySelector('.territory-explorer').dataset.stateCode === '30' && document.querySelector('.demographic-heading > p')?.textContent.includes('Xalapa')`)
   await wait(`!!document.querySelector('.ranking-row[aria-pressed="true"]')`)
   assert.ok((await evaluate(`document.querySelectorAll('.ranking-row').length`)) <= 10)
+  for (const layer of ['participation','nonparticipation','women','men','women_participants','men_participants','nonbinary','age18_34','age35_59','age60_100']) {
+    await chooseLayer(layer); await assertMapValues(2024,layer,'30')
+  }
+  await chooseLayer('women')
+  await wait(`document.querySelector('.map-value-card')?.dataset.tooltipCode === '30087'`)
+  assert.ok((await evaluate(`document.querySelector('.map-value-card').textContent`)).includes('Lista nominal total'))
+  await evaluate(`document.querySelector('.state-return').click()`)
+  await waitCamera()
+  await screenshot('atlas-state-women','.territory-layout > .card')
+  await chooseLayer('men'); await screenshot('atlas-state-men','.territory-layout > .card')
+  await chooseLayer('women_participants'); await screenshot('atlas-state-women-participants','.territory-layout > .card')
+  await chooseLayer('age18_34'); await screenshot('atlas-age18-34','.territory-layout > .card')
+  await pickMunicipality('Xalapa')
+  await wait(`document.querySelector('.territory-explorer').dataset.municipalityCode==='30087'`)
+  await chooseLayer('women')
+  await evaluate(`document.querySelector('.thematic-values summary').click()`)
+  await evaluate(`document.querySelector('.thematic-territories summary').click()`)
+  await wait(`document.querySelectorAll('.thematic-values tbody tr').length===212`)
+  assert.equal(await evaluate(`document.querySelectorAll('.thematic-values tbody tr').length`),212)
+  await evaluate(`document.querySelector('.thematic-territories summary').click()`)
+  await evaluate(`document.querySelector('.thematic-values summary').click()`)
+  await select('electoral-year','2018')
+  for (const layer of ['women','men','women_participants','men_participants','age18_34','age35_59','age60_100','participation','nonparticipation']) {
+    await chooseLayer(layer); await assertMapValues(2018,layer,'30')
+  }
+  assert.equal(await evaluate(`document.querySelector('.territory-explorer').dataset.municipalityCode`),'30087')
+  await select('electoral-year','2024')
+  await chooseLayer('nonbinary')
+  await select('electoral-year','2018')
+  await wait(`document.querySelector('.mexico-map').dataset.layerReady === 'true'`)
+  await assertMapValues(2018,'nonbinary','30')
+  assert.ok((await evaluate(`document.querySelector('.thematic-category-note').textContent`)).includes('2018'))
+  await select('electoral-year','2024'); await chooseLayer('participation')
+  await chooseView('summary')
+  await screenshot('atlas-municipal-light')
+  await screenshot('atlas-selected-municipality','.territory-layout > .card')
+  assert.equal(await evaluate(`getComputedStyle(document.querySelector('.selection-outline')).fill`),'none')
+  await wait(`document.querySelector('[data-context-metric="nominal"]').textContent === document.querySelector('.territorial-counts dd').textContent`)
+  record('Atlas municipal: diez capas fuente, contorno sin relleno, contexto real, Xalapa persistente y categoría ausente sin cero', {})
   await screenshot('national-search-ranking')
   record('Búsqueda nacional Xalapa desde otro estado: ficha, selección y ranking sincronizados', {})
   await select('state-picker', '')
+  assert.ok((await evaluate(`document.querySelector('.search-scope').textContent`)).includes('Todo México'))
+  assert.equal(await evaluate(`document.querySelector('#territory-search-input').value`), '')
   await wait(`document.querySelector('.demographic-heading > p')?.textContent.includes('México')`)
   await waitCamera()
   const beforeButton = await mapWidth()
@@ -255,6 +493,7 @@ try {
   assert.ok(Math.abs((await mapWidth()) - beforeButton) < 1e-6)
   let point = await mapPoint()
   const normalWheelWidth = await mapWidth(), scrollBefore = await evaluate('scrollY')
+  const stableBreaks=await evaluate(`document.querySelector('.thematic-legend').dataset.scaleBreaks`)
   await send('Input.dispatchMouseEvent', { type: 'mouseMoved', ...point })
   await send('Input.dispatchMouseEvent', { type: 'mouseWheel', ...point, deltaX: 0, deltaY: 120 })
   await sleep(200)
@@ -299,6 +538,8 @@ try {
   assert.equal(await mapWidth(), interruptedWidth)
   await evaluate(`document.querySelector('[aria-label="Encuadrar territorio seleccionado"]').click()`)
   await waitCamera()
+  assert.equal(await evaluate(`document.querySelector('.thematic-legend').dataset.scaleBreaks`),stableBreaks)
+  record('Zoom y desplazamiento no recalibran los cortes del alcance estadístico',{})
   record('Zoom +/−, rueda cooperativa, Ctrl+rueda, arrastre sin clic accidental, doble clic y regreso nacional', {})
   record('Interacción de rueda interrumpe animación sin retorno al destino anterior', {})
   await clickGeometry('08')
@@ -351,9 +592,13 @@ try {
 
   await select('state-picker', '09')
   await chooseMunicipality('Coyoacán')
+  await chooseView('demographics')
   assert.equal(await evaluate(`document.querySelector('.territory-heading').textContent.includes('INE 09003')`), true)
   await setTheme('dark')
   await checkContrast('dark')
+  await assertMapValues(2024,'participation','09')
+  await wait(`getComputedStyle(document.querySelector('.municipality-shape[aria-pressed="true"]')).stroke === 'rgb(239, 182, 141)'`)
+  assert.equal(await evaluate(`getComputedStyle(document.querySelector('.municipality-shape[aria-pressed="true"]')).stroke`),'rgb(239, 182, 141)')
   assert.equal(await evaluate(`getComputedStyle(document.querySelector('.turnout-spotlight')).backgroundColor`), 'rgb(54, 42, 64)')
   await evaluate(`document.querySelector('.demographic-switch button').focus()`)
   await send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 })
@@ -365,6 +610,7 @@ try {
   await wait(`document.querySelector('.demographic-definition')?.textContent.includes('universo parcial')`)
   await evaluate(`document.querySelector('.demographic-switch button').click()`)
   await screenshot('desktop-dark')
+  await screenshot('atlas-dark','.territory-layout > .card')
   record('Coyoacán 2024, modo oscuro y foco visible', {})
 
   await select('electoral-year', '2009')
@@ -388,7 +634,16 @@ try {
   const unavailable = JSON.parse(readFileSync('public/data/territorial/2024/16.json', 'utf8')).data.find(row => row.ine_code === '16112')
   await chooseMunicipality(unavailable.municipality_name)
   assert.equal(await evaluate(`document.querySelector('.turnout-spotlight > strong').textContent`), 'No disponible')
+  await wait(`document.querySelector('.mexico-map').dataset.layerReady === 'true'`)
+  assert.equal(await evaluate(`document.querySelector('.municipality-shape[aria-pressed="true"]').dataset.thematicStatus`),'undefined')
+  assert.equal(await evaluate(`document.querySelector('.municipality-shape[aria-pressed="true"]').getAttribute('data-thematic-value')`),null)
   assert.equal(await evaluate(`document.querySelectorAll('.demographic-bar').length`), 0)
+  await chooseView('summary')
+  assert.ok((await evaluate(`document.querySelector('.quality-coverage').textContent`)).includes('0 %'))
+  assert.equal(await evaluate(`document.querySelector('.quality-details').open`), false)
+  assert.ok(await evaluate(`[...document.querySelectorAll('.quality-callout')].some(p=>p.checkVisibility()&&p.textContent.includes('No especificación elevada'))`))
+  await chooseView('demographics')
+  assert.ok(await evaluate(`[...document.querySelectorAll('.demographic-quality-flags li')].some(p=>p.checkVisibility()&&p.textContent.includes('tasas no definidas'))`))
   record('Municipio sin participación especificada mantiene tasas no disponibles', { municipality: unavailable.municipality_name })
 
   await select('state-picker', '24')
@@ -398,6 +653,8 @@ try {
   await select('electoral-year', '2009')
   await wait(`!document.querySelector('.territorial-loading') && document.querySelector('.territory-heading')?.textContent.includes('pendiente')`)
   assert.equal(await evaluate(`document.querySelector('.territory-explorer').dataset.municipalityCode`), '24059')
+  await wait(`document.querySelector('.mexico-map').dataset.layerReady === 'true'`)
+  assert.equal(await evaluate(`document.querySelector('.municipality-shape[data-map-code="24059"]').dataset.thematicStatus`),'unmapped')
   assert.equal(await evaluate(`document.querySelector('.demographic-panel') === null`), true)
   await select('electoral-year', '2024')
   record('Correspondencia pendiente no recibe cifras por fallback INEGI', {})
@@ -451,6 +708,10 @@ try {
   assert.ok((await mapWidth()) < pinchBefore * .8)
   assert.equal(await evaluate(`document.querySelector('.territory-explorer').dataset.municipalityCode`), pinchCode)
   await sleep(400)
+  await evaluate(`document.querySelector('[aria-label="Encuadrar territorio seleccionado"]').click()`)
+  // Doble toque sobre la tarjeta del territorio seleccionado: no cambia primero a otro polígono.
+  await evaluate(`document.querySelector('.map-value-number').scrollIntoView({block:'center',behavior:'instant'})`)
+  touchPoint = await evaluate(`(() => {const r=document.querySelector('.map-value-number').getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+r.height/2}})()`)
   const beforeTap = await mapWidth()
   for (let n = 0; n < 2; n++) {
     await send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: touchPoint.x, y: touchPoint.y, id: 1, radiusX: 2, radiusY: 2, force: 1 }] })
@@ -458,7 +719,7 @@ try {
     await sleep(80)
   }
   await sleep(150)
-  assert.ok((await mapWidth()) < beforeTap)
+  assert.ok((await mapWidth()) < beforeTap, `Doble toque: ${beforeTap} -> ${await mapWidth()}`)
   await evaluate(`for(let n=0;n<60;n++)document.querySelector('[aria-label="Alejar mapa"]').click()`)
   assert.equal(await mapWidth(), 1200)
   assert.equal(await evaluate(`document.querySelector('[aria-label="Alejar mapa"]').disabled`), true)
@@ -470,6 +731,7 @@ try {
   await select('state-picker', '09'); await chooseMunicipality('Coyoacán')
   record('Pellizco y doble toque reales, límites de zoom y controles deshabilitados con movimiento reducido', {})
   await screenshot('mobile-light')
+  await screenshot('atlas-mobile','.territory-layout > .card')
   record('Pantalla 390px: ficha debajo del mapa, sin desbordamiento y movimiento reducido', mobile)
   assert.equal(errors.length, 0, JSON.stringify(errors))
   writeFileSync(join(cache, 'results.json'), JSON.stringify({ status: 'passed', checks, errors }, null, 2))
