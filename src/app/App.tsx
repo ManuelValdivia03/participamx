@@ -7,11 +7,13 @@ import { ElectionYearProvider } from '../context/ElectionYearContext'
 import { StatisticalHelp } from '../components/StatisticalHelp'
 
 const MapPage = lazy(() => import('../features/map/MapPage').then(module => ({ default: module.MapPage })))
+const LaboratoryPage = lazy(() => import('../features/laboratory/LaboratoryPage').then(module => ({ default: module.LaboratoryPage })))
 
 const pages = [
   { id: 'dashboard', label: 'Menú principal', icon: 'dashboard' as IconName, component: Dashboard },
   { id: 'mapa', label: 'Atlas Electoral', icon: 'mapa' as IconName, component: MapPage },
   { id: 'perfiles', label: 'Perfiles ciudadanos', icon: 'perfiles' as IconName, component: Profiles },
+  { id: 'laboratorio', label: 'Laboratorio de Estrategias', icon: 'metodologia' as IconName, component: LaboratoryPage },
   { id: 'metodologia', label: 'Metodología', icon: 'metodologia' as IconName, component: Methodology },
 ]
 const currentPage = () => pages.find(page => page.id === location.hash.slice(1)) ?? pages[0]
