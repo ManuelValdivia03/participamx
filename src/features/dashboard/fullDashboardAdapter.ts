@@ -1,6 +1,7 @@
 
 import { getElectionsIndex } from '../../services/electionData'
 import { loadRealDashboard } from './dashboardAdapter'
+import { profileNames as profileLabels } from '../profiles/profilePresentation'
 import type {
   DashboardDataset,
   DashboardSnapshot
@@ -25,15 +26,6 @@ type DataResource<T> = {
   election_year: number
   rate_unit: string
   data: T[]
-}
-
-const profileLabels: Record<string, string> = {
-  young_favorable: '18–34 · por encima de sus pares',
-  young_unfavorable: '18–34 · por debajo de sus pares',
-  adult_favorable: '35–59 · por encima de sus pares',
-  adult_unfavorable: '35–59 · por debajo de sus pares',
-  older_favorable: '60–100 · por encima de sus pares',
-  older_unfavorable: '60–100 · por debajo de sus pares'
 }
 
 async function readResource<T>(

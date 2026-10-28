@@ -2,10 +2,12 @@
 import { useEffect, useMemo, useState } from 'react'
 import { SectionCard } from '../../components/SectionCard'
 import { getElectionsIndex } from '../../services/electionData'
+import { getTerritorySummary } from '../../services/territorialDemographics'
 
 type AgeRow = {
   election_year: number
-  exact_age: number
+  exact_age?: number
+  age_band?: string
   sex_code: string
   LN: number
   SV: number
@@ -22,7 +24,7 @@ type AgeResource = {
 
 type SexOption = 'all' | '0' | '1' | '2'
 
-const cache = new Map<number, AgeRow[]>()
+const cache = new Map<string, AgeRow[]>()
 
 const bands = [
   { label: '18–34 años', min: 18, max: 34 },
@@ -42,29 +44,35 @@ function formatRate(value: number | null) {
     : `${(value * 100).toFixed(2)} %`
 }
 
-export function NationalAgeSex({ year }: { year: number }) {
+export function NationalAgeSex({ year, territoryCode = 'MX', territoryName = 'México' }: { year: number; territoryCode?: string; territoryName?: string }) {
   const [sex, setSex] = useState<SexOption>('all')
   const [retry, setRetry] = useState(0)
 
   const [resource, setResource] = useState<{
-    year: number
+    key: string
     status: 'loading' | 'ready' | 'error'
     rows: AgeRow[]
   } | null>(null)
+  const key = `${year}:${territoryCode}`
 
   useEffect(() => {
     const controller = new AbortController()
 
     setResource({
-      year,
+      key,
       status: 'loading',
       rows: []
     })
 
     async function load() {
-      const cached = cache.get(year)
+      const cached = cache.get(key)
 
       if (cached) return cached
+      if (territoryCode !== 'MX') {
+        const summary = await getTerritorySummary(year, territoryCode, controller.signal)
+        const rows = [...summary.segments, ...summary.complementary].map(row => ({ election_year: year, age_band: row.age_band, sex_code: row.sex_code, LN: row.LN, SV: row.SV, NV: row.NV, has_low_support: !row.sufficient_support }))
+        controller.signal.throwIfAborted(); cache.set(key, rows); return rows
+      }
 
       const index = await getElectionsIndex(controller.signal)
 
@@ -108,7 +116,7 @@ export function NationalAgeSex({ year }: { year: number }) {
       }
 
       if (!controller.signal.aborted) {
-        cache.set(year, data.data)
+        cache.set(key, data.data)
       }
 
       return data.data
@@ -119,7 +127,7 @@ export function NationalAgeSex({ year }: { year: number }) {
         if (controller.signal.aborted) return
 
         setResource({
-          year,
+          key,
           status: 'ready',
           rows
         })
@@ -130,17 +138,17 @@ export function NationalAgeSex({ year }: { year: number }) {
         console.error('Error en datos por edad y sexo:', error)
 
         setResource({
-          year,
+          key,
           status: 'error',
           rows: []
         })
       })
 
     return () => controller.abort()
-  }, [year, retry])
+  }, [year, territoryCode, retry, key])
 
   const active =
-    resource?.year === year ? resource : null
+    resource?.key === key ? resource : null
 
   const results = useMemo(() => {
     if (!active || active.status !== 'ready') {
@@ -150,8 +158,7 @@ export function NationalAgeSex({ year }: { year: number }) {
     return bands.map(band => {
       const selectedRows = active.rows.filter(
         row =>
-          row.exact_age >= band.min &&
-          row.exact_age <= band.max &&
+          (row.age_band === `${band.min}-${band.max}` || (row.exact_age !== undefined && row.exact_age >= band.min && row.exact_age <= band.max)) &&
           (sex === 'all' || row.sex_code === sex)
       )
 
@@ -195,10 +202,10 @@ export function NationalAgeSex({ year }: { year: number }) {
 
   return (
     <SectionCard
-      title="Participación nacional por edad y sexo"
-      subtitle={`Datos agregados · Elección ${year}`}
+      title={territoryCode === 'MX' ? `Participación nacional por edad y sexo · ${year}` : `Participación por edad y sexo · ${territoryName}`}
+      subtitle={`${territoryName} · Elección ${year}`}
     >
-      <div className="age-sex-toolbar">
+      <div className="age-sex-toolbar" data-age-territory={territoryCode} data-age-year={year}>
         <div>
           <label htmlFor="age-sex-filter">
             Sexo registrado
@@ -214,7 +221,7 @@ export function NationalAgeSex({ year }: { year: number }) {
             <option value="all">Todos los registros</option>
             <option value="0">Hombres</option>
             <option value="1">Mujeres</option>
-            <option value="2">SEXO=2 · No binario</option>
+            <option value="2">No binario{year !== 2024 ? ' · no registrado en esta elección' : ''}</option>
           </select>
         </div>
       </div>
@@ -227,7 +234,7 @@ export function NationalAgeSex({ year }: { year: number }) {
 
       {active?.status === 'error' && (
         <div role="alert" className="dashboard-error">
-          <p>No se pudieron cargar estos indicadores.</p>
+          <p>No hay desglose disponible para {territoryName} en {year} o no se pudo cargar. No se utilizan datos nacionales como sustituto.</p>
           <button
             type="button"
             className="profile-button secondary"
@@ -272,7 +279,7 @@ export function NationalAgeSex({ year }: { year: number }) {
 
           {sex === '2' && year !== 2024 && (
             <p className="dashboard-chart-definition">
-              La categoría SEXO=2 no está registrada
+              La categoría No binario no está registrada
               en esta elección. Su ausencia no significa
               cero personas.
             </p>
@@ -280,9 +287,9 @@ export function NationalAgeSex({ year }: { year: number }) {
 
           {sex === '2' && year === 2024 && (
             <p className="dashboard-chart-definition">
-              La categoría SEXO=2 tiene pocos registros.
-              Sus tasas deben interpretarse con cautela,
-              especialmente cuando existe soporte reducido.
+              La categoría No binario tiene pocos registros.
+              Puede no haber datos en este territorio; una ausencia no equivale a cero personas.
+              Las tasas disponibles requieren cautela, especialmente con soporte reducido.
             </p>
           )}
 
@@ -297,13 +304,14 @@ export function NationalAgeSex({ year }: { year: number }) {
       )}
 
       <p className="dashboard-chart-definition">
-        Alcance: nacional, edades de 18 a 100 años.
+        Alcance: {territoryCode === 'MX' ? 'nacional' : territoryName}, elección {year}, edades de 18 a 100 años.
         La participación se calcula como SV / (SV + NV)
         a partir de los conteos, no promediando
         porcentajes. No incluye automáticamente edades
         mayores de 100 años ni permite inferir
         comportamientos individuales.
       </p>
+      {territoryCode !== 'MX' && <p className="dashboard-chart-definition">Fuente: resumen estatal validado del Atlas, con soporte evaluado en sus bandas agregadas. La vista nacional conserva su diagnóstico por edad exacta; las alertas de ambos niveles no son equivalentes.</p>}
     </SectionCard>
   )
 }

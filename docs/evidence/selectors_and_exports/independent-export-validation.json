@@ -1,0 +1,78 @@
+{
+  "status": "passed",
+  "renderer": "1.26.7",
+  "profiles": [
+    {
+      "id": "young_favorable",
+      "pdf": "participamx_perfil_01_jovenes_mayor_participacion_2024.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_01_jovenes_mayor_participacion_2024.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "id": "young_unfavorable",
+      "pdf": "participamx_perfil_02_jovenes_menor_participacion_2024.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_02_jovenes_menor_participacion_2024.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "id": "adult_favorable",
+      "pdf": "participamx_perfil_03_adultos_mayor_participacion_2024.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_03_adultos_mayor_participacion_2024.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "id": "adult_unfavorable",
+      "pdf": "participamx_perfil_04_adultos_menor_participacion_2024.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_04_adultos_menor_participacion_2024.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "id": "older_favorable",
+      "pdf": "participamx_perfil_05_personas_mayores_mayor_participacion_2024.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_05_personas_mayores_mayor_participacion_2024.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "id": "older_unfavorable",
+      "pdf": "participamx_perfil_06_personas_mayores_menor_participacion_2024.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_06_personas_mayores_menor_participacion_2024.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    }
+  ]
+}

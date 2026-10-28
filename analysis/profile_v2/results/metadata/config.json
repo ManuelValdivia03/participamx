@@ -1,0 +1,48 @@
+{
+  "experiment": "profile-v2-mixed-2024-v1",
+  "k": [
+    4,
+    5,
+    6
+  ],
+  "seeds": [
+    17,
+    42,
+    2024
+  ],
+  "n_init": 20,
+  "max_iter": 1000,
+  "tol": 1e-06,
+  "resamples": 10,
+  "resample_fraction": 0.8,
+  "resample_seed": 8102024,
+  "resample_n_init": 10,
+  "silhouette_anchors": 384,
+  "support": {
+    "LN": 100,
+    "specified": 100,
+    "source_rows": 5
+  },
+  "configs": {
+    "absolute_50": {
+      "variable": "participation_observed",
+      "numeric_weight": 0.5
+    },
+    "age_sex_50": {
+      "variable": "delta_age_sex",
+      "numeric_weight": 0.5
+    },
+    "age_sex_section_50": {
+      "variable": "delta_age_sex_section",
+      "numeric_weight": 0.5
+    },
+    "age_sex_75": {
+      "variable": "delta_age_sex",
+      "numeric_weight": 0.75
+    },
+    "relative_only": {
+      "variable": "delta_age_sex",
+      "numeric_weight": 1.0
+    }
+  }
+}

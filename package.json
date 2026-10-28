@@ -7,16 +7,21 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc --noEmit && vite build",
-    "typecheck": "tsc --noEmit",
-    "test:lab": "vitest run src/features/laboratory",
-    "test": "vitest run",
-    "test:map": "node scripts/check-map.mjs && node scripts/check-ine-keys.mjs",
-    "preview": "vite preview"
-  },
+  "dev": "vite",
+  "build": "tsc --noEmit && vite build",
+  "typecheck": "tsc --noEmit",
+  "test": "vitest run",
+  "test:lab": "vitest run src/features/laboratory",
+  "test:map": "node scripts/check-map.mjs && node scripts/check-ine-keys.mjs && npm run test:territorial",
+  "data:territorial": "node --experimental-strip-types scripts/build-territorial-data.mjs && node --experimental-strip-types scripts/build-territorial-summaries.mjs && node --experimental-strip-types scripts/build-territory-search.mjs && node --experimental-strip-types scripts/build-territorial-layers.mjs",
+  "check:territorial-data": "node --experimental-strip-types scripts/build-territorial-data.mjs --check && node --experimental-strip-types scripts/build-territorial-summaries.mjs --check && node --experimental-strip-types scripts/build-territory-search.mjs --check && node --experimental-strip-types scripts/build-territorial-layers.mjs --check",
+  "test:territorial": "node --experimental-strip-types --test scripts/territorial-data.test.mjs scripts/territorial-navigation.test.mjs scripts/territorial-layers.test.mjs scripts/thematic-scale.test.mjs scripts/section-statistics.test.mjs",
+  "test:territorial-ui": "node scripts/check-territorial-ui.mjs",
+  "preview": "vite preview"
+},
   "dependencies": {
     "d3-geo": "^3.1.1",
+    "jspdf": "4.2.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

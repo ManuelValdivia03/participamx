@@ -39,7 +39,7 @@ export function ElectionYearProvider({
           .sort((a, b) => a - b)
 
         setAvailableYears(years)
-        setYear(index.default_election_year)
+        setYear(current => years.includes(current) ? current : index.default_election_year)
       })
       .catch(error => {
         if (!controller.signal.aborted) {

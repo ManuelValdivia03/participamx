@@ -1,0 +1,29 @@
+import { useProfileInteraction } from './ProfileInteractionContext'
+import { count, percent, points, profileSectionLabels } from './profileEnrichment'
+import { orderedSections, orderedSexes, sectionDifferenceText, sexDifferenceText, sexLabels } from './profilePresentation'
+import { CompositionBar, RateComparison } from './ProfileVisuals'
+import type { CitizenProfile, ProfileSectionType, ProfileDataset } from './types'
+import { additionalSexNote } from './profileLanguage'
+import { ComparisonExportButtons } from './ComparisonExportButtons'
+
+export function ProfileComparePanel({ profiles, year, dataset, onRemove, onAdd, onClear }: { profiles: CitizenProfile[]; year: number; dataset?: ProfileDataset; onRemove: (id: string) => void; onAdd: () => void; onClear: () => void }) {
+  const { view, setView, measure, setMeasure } = useProfileInteraction()
+  return <section className="pp-compare-panel" data-comparison-count={profiles.length} aria-labelledby="pp-comparison-title">
+    <header className="pp-compare-heading"><p className="pp-kicker">EXPLORA LAS DIFERENCIAS · {year}</p><h3 id="pp-comparison-title" tabIndex={-1}>Comparar perfiles</h3><p>{profiles.length} de 3 perfiles seleccionados</p></header>
+    <ComparisonExportButtons key={`${year}:${profiles.map(p=>p.id).join('|')}`} profiles={profiles} dataset={dataset} />
+    {profiles.length < 2 ? <div className="pp-compare-empty"><p>{profiles.length === 0 ? 'Elige dos o tres fichas con «Añadir a comparación» para ver sus resultados lado a lado.' : 'Ya elegiste un perfil. Añade otro para ver la comparación.'}</p>{profiles.map(p => <div className="pp-selected-chip" key={p.id}><span>{p.name}</span><button type="button" onClick={() => onRemove(p.id)} aria-label={`Quitar de comparación: ${p.name}`}>Quitar ×</button></div>)}</div> : <>
+      <div className="pp-view-switch pp-compare-views" role="group" aria-label="Contenido de la comparación">{[['summary', 'Resumen'], ['sex', 'Sexo'], ['section', 'Tipo de sección electoral']].map(([id, label]) => <button key={id} type="button" data-comparison-view={id} aria-pressed={view === id} onClick={() => setView(id)}>{label}</button>)}</div>
+      {view !== 'summary' && <div className="pp-view-switch pp-compare-measures" role="group" aria-label="Medida de la comparación">{[['participation', 'Participación observada'], ['composition', 'Composición nominal']].map(([id, label]) => <button key={id} type="button" data-comparison-measure={id} aria-pressed={measure === id} onClick={() => setMeasure(id)}>{label}</button>)}</div>}
+      <p className="pp-caption pp-compare-context">{view === 'summary' ? 'pp = puntos porcentuales. La referencia compara grupos de la misma elección, edad y sexo. Mayor y menor no son máximos ni mínimos absolutos.' : measure === 'participation' ? 'Tasas de participación observada. Todas las barras comparten una escala de 0 a 100 %.' : 'Proporciones de la lista nominal de cada ficha. No son tasas de participación.'}</p>
+      <div className="pp-compare-scroll" tabIndex={0} role="region" aria-label="Resultados comparativos; desplaza horizontalmente si es necesario">
+        <div className="pp-compare-columns" data-columns={profiles.length}>{profiles.map(p => <article className="pp-compare-column" key={p.id} data-compared-profile={p.id}>
+          <header><span className="pp-age-tag">{p.ageBand?.replace('-', '–')} años</span><h4>{p.name}</h4><button type="button" className="pp-compare-remove" onClick={() => onRemove(p.id)} aria-label={`Quitar de comparación: ${p.name}`}>Quitar ×</button></header>
+          {view === 'summary' ? <dl className="pp-compare-kpis"><div><dt>Participación observada</dt><dd>{percent(p.participation === null ? null : p.participation / 100)}</dd></div><div><dt>Referencia comparable</dt><dd>{percent(p.peerReference == null ? null : p.peerReference / 100)}</dd></div><div><dt>Diferencia</dt><dd>{points(p.participationDelta)}</dd></div><div><dt>Lista nominal</dt><dd>{count(p.nominalList)}</dd></div><div><dt>Municipios presentes</dt><dd>{count(p.municipalityCount)}</dd></div></dl> : p.enriched ? view === 'sex' ? measure === 'composition' ? <CompositionBar cells={orderedSexes(p.enriched.sexCells)} labels={sexLabels} kind="sex" label="Lista nominal por sexo" /> : <>{orderedSexes(p.enriched.sexCells).map(c => <RateComparison key={c.code} observed={c.participation} reference={c.reference} status={c.status} label={sexLabels[c.code]} sex={c.code} showReference={false} />)}<p className="pp-caption">{sexDifferenceText(p.enriched.sexCells)}</p></> : measure === 'composition' ? <CompositionBar cells={orderedSections(p.enriched.sectionCells)} labels={profileSectionLabels} kind="section" label="Lista nominal por tipo de sección electoral" /> : <>{orderedSections(p.enriched.sectionCells).map(c => <RateComparison key={c.code} observed={c.participation} reference={c.reference} status={c.status} label={profileSectionLabels[c.code as ProfileSectionType]} section={c.code} showReference={false} />)}<p className="pp-caption">{sectionDifferenceText(p.enriched.sectionCells)}</p></> : <p className="pp-caption">No se pudo verificar el desglose de {year}; las cifras originales permanecen disponibles. Reintenta desde el catálogo.</p>}
+        </article>)}</div>
+      </div>
+      {view === 'section' && <p className="pp-caption">Urbana, rural y mixta son tipos de sección electoral, no residencias individuales. Las diferencias observadas no demuestran causas.</p>}
+      {view === 'sex' && <p className="pp-caption">{additionalSexNote(year)}</p>}
+      <div className="pp-compare-tools">{profiles.length < 3 && <button type="button" className="pp-button pp-button-outline" onClick={onAdd}>Añadir otro perfil</button>}<button type="button" className="pp-compare" onClick={onClear}>Vaciar comparación</button></div>
+    </>}
+  </section>
+}

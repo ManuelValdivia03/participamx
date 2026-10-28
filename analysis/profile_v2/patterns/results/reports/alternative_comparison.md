@@ -1,0 +1,9 @@
+# Comparación A, B y C
+
+| Alternativa | Definición | Diferenciación | Cobertura | Estabilidad | Transparencia | Cuatro dimensiones | Limitación |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| A · V1 enriquecida | Partición por reglas edad/signo sobre padres V1 con soporte | Edad y posición relativa explícitas; interacción sólo como contexto | 14,190 padres; 2,402 municipios; 99.87 % LN anual | Regla reproducible; 13.20 % de padres a ≤2 pp; 2,704 hijos invierten signo | Alta: regla y referencia visibles | Sí como descripción; no en definición conjunta | No seis clases naturales; variación oculta si se omiten cruces |
+| B · Clusters V2 K4/5/6 | Particiones de 31,470 hijos elegibles; geometrías distintas | Tasa relativa/sexo dominan; contribución U/R/M débil | 2,392 municipios; 99.66 % LN anual | Buena en geometría fija; K5 sensible a ponderación municipal | Menor: bloques, escalas y K convencionales | Entradas conjuntas, sin garantizar interacciones propias | Índices internos y estabilidad no validan tipos humanos |
+| C · Patrones V2.1 | Subconjuntos comparativos superpuestos, no partición | 1/6 interacciones cumple magnitud y controles | Unión: 1226 municipios; 22.97 % LN anual | Confirmación territorial, bootstrap conjunto y sensibilidades de calidad | Alta: cuatro componentes y diferencia de brechas | Sí, en la relación medida; no suma etiquetas a V1 | No cubre todo ni justifica cuatro a seis perfiles; selección de municipios completos |
+
+A es más defendible como catálogo transparente con cobertura amplia, si se presenta como reglas y se enriquece con heterogeneidad. C aporta relaciones conjuntas verificadas para un panel complementario de investigación, no un reemplazo exhaustivo. B no resuelve por sí solo el objetivo de cuatro a seis perfiles multivariables estables. No se elige C por ser más reciente.

@@ -1,0 +1,5 @@
+pending_reason,segments,eligible_segments,LN,eligible_LN,nominal_fraction,municipalities,eligible_municipalities,undefined,high_ns,few_sections
+complementary,4281,0,13302,0,0.0,1752,0,163,503,3861
+eligible,31470,31470,97999677,97999677,1.0,2392,2392,0,6216,17898
+insufficient_support,2724,0,214372,0,0.0,686,0,0,387,2712
+undefined_rate,330,0,102997,0,0.0,45,0,330,330,312

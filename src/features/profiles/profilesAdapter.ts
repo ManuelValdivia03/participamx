@@ -7,6 +7,8 @@ import type {
   CitizenProfile,
   ProfileDataset
 } from './types'
+import { enrichProfiles, validateProfileEnrichment } from './profileEnrichment'
+import { profileNames } from './profilePresentation'
 
 export async function loadRealProfiles(
   year: number,
@@ -39,7 +41,8 @@ export async function loadRealProfiles(
 
       return {
         id: profile.profile_id,
-        name: profile.label,
+        name: profileNames[profile.profile_id] ?? profile.label,
+        ageBand: profile.age_band,
 
         summary:
           `Perfil estadístico del grupo de ${profile.age_band} años, ` +
@@ -91,6 +94,23 @@ export async function loadRealProfiles(
     }
   )
 
+  let enrichment: ProfileDataset['enrichment'] = null
+  let enrichmentStatus: ProfileDataset['enrichmentStatus'] = 'error'
+  let activeProfiles = profiles
+  {
+    try {
+      const response = await fetch(`${import.meta.env.BASE_URL}data/profiles/enriched-${year}.json`, { signal })
+      if (!response.ok) throw new Error('No se pudo cargar la caracterización ampliada')
+      const candidate = validateProfileEnrichment(await response.json(), year)
+      activeProfiles = enrichProfiles(profiles, candidate, year)
+      enrichment = candidate
+      enrichmentStatus = 'ready'
+    } catch (error) {
+      if (signal?.aborted) throw error
+      // V1 permanece disponible, sin mostrar datos ampliados de otra población o elección.
+      enrichmentStatus = 'error'
+    }
+  }
   return {
     mode: 'real',
 
@@ -108,6 +128,8 @@ export async function loadRealProfiles(
       'Las diferencias se expresan en puntos porcentuales. ' +
       'NS significa condición de voto no especificada, no abstención.',
 
-    profiles
+    profiles: activeProfiles,
+    enrichment,
+    enrichmentStatus
   }
 }

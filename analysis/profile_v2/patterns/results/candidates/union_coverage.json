@@ -1,0 +1,43 @@
+{
+  "definition": "overlapping_representative_patterns_not_partition",
+  "patterns_passing": 1,
+  "union": {
+    "segments": 4904,
+    "municipalities": 1226,
+    "states": 32,
+    "LN": 22587270,
+    "SV": 10134850,
+    "NV": 10840725,
+    "NS": 1611695,
+    "source_row_count": 1536355,
+    "sex_2_source_rows": 0,
+    "sex_2_nominal_count": 0,
+    "specified_count": 20975575,
+    "participation_observed": 0.4831738820032347,
+    "undefined": 0,
+    "high_ns": 1027,
+    "few_sections": 1862
+  },
+  "eligible_outside_union": {
+    "segments": 26566,
+    "municipalities": 2392,
+    "states": 32,
+    "LN": 75412407,
+    "SV": 44646496,
+    "NV": 26195518,
+    "NS": 4570393,
+    "source_row_count": 8143990,
+    "sex_2_source_rows": 0,
+    "sex_2_nominal_count": 0,
+    "specified_count": 70842014,
+    "participation_observed": 0.630226238344946,
+    "undefined": 0,
+    "high_ns": 5189,
+    "few_sections": 16036
+  },
+  "nominal_union_fraction_annual": 0.22970802462735107,
+  "nominal_union_fraction_eligible": 0.23048310659227988,
+  "overlapping_segments": 0,
+  "membership_rows": 4904,
+  "union_rows": 4904
+}

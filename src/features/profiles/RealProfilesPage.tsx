@@ -4,9 +4,18 @@ import { useElectionYear } from '../../context/ElectionYearContext'
 import { Profiles } from './Profiles'
 import { loadRealProfiles } from './profilesAdapter'
 import type { ProfileDataset } from './types'
+import { ElectionSelector } from '../../components/ElectionSelector'
+import { ProfileTerritoryContext } from './ProfileTerritoryContext'
+import { ProfileInteractionProvider, useProfileInteraction } from './ProfileInteractionContext'
+import { profileNames } from './profilePresentation'
 
 export function RealProfilesPage() {
-  const { year, availableYears, setYear } = useElectionYear()
+  return <ProfileInteractionProvider><ProfilesPageContent /></ProfileInteractionProvider>
+}
+
+function ProfilesPageContent() {
+  const { year, setYear } = useElectionYear()
+  const { comparisonIds } = useProfileInteraction()
 
   const [dataset, setDataset] = useState<ProfileDataset | null>(null)
 
@@ -40,7 +49,7 @@ export function RealProfilesPage() {
   return (
     <>
       <section
-        className="dashboard-filters"
+        className="dashboard-filters dashboard-controls-unified"
         aria-labelledby="profiles-year-title"
       >
         <div>
@@ -51,31 +60,15 @@ export function RealProfilesPage() {
           </p>
         </div>
 
-        <div className="dashboard-filter-fields">
-          <div>
-            <label htmlFor="profiles-year">Año</label>
-            <select
-              id="profiles-year"
-              value={year}
-              onChange={event => setYear(Number(event.target.value))}
-            >
-              {(availableYears.length
-                ? availableYears
-                : [2024]
-              ).map(item => (
-                <option key={item} value={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
+        <ElectionSelector year={year} onChange={setYear} />
       </section>
+      <ProfileTerritoryContext year={year} />
 
       {(status === 'loading' ||
         (status === 'ready' && dataset?.year !== year)) && (
         <section role="status" className="dashboard-loading">
           <h2>Cargando perfiles de {year}…</h2>
+          {comparisonIds.length > 0 && <p>Se conserva tu comparación: {comparisonIds.map(id => profileNames[id]).join(' · ')}. Actualizando sus cifras.</p>}
         </section>
       )}
 
@@ -83,6 +76,7 @@ export function RealProfilesPage() {
         <section role="alert" className="dashboard-error">
           <h2>No se pudieron cargar los perfiles</h2>
           <p>Los datos de {year} no están disponibles.</p>
+          {comparisonIds.length > 0 && <p>Los {comparisonIds.length} perfiles seleccionados se conservan para reintentar.</p>}
 
           <button
             type="button"
@@ -95,7 +89,7 @@ export function RealProfilesPage() {
       )}
 
       {status === 'ready' && dataset?.year === year && (
-        <Profiles key={year} dataset={dataset} />
+        <Profiles key={year} dataset={dataset} onRetry={() => setAttempt(value => value + 1)} />
       )}
     </>
   )

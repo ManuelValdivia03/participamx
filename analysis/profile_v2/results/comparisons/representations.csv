@@ -1,0 +1,16 @@
+k,left,right,ARI
+4,age_sex_50,absolute_50,0.3181320726221266
+4,age_sex_50,age_sex_section_50,0.8093029495307013
+4,age_sex_50,age_sex_75,0.31155341947188503
+4,age_sex_50,relative_only,0.31061743115117163
+5,age_sex_50,absolute_50,0.3539890074156293
+5,age_sex_50,age_sex_section_50,0.8145954583068328
+5,age_sex_50,age_sex_75,0.51643247009356
+5,age_sex_50,relative_only,0.3440165243261611
+6,age_sex_50,absolute_50,0.2776460229099947
+6,age_sex_50,age_sex_section_50,0.7820082258485926
+6,age_sex_50,age_sex_75,0.8305807112293069
+6,age_sex_50,relative_only,0.3570567226118428
+4,age_sex_75,relative_only,0.9679019370087
+5,age_sex_75,relative_only,0.35701297670982163
+6,age_sex_75,relative_only,0.3767476271210323

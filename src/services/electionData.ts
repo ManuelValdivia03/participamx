@@ -195,6 +195,7 @@ export async function getElectionProfiles(
 
 export interface StateStatistics {
   election_year: number
+  source_row_count: number
   state_code: string
   state_name: string
   LN: number
@@ -254,6 +255,8 @@ export async function getStatesStatistics(
       typeof state.state_code === 'string' &&
       typeof state.state_name === 'string' &&
       typeof state.LN === 'number' &&
+      [state.LN, state.SV, state.NV, state.NS, state.source_row_count].every(value => Number.isSafeInteger(value) && value >= 0) &&
+      state.LN === state.SV + state.NV + state.NS &&
       (
         state.participation_observed === null ||
         typeof state.participation_observed === 'number'

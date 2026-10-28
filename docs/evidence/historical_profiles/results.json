@@ -1,0 +1,515 @@
+{
+  "status": "passed",
+  "checks": [
+    "Dos IDs, pestaña y medida persistentes en las seis elecciones, catálogo/detalle y reintento; carga sin cifras antiguas",
+    "72 descargas reales: 36 perfiles/año en ambos formatos",
+    "Claro/oscuro, escritorio/tableta/móvil y teclado; V2.1 sólo visible en 2024"
+  ],
+  "exports": [
+    {
+      "year": 2009,
+      "id": "young_favorable",
+      "format": "pdf",
+      "bytes": 6721,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_01_jovenes_mayor_participacion_2009.pdf"
+    },
+    {
+      "year": 2009,
+      "id": "young_favorable",
+      "format": "png",
+      "bytes": 962367,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_01_jovenes_mayor_participacion_2009.png"
+    },
+    {
+      "year": 2009,
+      "id": "young_unfavorable",
+      "format": "pdf",
+      "bytes": 6723,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_02_jovenes_menor_participacion_2009.pdf"
+    },
+    {
+      "year": 2009,
+      "id": "young_unfavorable",
+      "format": "png",
+      "bytes": 966048,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_02_jovenes_menor_participacion_2009.png"
+    },
+    {
+      "year": 2009,
+      "id": "adult_favorable",
+      "format": "pdf",
+      "bytes": 6715,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_03_adultos_mayor_participacion_2009.pdf"
+    },
+    {
+      "year": 2009,
+      "id": "adult_favorable",
+      "format": "png",
+      "bytes": 962858,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_03_adultos_mayor_participacion_2009.png"
+    },
+    {
+      "year": 2009,
+      "id": "adult_unfavorable",
+      "format": "pdf",
+      "bytes": 6719,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_04_adultos_menor_participacion_2009.pdf"
+    },
+    {
+      "year": 2009,
+      "id": "adult_unfavorable",
+      "format": "png",
+      "bytes": 961647,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_04_adultos_menor_participacion_2009.png"
+    },
+    {
+      "year": 2009,
+      "id": "older_favorable",
+      "format": "pdf",
+      "bytes": 6720,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_05_personas_mayores_mayor_participacion_2009.pdf"
+    },
+    {
+      "year": 2009,
+      "id": "older_favorable",
+      "format": "png",
+      "bytes": 969031,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_05_personas_mayores_mayor_participacion_2009.png"
+    },
+    {
+      "year": 2009,
+      "id": "older_unfavorable",
+      "format": "pdf",
+      "bytes": 6723,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_06_personas_mayores_menor_participacion_2009.pdf"
+    },
+    {
+      "year": 2009,
+      "id": "older_unfavorable",
+      "format": "png",
+      "bytes": 974943,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_06_personas_mayores_menor_participacion_2009.png"
+    },
+    {
+      "year": 2012,
+      "id": "young_favorable",
+      "format": "pdf",
+      "bytes": 6720,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_01_jovenes_mayor_participacion_2012.pdf"
+    },
+    {
+      "year": 2012,
+      "id": "young_favorable",
+      "format": "png",
+      "bytes": 961959,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_01_jovenes_mayor_participacion_2012.png"
+    },
+    {
+      "year": 2012,
+      "id": "young_unfavorable",
+      "format": "pdf",
+      "bytes": 6720,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_02_jovenes_menor_participacion_2012.pdf"
+    },
+    {
+      "year": 2012,
+      "id": "young_unfavorable",
+      "format": "png",
+      "bytes": 963112,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_02_jovenes_menor_participacion_2012.png"
+    },
+    {
+      "year": 2012,
+      "id": "adult_favorable",
+      "format": "pdf",
+      "bytes": 6708,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_03_adultos_mayor_participacion_2012.pdf"
+    },
+    {
+      "year": 2012,
+      "id": "adult_favorable",
+      "format": "png",
+      "bytes": 959532,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_03_adultos_mayor_participacion_2012.png"
+    },
+    {
+      "year": 2012,
+      "id": "adult_unfavorable",
+      "format": "pdf",
+      "bytes": 6720,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_04_adultos_menor_participacion_2012.pdf"
+    },
+    {
+      "year": 2012,
+      "id": "adult_unfavorable",
+      "format": "png",
+      "bytes": 960096,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_04_adultos_menor_participacion_2012.png"
+    },
+    {
+      "year": 2012,
+      "id": "older_favorable",
+      "format": "pdf",
+      "bytes": 6715,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_05_personas_mayores_mayor_participacion_2012.pdf"
+    },
+    {
+      "year": 2012,
+      "id": "older_favorable",
+      "format": "png",
+      "bytes": 966548,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_05_personas_mayores_mayor_participacion_2012.png"
+    },
+    {
+      "year": 2012,
+      "id": "older_unfavorable",
+      "format": "pdf",
+      "bytes": 6727,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_06_personas_mayores_menor_participacion_2012.pdf"
+    },
+    {
+      "year": 2012,
+      "id": "older_unfavorable",
+      "format": "png",
+      "bytes": 969286,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_06_personas_mayores_menor_participacion_2012.png"
+    },
+    {
+      "year": 2015,
+      "id": "young_favorable",
+      "format": "pdf",
+      "bytes": 6723,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_01_jovenes_mayor_participacion_2015.pdf"
+    },
+    {
+      "year": 2015,
+      "id": "young_favorable",
+      "format": "png",
+      "bytes": 962697,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_01_jovenes_mayor_participacion_2015.png"
+    },
+    {
+      "year": 2015,
+      "id": "young_unfavorable",
+      "format": "pdf",
+      "bytes": 6732,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_02_jovenes_menor_participacion_2015.pdf"
+    },
+    {
+      "year": 2015,
+      "id": "young_unfavorable",
+      "format": "png",
+      "bytes": 965412,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_02_jovenes_menor_participacion_2015.png"
+    },
+    {
+      "year": 2015,
+      "id": "adult_favorable",
+      "format": "pdf",
+      "bytes": 6709,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_03_adultos_mayor_participacion_2015.pdf"
+    },
+    {
+      "year": 2015,
+      "id": "adult_favorable",
+      "format": "png",
+      "bytes": 966791,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_03_adultos_mayor_participacion_2015.png"
+    },
+    {
+      "year": 2015,
+      "id": "adult_unfavorable",
+      "format": "pdf",
+      "bytes": 6724,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_04_adultos_menor_participacion_2015.pdf"
+    },
+    {
+      "year": 2015,
+      "id": "adult_unfavorable",
+      "format": "png",
+      "bytes": 962951,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_04_adultos_menor_participacion_2015.png"
+    },
+    {
+      "year": 2015,
+      "id": "older_favorable",
+      "format": "pdf",
+      "bytes": 6728,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_05_personas_mayores_mayor_participacion_2015.pdf"
+    },
+    {
+      "year": 2015,
+      "id": "older_favorable",
+      "format": "png",
+      "bytes": 972373,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_05_personas_mayores_mayor_participacion_2015.png"
+    },
+    {
+      "year": 2015,
+      "id": "older_unfavorable",
+      "format": "pdf",
+      "bytes": 6748,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_06_personas_mayores_menor_participacion_2015.pdf"
+    },
+    {
+      "year": 2015,
+      "id": "older_unfavorable",
+      "format": "png",
+      "bytes": 976144,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_06_personas_mayores_menor_participacion_2015.png"
+    },
+    {
+      "year": 2018,
+      "id": "young_favorable",
+      "format": "pdf",
+      "bytes": 6728,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_01_jovenes_mayor_participacion_2018.pdf"
+    },
+    {
+      "year": 2018,
+      "id": "young_favorable",
+      "format": "png",
+      "bytes": 964400,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_01_jovenes_mayor_participacion_2018.png"
+    },
+    {
+      "year": 2018,
+      "id": "young_unfavorable",
+      "format": "pdf",
+      "bytes": 6737,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_02_jovenes_menor_participacion_2018.pdf"
+    },
+    {
+      "year": 2018,
+      "id": "young_unfavorable",
+      "format": "png",
+      "bytes": 965674,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_02_jovenes_menor_participacion_2018.png"
+    },
+    {
+      "year": 2018,
+      "id": "adult_favorable",
+      "format": "pdf",
+      "bytes": 6713,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_03_adultos_mayor_participacion_2018.pdf"
+    },
+    {
+      "year": 2018,
+      "id": "adult_favorable",
+      "format": "png",
+      "bytes": 963718,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_03_adultos_mayor_participacion_2018.png"
+    },
+    {
+      "year": 2018,
+      "id": "adult_unfavorable",
+      "format": "pdf",
+      "bytes": 6721,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_04_adultos_menor_participacion_2018.pdf"
+    },
+    {
+      "year": 2018,
+      "id": "adult_unfavorable",
+      "format": "png",
+      "bytes": 960165,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_04_adultos_menor_participacion_2018.png"
+    },
+    {
+      "year": 2018,
+      "id": "older_favorable",
+      "format": "pdf",
+      "bytes": 6711,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_05_personas_mayores_mayor_participacion_2018.pdf"
+    },
+    {
+      "year": 2018,
+      "id": "older_favorable",
+      "format": "png",
+      "bytes": 967617,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_05_personas_mayores_mayor_participacion_2018.png"
+    },
+    {
+      "year": 2018,
+      "id": "older_unfavorable",
+      "format": "pdf",
+      "bytes": 6728,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_06_personas_mayores_menor_participacion_2018.pdf"
+    },
+    {
+      "year": 2018,
+      "id": "older_unfavorable",
+      "format": "png",
+      "bytes": 974488,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_06_personas_mayores_menor_participacion_2018.png"
+    },
+    {
+      "year": 2021,
+      "id": "young_favorable",
+      "format": "pdf",
+      "bytes": 6719,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_01_jovenes_mayor_participacion_2021.pdf"
+    },
+    {
+      "year": 2021,
+      "id": "young_favorable",
+      "format": "png",
+      "bytes": 961815,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_01_jovenes_mayor_participacion_2021.png"
+    },
+    {
+      "year": 2021,
+      "id": "young_unfavorable",
+      "format": "pdf",
+      "bytes": 6730,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_02_jovenes_menor_participacion_2021.pdf"
+    },
+    {
+      "year": 2021,
+      "id": "young_unfavorable",
+      "format": "png",
+      "bytes": 969599,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_02_jovenes_menor_participacion_2021.png"
+    },
+    {
+      "year": 2021,
+      "id": "adult_favorable",
+      "format": "pdf",
+      "bytes": 6708,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_03_adultos_mayor_participacion_2021.pdf"
+    },
+    {
+      "year": 2021,
+      "id": "adult_favorable",
+      "format": "png",
+      "bytes": 960036,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_03_adultos_mayor_participacion_2021.png"
+    },
+    {
+      "year": 2021,
+      "id": "adult_unfavorable",
+      "format": "pdf",
+      "bytes": 6711,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_04_adultos_menor_participacion_2021.pdf"
+    },
+    {
+      "year": 2021,
+      "id": "adult_unfavorable",
+      "format": "png",
+      "bytes": 958495,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_04_adultos_menor_participacion_2021.png"
+    },
+    {
+      "year": 2021,
+      "id": "older_favorable",
+      "format": "pdf",
+      "bytes": 6719,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_05_personas_mayores_mayor_participacion_2021.pdf"
+    },
+    {
+      "year": 2021,
+      "id": "older_favorable",
+      "format": "png",
+      "bytes": 972578,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_05_personas_mayores_mayor_participacion_2021.png"
+    },
+    {
+      "year": 2021,
+      "id": "older_unfavorable",
+      "format": "pdf",
+      "bytes": 6722,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_06_personas_mayores_menor_participacion_2021.pdf"
+    },
+    {
+      "year": 2021,
+      "id": "older_unfavorable",
+      "format": "png",
+      "bytes": 974268,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_06_personas_mayores_menor_participacion_2021.png"
+    },
+    {
+      "year": 2024,
+      "id": "young_favorable",
+      "format": "pdf",
+      "bytes": 6717,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_01_jovenes_mayor_participacion_2024.pdf"
+    },
+    {
+      "year": 2024,
+      "id": "young_favorable",
+      "format": "png",
+      "bytes": 951543,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_01_jovenes_mayor_participacion_2024.png"
+    },
+    {
+      "year": 2024,
+      "id": "young_unfavorable",
+      "format": "pdf",
+      "bytes": 6674,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_02_jovenes_menor_participacion_2024.pdf"
+    },
+    {
+      "year": 2024,
+      "id": "young_unfavorable",
+      "format": "png",
+      "bytes": 946891,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_02_jovenes_menor_participacion_2024.png"
+    },
+    {
+      "year": 2024,
+      "id": "adult_favorable",
+      "format": "pdf",
+      "bytes": 6653,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_03_adultos_mayor_participacion_2024.pdf"
+    },
+    {
+      "year": 2024,
+      "id": "adult_favorable",
+      "format": "png",
+      "bytes": 933687,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_03_adultos_mayor_participacion_2024.png"
+    },
+    {
+      "year": 2024,
+      "id": "adult_unfavorable",
+      "format": "pdf",
+      "bytes": 6662,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_04_adultos_menor_participacion_2024.pdf"
+    },
+    {
+      "year": 2024,
+      "id": "adult_unfavorable",
+      "format": "png",
+      "bytes": 938771,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_04_adultos_menor_participacion_2024.png"
+    },
+    {
+      "year": 2024,
+      "id": "older_favorable",
+      "format": "pdf",
+      "bytes": 6690,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_05_personas_mayores_mayor_participacion_2024.pdf"
+    },
+    {
+      "year": 2024,
+      "id": "older_favorable",
+      "format": "png",
+      "bytes": 951283,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_05_personas_mayores_mayor_participacion_2024.png"
+    },
+    {
+      "year": 2024,
+      "id": "older_unfavorable",
+      "format": "pdf",
+      "bytes": 6682,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_06_personas_mayores_menor_participacion_2024.pdf"
+    },
+    {
+      "year": 2024,
+      "id": "older_unfavorable",
+      "format": "png",
+      "bytes": 949661,
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\historical-profiles-ui\\downloads\\participamx_perfil_06_personas_mayores_menor_participacion_2024.png"
+    }
+  ],
+  "errors": []
+}

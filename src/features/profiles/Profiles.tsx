@@ -4,8 +4,13 @@ import { demoProfiles } from './demoProfiles'
 import { ProfileDetail } from './ProfileDetail'
 import { ProfileComparison } from './ProfileComparison'
 import { formatProfileMetric, type ProfileDataset } from './types'
+import { EnrichedProfiles } from './EnrichedProfiles'
 
-export function Profiles({ dataset = demoProfiles }: { dataset?: ProfileDataset }) {
+export function Profiles({ dataset = demoProfiles, onRetry }: { dataset?: ProfileDataset; onRetry?: () => void }) {
+  return dataset.mode === 'real' ? <EnrichedProfiles dataset={dataset} onRetry={onRetry} /> : <LegacyProfiles dataset={dataset} />
+}
+
+function LegacyProfiles({ dataset }: { dataset: ProfileDataset }) {
   const [detailId, setDetailId] = useState<string | null>(null)
   const [comparisonIds, setComparisonIds] = useState<string[]>([])
   const [message, setMessage] = useState('')

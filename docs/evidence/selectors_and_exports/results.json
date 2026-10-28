@@ -1,0 +1,92 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "Dashboard: México 2009/2024, Chihuahua 2024, Veracruz 2021, sexo, teclado, persistencia y fallo sin fallback nacional"
+    },
+    {
+      "name": "Perfiles: contexto estatal separado, seis reglas y exportación histórica bloqueada"
+    },
+    {
+      "name": "Doce descargas reales: seis PDF y seis PNG de 1600×4526; exportación estable entre temas y sin capturas DOM",
+      "exports": [
+        {
+          "id": "young_favorable",
+          "format": "pdf",
+          "bytes": 6726,
+          "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\profile-workflows-ui\\downloads\\participamx_perfil_01_jovenes_mayor_participacion_2024.pdf"
+        },
+        {
+          "id": "young_favorable",
+          "format": "png",
+          "bytes": 949573,
+          "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\profile-workflows-ui\\downloads\\participamx_perfil_01_jovenes_mayor_participacion_2024.png"
+        },
+        {
+          "id": "young_unfavorable",
+          "format": "pdf",
+          "bytes": 6677,
+          "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\profile-workflows-ui\\downloads\\participamx_perfil_02_jovenes_menor_participacion_2024.pdf"
+        },
+        {
+          "id": "young_unfavorable",
+          "format": "png",
+          "bytes": 944983,
+          "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\profile-workflows-ui\\downloads\\participamx_perfil_02_jovenes_menor_participacion_2024.png"
+        },
+        {
+          "id": "adult_favorable",
+          "format": "pdf",
+          "bytes": 6659,
+          "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\profile-workflows-ui\\downloads\\participamx_perfil_03_adultos_mayor_participacion_2024.pdf"
+        },
+        {
+          "id": "adult_favorable",
+          "format": "png",
+          "bytes": 932163,
+          "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\profile-workflows-ui\\downloads\\participamx_perfil_03_adultos_mayor_participacion_2024.png"
+        },
+        {
+          "id": "adult_unfavorable",
+          "format": "pdf",
+          "bytes": 6671,
+          "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\profile-workflows-ui\\downloads\\participamx_perfil_04_adultos_menor_participacion_2024.pdf"
+        },
+        {
+          "id": "adult_unfavorable",
+          "format": "png",
+          "bytes": 937070,
+          "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\profile-workflows-ui\\downloads\\participamx_perfil_04_adultos_menor_participacion_2024.png"
+        },
+        {
+          "id": "older_favorable",
+          "format": "pdf",
+          "bytes": 6698,
+          "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\profile-workflows-ui\\downloads\\participamx_perfil_05_personas_mayores_mayor_participacion_2024.pdf"
+        },
+        {
+          "id": "older_favorable",
+          "format": "png",
+          "bytes": 949412,
+          "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\profile-workflows-ui\\downloads\\participamx_perfil_05_personas_mayores_mayor_participacion_2024.png"
+        },
+        {
+          "id": "older_unfavorable",
+          "format": "pdf",
+          "bytes": 6691,
+          "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\profile-workflows-ui\\downloads\\participamx_perfil_06_personas_mayores_menor_participacion_2024.pdf"
+        },
+        {
+          "id": "older_unfavorable",
+          "format": "png",
+          "bytes": 947708,
+          "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\profile-workflows-ui\\downloads\\participamx_perfil_06_personas_mayores_menor_participacion_2024.png"
+        }
+      ]
+    },
+    {
+      "name": "Selectores en escritorio, tableta y móvil sin desbordamiento de página"
+    }
+  ],
+  "errors": []
+}

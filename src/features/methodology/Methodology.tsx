@@ -1,5 +1,7 @@
 
 import { SectionCard } from '../../components/SectionCard'
+import { StatisticalHelp } from '../../components/StatisticalHelp'
+import { profileCatalog } from '../profiles/profilePresentation'
 
 const steps = [
   {
@@ -24,18 +26,9 @@ const steps = [
   },
 ]
 
-const rules = [
-  '18–34 años · por encima de sus pares',
-  '18–34 años · por debajo de sus pares',
-  '35–59 años · por encima de sus pares',
-  '35–59 años · por debajo de sus pares',
-  '60–100 años · por encima de sus pares',
-  '60–100 años · por debajo de sus pares',
-]
-
 export function Methodology() {
   return (
-    <>
+    <section className="methodology" aria-label="Cómo se calculan e interpretan los indicadores">
       <p className="page-intro">
         Conoce cómo se prepararon los datos electorales,
         cómo se definieron los perfiles y qué límites
@@ -68,22 +61,20 @@ export function Methodology() {
 
       <div className="two-columns feature-notes">
         <SectionCard title="¿Cómo se calcula la participación?">
-          <p>
-            <strong>Participación observada:</strong>{' '}
-            registros que sí votaron (SV) divididos entre
-            los registros con condición de voto especificada
-            (SV + NV).
-          </p>
+          <p className="method-plain"><strong>Participación observada:</strong> mide qué proporción de los registros con condición de voto especificada registró participación.</p>
+          <p className="method-formula"><strong>En porcentaje:</strong> <code>SV / (SV + NV) × 100</code></p>
+          <p>SV son registros con participación; NV son registros sin participación. Se suman los conteos antes de dividir. Los registros no especificados quedan fuera de esta tasa.</p>
 
           <p>
-            <strong>Participación nominal:</strong>{' '}
-            SV dividido entre la lista nominal (LN).
+            <strong>Lista nominal (LN):</strong> conteo nominal reportado en los cuadernillos disponibles, no un conteo validado de personas únicas. <strong>Participación nominal:</strong>{' '}
+            SV dividido entre LN.
             Es un indicador diferente y no debe confundirse
             con la participación observada.
           </p>
+          <p className="method-formula"><code>SV / LN × 100</code></p>
 
           <p>
-            <strong>NS:</strong>{' '}
+            <strong>Registros con condición de voto no especificada (NS):</strong>{' '}
             registros sin especificación de la condición
             de voto. No se consideran automáticamente
             abstenciones.
@@ -92,17 +83,17 @@ export function Methodology() {
 
         <SectionCard title="Referencia de comparación">
           <p>
-            Cada segmento se compara con una referencia
+            Es el valor nacional utilizado para comparar grupos equivalentes según la metodología. Cada segmento se compara con una referencia
             nacional correspondiente a la misma elección,
             grupo de edad y sexo.
           </p>
 
           <p>
-            La diferencia se expresa en puntos porcentuales
-            (pp). Un valor positivo indica participación
+            <strong>pp = puntos porcentuales.</strong> La diferencia es una resta entre porcentajes, no un cambio porcentual. Un valor positivo indica participación
             superior a la referencia; uno negativo,
             participación inferior.
           </p>
+          <p>Por ejemplo: 60 % menos 55 % son 5 pp. Se calcula con los valores originales y sólo después se redondea. La referencia no es una participación esperada ni un promedio histórico.</p>
 
           <p>
             Las diferencias de hasta ±2 puntos porcentuales
@@ -131,10 +122,11 @@ export function Methodology() {
         </p>
 
         <ul>
-          {rules.map(rule => (
-            <li key={rule}>{rule}</li>
+          {profileCatalog.map(rule => (
+            <li key={rule.id}><strong>{rule.name}</strong><p>{rule.ageBand.replace('-', '–')} años · Participación {rule.direction} de la referencia nacional comparable.</p></li>
           ))}
         </ul>
+        <p>Mayor y menor indican si la participación del segmento estuvo por encima o por debajo de una referencia nacional comparable por edad y sexo. No representan necesariamente la participación máxima o mínima del país.</p>
 
         <p>
           Un municipio puede contener segmentos de varios
@@ -183,7 +175,7 @@ export function Methodology() {
           </p>
 
           <p>
-            La clasificación urbana, rural o mixta
+            Tipo de sección electoral: U = Urbana, R = Rural y M = Mixta. La clasificación urbana, rural o mixta
             corresponde a secciones electorales y no
             identifica necesariamente el tipo de
             residencia de cada persona.
@@ -245,6 +237,7 @@ export function Methodology() {
           definitivo.
         </p>
       </SectionCard>
-    </>
+      <StatisticalHelp />
+    </section>
   )
 }

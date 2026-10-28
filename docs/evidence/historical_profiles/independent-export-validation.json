@@ -1,0 +1,513 @@
+{
+  "status": "passed",
+  "renderer": "1.26.7",
+  "combinations": 36,
+  "downloads": 72,
+  "pages": 72,
+  "results": [
+    {
+      "year": 2009,
+      "id": "young_favorable",
+      "pdf": "participamx_perfil_01_jovenes_mayor_participacion_2009.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_01_jovenes_mayor_participacion_2009.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2009,
+      "id": "young_unfavorable",
+      "pdf": "participamx_perfil_02_jovenes_menor_participacion_2009.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_02_jovenes_menor_participacion_2009.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2009,
+      "id": "adult_favorable",
+      "pdf": "participamx_perfil_03_adultos_mayor_participacion_2009.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_03_adultos_mayor_participacion_2009.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2009,
+      "id": "adult_unfavorable",
+      "pdf": "participamx_perfil_04_adultos_menor_participacion_2009.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_04_adultos_menor_participacion_2009.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2009,
+      "id": "older_favorable",
+      "pdf": "participamx_perfil_05_personas_mayores_mayor_participacion_2009.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_05_personas_mayores_mayor_participacion_2009.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2009,
+      "id": "older_unfavorable",
+      "pdf": "participamx_perfil_06_personas_mayores_menor_participacion_2009.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_06_personas_mayores_menor_participacion_2009.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2012,
+      "id": "young_favorable",
+      "pdf": "participamx_perfil_01_jovenes_mayor_participacion_2012.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_01_jovenes_mayor_participacion_2012.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2012,
+      "id": "young_unfavorable",
+      "pdf": "participamx_perfil_02_jovenes_menor_participacion_2012.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_02_jovenes_menor_participacion_2012.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2012,
+      "id": "adult_favorable",
+      "pdf": "participamx_perfil_03_adultos_mayor_participacion_2012.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_03_adultos_mayor_participacion_2012.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2012,
+      "id": "adult_unfavorable",
+      "pdf": "participamx_perfil_04_adultos_menor_participacion_2012.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_04_adultos_menor_participacion_2012.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2012,
+      "id": "older_favorable",
+      "pdf": "participamx_perfil_05_personas_mayores_mayor_participacion_2012.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_05_personas_mayores_mayor_participacion_2012.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2012,
+      "id": "older_unfavorable",
+      "pdf": "participamx_perfil_06_personas_mayores_menor_participacion_2012.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_06_personas_mayores_menor_participacion_2012.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2015,
+      "id": "young_favorable",
+      "pdf": "participamx_perfil_01_jovenes_mayor_participacion_2015.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_01_jovenes_mayor_participacion_2015.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2015,
+      "id": "young_unfavorable",
+      "pdf": "participamx_perfil_02_jovenes_menor_participacion_2015.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_02_jovenes_menor_participacion_2015.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2015,
+      "id": "adult_favorable",
+      "pdf": "participamx_perfil_03_adultos_mayor_participacion_2015.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_03_adultos_mayor_participacion_2015.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2015,
+      "id": "adult_unfavorable",
+      "pdf": "participamx_perfil_04_adultos_menor_participacion_2015.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_04_adultos_menor_participacion_2015.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2015,
+      "id": "older_favorable",
+      "pdf": "participamx_perfil_05_personas_mayores_mayor_participacion_2015.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_05_personas_mayores_mayor_participacion_2015.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2015,
+      "id": "older_unfavorable",
+      "pdf": "participamx_perfil_06_personas_mayores_menor_participacion_2015.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_06_personas_mayores_menor_participacion_2015.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2018,
+      "id": "young_favorable",
+      "pdf": "participamx_perfil_01_jovenes_mayor_participacion_2018.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_01_jovenes_mayor_participacion_2018.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2018,
+      "id": "young_unfavorable",
+      "pdf": "participamx_perfil_02_jovenes_menor_participacion_2018.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_02_jovenes_menor_participacion_2018.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2018,
+      "id": "adult_favorable",
+      "pdf": "participamx_perfil_03_adultos_mayor_participacion_2018.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_03_adultos_mayor_participacion_2018.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2018,
+      "id": "adult_unfavorable",
+      "pdf": "participamx_perfil_04_adultos_menor_participacion_2018.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_04_adultos_menor_participacion_2018.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2018,
+      "id": "older_favorable",
+      "pdf": "participamx_perfil_05_personas_mayores_mayor_participacion_2018.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_05_personas_mayores_mayor_participacion_2018.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2018,
+      "id": "older_unfavorable",
+      "pdf": "participamx_perfil_06_personas_mayores_menor_participacion_2018.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_06_personas_mayores_menor_participacion_2018.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2021,
+      "id": "young_favorable",
+      "pdf": "participamx_perfil_01_jovenes_mayor_participacion_2021.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_01_jovenes_mayor_participacion_2021.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2021,
+      "id": "young_unfavorable",
+      "pdf": "participamx_perfil_02_jovenes_menor_participacion_2021.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_02_jovenes_menor_participacion_2021.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2021,
+      "id": "adult_favorable",
+      "pdf": "participamx_perfil_03_adultos_mayor_participacion_2021.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_03_adultos_mayor_participacion_2021.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2021,
+      "id": "adult_unfavorable",
+      "pdf": "participamx_perfil_04_adultos_menor_participacion_2021.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_04_adultos_menor_participacion_2021.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2021,
+      "id": "older_favorable",
+      "pdf": "participamx_perfil_05_personas_mayores_mayor_participacion_2021.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_05_personas_mayores_mayor_participacion_2021.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2021,
+      "id": "older_unfavorable",
+      "pdf": "participamx_perfil_06_personas_mayores_menor_participacion_2021.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_06_personas_mayores_menor_participacion_2021.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2024,
+      "id": "young_favorable",
+      "pdf": "participamx_perfil_01_jovenes_mayor_participacion_2024.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_01_jovenes_mayor_participacion_2024.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2024,
+      "id": "young_unfavorable",
+      "pdf": "participamx_perfil_02_jovenes_menor_participacion_2024.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_02_jovenes_menor_participacion_2024.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2024,
+      "id": "adult_favorable",
+      "pdf": "participamx_perfil_03_adultos_mayor_participacion_2024.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_03_adultos_mayor_participacion_2024.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2024,
+      "id": "adult_unfavorable",
+      "pdf": "participamx_perfil_04_adultos_menor_participacion_2024.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_04_adultos_menor_participacion_2024.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2024,
+      "id": "older_favorable",
+      "pdf": "participamx_perfil_05_personas_mayores_mayor_participacion_2024.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_05_personas_mayores_mayor_participacion_2024.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    },
+    {
+      "year": 2024,
+      "id": "older_unfavorable",
+      "pdf": "participamx_perfil_06_personas_mayores_menor_participacion_2024.pdf",
+      "pages": 2,
+      "selectable_text": true,
+      "values_checked": true,
+      "margins_checked": true,
+      "png": "participamx_perfil_06_personas_mayores_menor_participacion_2024.png",
+      "dimensions": [
+        1600,
+        4526
+      ]
+    }
+  ]
+}

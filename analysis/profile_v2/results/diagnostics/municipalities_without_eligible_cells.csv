@@ -1,0 +1,86 @@
+municipal_id,EDOCVE,MPIOCVE,state_name_label,municipality_name_label,LN,cells,had_v1_profile
+16|112,16,112,MICHOACAN,Ziracuaretiro,14251,21,False
+19|29,19,29,NUEVO LEON,Higueras,1541,6,False
+20|103,20,103,OAXACA,San Antonio Acutla,217,6,False
+20|111,20,111,OAXACA,San Baltazar Yatzachi el Bajo,519,12,True
+20|113,20,113,OAXACA,San Bartolo Soyaltepec,488,12,False
+20|118,20,118,OAXACA,San Bartolomé Yucuañe,293,6,False
+20|119,20,119,OAXACA,San Bartolomé Zoogocho,251,6,False
+20|126,20,126,OAXACA,San Cristóbal Suchixtlahuaca,260,6,False
+20|135,20,135,OAXACA,San Francisco Cajonos,378,6,False
+20|144,20,144,OAXACA,San Francisco Nuxaño,284,6,False
+20|148,20,148,OAXACA,San Francisco Teopan,242,6,False
+20|171,20,171,OAXACA,San Juan Achiutla,352,6,False
+20|179,20,179,OAXACA,San Juan Bautista Suchitepec,384,13,False
+20|185,20,185,OAXACA,San Juan Chicomezúchil,241,6,False
+20|188,20,188,OAXACA,San Juan Cieneguilla,398,7,False
+20|197,20,197,OAXACA,San Juan Evangelista Analco,346,6,False
+20|200,20,200,OAXACA,San Juan Ihualtepec,465,12,False
+20|21,20,21,OAXACA,Concepción Buenavista,584,13,True
+20|218,20,218,OAXACA,San Juan Teita,424,6,False
+20|223,20,223,OAXACA,San Juan Yatzona,341,6,False
+20|230,20,230,OAXACA,San Lorenzo Victoria,760,12,True
+20|25,20,25,OAXACA,Cosoltepec,617,12,True
+20|254,20,254,OAXACA,San Mateo Tlapiltepec,170,6,False
+20|257,20,257,OAXACA,San Miguel Achiutla,491,6,False
+20|266,20,266,OAXACA,San Miguel del Río,195,6,False
+20|279,20,279,OAXACA,San Miguel Tecomatlán,248,6,False
+20|280,20,280,OAXACA,San Miguel Tenango,637,6,False
+20|285,20,285,OAXACA,San Miguel Tulancingo,268,7,False
+20|302,20,302,OAXACA,San Pedro Coxcaltepec Cántaros,584,13,True
+20|309,20,309,OAXACA,San Pedro Jaltepetongo,372,6,False
+20|31,20,31,OAXACA,Fresnillo de Trujano,805,14,True
+20|330,20,330,OAXACA,San Pedro Topiltepec,292,6,False
+20|338,20,338,OAXACA,San Pedro Yucunama,194,6,False
+20|352,20,352,OAXACA,San Vicente Nuñú,363,6,False
+20|354,20,354,OAXACA,Santa Ana Ateixtlahuaca,334,6,False
+20|355,20,355,OAXACA,Santa Ana Cuauhtémoc,477,6,False
+20|357,20,357,OAXACA,Santa Ana Tavela,654,6,False
+20|370,20,370,OAXACA,Santa Catarina Quioquitani,366,6,False
+20|374,20,374,OAXACA,Santa Catarina Zapoquila,348,7,False
+20|377,20,377,OAXACA,Santa Cruz de Bravo,313,6,False
+20|384,20,384,OAXACA,Santa Cruz Tayata,467,6,False
+20|396,20,396,OAXACA,Santa Magdalena Jicotlán,71,6,False
+20|409,20,409,OAXACA,Santa María del Rosario,403,7,False
+20|417,20,417,OAXACA,Santa María Ixcatlán,386,6,False
+20|420,20,420,OAXACA,Santa María Jaltianguis,466,7,False
+20|423,20,423,OAXACA,Santa María Nativitas,488,12,False
+20|424,20,424,OAXACA,Santa María Nduayaco,383,12,False
+20|431,20,431,OAXACA,Santa María Tataltepec,171,6,False
+20|433,20,433,OAXACA,Santa María Temaxcalapa,753,6,False
+20|443,20,443,OAXACA,Santa María Yalina,219,6,False
+20|444,20,444,OAXACA,Santa María Yavesía,339,6,False
+20|445,20,445,OAXACA,Santa María Yolotepec,347,6,False
+20|462,20,462,OAXACA,Santiago del Río,533,13,True
+20|464,20,464,OAXACA,Santiago Huauclilla,415,6,False
+20|465,20,465,OAXACA,Santiago Ihuitlán Plumas,325,13,False
+20|472,20,472,OAXACA,Santiago Lalopa,339,6,False
+20|477,20,477,OAXACA,Santiago Miltepec,316,7,False
+20|480,20,480,OAXACA,Santiago Nejapilla,153,6,False
+20|482,20,482,OAXACA,Santiago Nundiche,812,13,True
+20|489,20,489,OAXACA,Santiago Tepetlapa,95,6,False
+20|494,20,494,OAXACA,Santiago Tillo,423,6,False
+20|504,20,504,OAXACA,Santiago Zoochila,361,6,False
+20|518,20,518,OAXACA,Santo Domingo Tlatayápam,107,6,False
+20|521,20,521,OAXACA,Santo Domingo Tonaltepec,197,6,False
+20|524,20,524,OAXACA,Santo Domingo Yodohino,293,7,False
+20|54,20,54,OAXACA,Magdalena Zahuatlán,322,6,False
+20|551,20,551,OAXACA,Tlacotepec Plumas,327,6,False
+20|556,20,556,OAXACA,La Trinidad Vista Hermosa,235,6,False
+20|559,20,559,OAXACA,Capulálpam de Méndez,1215,6,False
+20|564,20,564,OAXACA,Yogana,1035,6,False
+20|62,20,62,OAXACA,Natividad,396,6,False
+20|73,20,73,OAXACA,La Reforma,2523,12,False
+20|9,20,9,OAXACA,Asunción Tlacolulita,644,12,True
+20|90,20,90,OAXACA,San Andrés Lagunas,390,6,False
+20|96,20,96,OAXACA,San Andrés Tepetlapa,299,6,False
+20|97,20,97,OAXACA,San Andrés Yaá,315,6,False
+26|16,26,16,SONORA,Cucurpe,1009,6,False
+26|31,26,31,SONORA,Oquitoa,446,6,False
+26|38,26,38,SONORA,Sáric,1807,12,False
+26|43,26,43,SONORA,Tubutama,1381,13,False
+26|6,26,6,SONORA,Atil,747,6,False
+28|36,28,36,TAMAULIPAS,San Nicolás,934,12,True
+5|12,5,12,COAHUILA,Guerrero,1890,12,False
+7|30,7,30,CHIAPAS,Chicomuselo,26330,22,False
+7|66,7,66,CHIAPAS,Pantelhó,15256,22,False

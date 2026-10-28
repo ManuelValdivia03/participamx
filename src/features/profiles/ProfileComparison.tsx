@@ -179,7 +179,7 @@ export function ProfileComparison({
                       </ul>
 
                       {!profile.strategies.length &&
-                        'Pendientes de entrega'}
+                        (dataset.mode === 'demo' ? 'Pendientes de entrega' : 'No se asignan estrategias automáticamente a estos perfiles.')}
                     </td>
                   ))}
                 </tr>
