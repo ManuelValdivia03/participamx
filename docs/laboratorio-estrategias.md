@@ -8,7 +8,7 @@ Módulo autónomo para explorar escenarios hipotéticos de recursos de seis prop
 
 `src/features/laboratory/` separa catálogo (`strategies.ts`), contratos (`types.ts`), cálculos puros (`calculations.ts`) y componentes de catálogo, constructor, resultados y comparación. `LaboratoryPage` importa `src/styles/laboratory.css` y se exporta nombrada.
 
-Para integrarlo después en `src/app/App.tsx`: importar `LaboratoryPage`, añadirlo a `pages` con un identificador y etiqueta, y elegir un icono ya disponible. No se debe modificar el módulo para esa integración.
+Está integrado en `src/app/App.tsx` mediante carga diferida con la ruta `#laboratorio` y la entrada lateral “Laboratorio de Estrategias”. `LaboratoryPage` sigue siendo un módulo independiente y la navegación principal conserva Dashboard, Atlas, Perfiles y Metodología.
 
 ## Catálogo y procedencia
 
@@ -25,11 +25,11 @@ Variables editables: nombre, estrategia, presupuesto hipotético MXN, costo unit
 - Capacidad factible = mínimo(capacidad teórica, capacidad operativa), sólo cuando hay restricción cuantificada.
 - Diferencia de recursos = capacidad disponible − unidades planificadas.
 
-Campos vacíos, negativos, no finitos y divisiones por cero no se convierten en resultados válidos. Un saldo negativo se presenta como déficit. Con costo cero la capacidad no se reporta como un número artificialmente infinito.
+Campos vacíos, negativos, no finitos, desbordamientos y divisiones por cero no se convierten en resultados válidos. Las unidades planificadas y la capacidad operativa deben ser enteras. Un saldo negativo se presenta como déficit. Con costo cero la capacidad no se reporta como un número artificialmente infinito.
 
 ## Comparación y evaluación
 
-Los escenarios se guardan temporalmente en estado React. Se pueden seleccionar dos o más y comparar presupuesto, costos, unidades, capacidades, restricciones y supuestos. Si las unidades son diferentes, aparece una advertencia metodológica y no se comparan cantidades como equivalentes.
+Los escenarios se guardan temporalmente en estado React sólo cuando todos los valores son válidos. Se pueden seleccionar dos o más y comparar presupuesto, costos, unidades, capacidades, restricciones y supuestos, además de una gráfica de barras de costos previstos. Si las unidades son diferentes, aparece una advertencia metodológica y no se comparan cantidades como equivalentes.
 
 La sección “¿Cómo evaluaríamos esta propuesta?” distingue resultados matemáticos de supuestos, indicadores que podrían levantarse durante una implementación y resultados reales todavía no disponibles. No se inventan porcentajes de eficacia ni efectos electorales.
 
@@ -41,7 +41,7 @@ No se infieren necesidades individuales, comportamientos ni preferencias; no hay
 
 ## Pruebas
 
-Ejecutar `npm run typecheck`, `npm run test:map` y `npm run build`. La revisión manual debe cubrir entradas vacías/negativas, costo cero, déficit, restricción operativa, comparación con unidades distintas, estado U/R/M, teclado, modo oscuro y ancho móvil. El repositorio no tiene un ejecutor de pruebas unitarias TypeScript configurado; los cálculos están aislados en `calculations.ts` para incorporar el mecanismo acordado sin dependencias adicionales.
+Ejecutar `npm run test:lab`, `npm run typecheck`, `npm run test:map` y `npm run build`. Las pruebas Vitest cubren el escenario de referencia, déficit, cero, entradas inválidas, desbordamiento, unidades indivisibles, restricciones, formato MXN, catálogo, guardado, comparación, eliminación, indicadores y el estado U/R/M. La revisión manual debe cubrir teclado, modo oscuro y anchos móvil/escritorio.
 
 ## Limitaciones conocidas
 
