@@ -23,9 +23,10 @@ export function calculateScenario(draft: ScenarioDraft): ScenarioMetrics {
   const theoreticalCapacity = rawTheoreticalCapacity !== null && Number.isFinite(rawTheoreticalCapacity) ? rawTheoreticalCapacity : null
   if (rawTheoreticalCapacity !== null && theoreticalCapacity === null) errors.push('La capacidad teórica excede el límite numérico permitido.')
   const feasibleCapacity = theoreticalCapacity !== null && operationalCapacity.value !== null ? Math.min(theoreticalCapacity, operationalCapacity.value) : null
-  const resourceDifference = plannedUnits.value !== null ? (operationalCapacity.value ?? theoreticalCapacity ?? plannedUnits.value) - plannedUnits.value : null
+  const availableCapacity = operationalCapacity.value !== null && theoreticalCapacity !== null ? Math.min(theoreticalCapacity, operationalCapacity.value) : operationalCapacity.value ?? theoreticalCapacity
+  const resourceDifference = plannedUnits.value !== null && availableCapacity !== null ? availableCapacity - plannedUnits.value : null
   return { budget: budget.value, unitCost: unitCost.value, plannedUnits: plannedUnits.value, operationalCapacity: operationalCapacity.value, projectedCost, budgetPercent, remainingBudget, theoreticalCapacity, feasibleCapacity, resourceDifference, errors }
 }
 
-export const formatMXN = (value: number | null) => value === null ? 'Sin información' : new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 2 }).format(value)
-export const formatNumber = (value: number | null, digits = 0) => value === null ? 'Sin información' : new Intl.NumberFormat('es-MX', { maximumFractionDigits: digits }).format(value)
+export const formatMXN = (value: number | null) => value === null ? 'Completa los datos para ver el resultado' : new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 2 }).format(value)
+export const formatNumber = (value: number | null, digits = 0) => value === null ? 'Completa los datos para ver el resultado' : new Intl.NumberFormat('es-MX', { maximumFractionDigits: digits }).format(value)

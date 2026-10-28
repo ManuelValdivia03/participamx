@@ -16,7 +16,7 @@ Las seis propuestas —Guía de pasos; Localizador de fuentes; Registro de consi
 
 ## Escenarios y fórmulas
 
-Variables editables: nombre, estrategia, presupuesto hipotético MXN, costo unitario supuesto, unidades planificadas, capacidad operativa opcional y supuestos. Cada estrategia conserva una unidad propia (por ejemplo, guías revisadas, versiones auditadas o servicios confirmados), nunca una medida universal de personas.
+Variables editables: nombre, estrategia, presupuesto hipotético MXN, costo unitario supuesto, unidades planificadas, capacidad operativa opcional y supuestos. El constructor las organiza en identificación, recursos, planificación y supuestos; explica cada término con ejemplos, distingue valores obligatorios y opcionales y muestra errores junto al campo. Cada estrategia conserva una unidad propia (por ejemplo, guías revisadas, versiones auditadas o servicios confirmados), nunca una medida universal de personas.
 
 - Costo previsto = costo unitario × unidades planificadas.
 - Presupuesto utilizado = costo previsto / presupuesto × 100, sólo si el presupuesto es mayor que cero.
@@ -29,9 +29,21 @@ Campos vacíos, negativos, no finitos, desbordamientos y divisiones por cero no 
 
 ## Comparación y evaluación
 
-Los escenarios se guardan temporalmente en estado React sólo cuando todos los valores son válidos. Se pueden seleccionar dos o más y comparar presupuesto, costos, unidades, capacidades, restricciones y supuestos, además de una gráfica de barras de costos previstos. Si las unidades son diferentes, aparece una advertencia metodológica y no se comparan cantidades como equivalentes.
+Los escenarios se guardan temporalmente en estado React sólo cuando todos los valores son válidos. Se muestran como tarjetas y se pueden seleccionar dos alternativas para comparar presupuesto, costos, saldo, unidades, capacidades, restricciones y supuestos, además de barras de costos y capacidad factible. Si las unidades son diferentes, aparece una advertencia metodológica y no se comparan cantidades como equivalentes.
 
 La sección “¿Cómo evaluaríamos esta propuesta?” distingue resultados matemáticos de supuestos, indicadores que podrían levantarse durante una implementación y resultados reales todavía no disponibles. No se inventan porcentajes de eficacia ni efectos electorales.
+
+El análisis muestra un diagnóstico separado para presupuesto y capacidad operativa, siete indicadores principales y comparaciones visuales de presupuesto utilizado y actividades planificadas frente a la capacidad disponible. Cuando faltan datos o existe una restricción, se comunica como información incompleta o insuficiente; no se presenta el escenario como viable.
+
+## Exportación de reportes
+
+El laboratorio genera reportes PDF directamente en el navegador, sin servidor ni envío de datos a servicios externos. La exportación individual sólo se habilita con un escenario válido y usa la copia propia del escenario guardado; la comparación sólo se habilita cuando hay exactamente dos escenarios válidos seleccionados. La exportación está separada en `src/features/laboratory/export/`: preparación de datos, diseño, serialización byte-safe, descarga y validación. Los reportes incluyen resultados calculados, gráficas vectoriales, supuestos, indicadores todavía no evaluados y limitaciones metodológicas. Las unidades incompatibles se advierten y no se interpretan como equivalentes. Los reportes son informativos: no agregan predicciones electorales ni resultados de implementación.
+
+## Guía y uso asistido
+
+El botón **¿Cómo funciona?** abre un recorrido contextual de trece pasos: destaca el elemento explicado, desplaza la vista hacia él y coloca una tarjeta cercana con flecha, progreso, botones Anterior/Siguiente/Salir, foco de teclado y salida con Escape. Explica qué es, para qué sirve y cómo usar el catálogo, campos, indicadores, gráficas, guardado, comparación y evaluación. Mantiene visible el resto de la interfaz, se adapta a móvil y ofrece un fallback si un objetivo no está disponible. Puede abrirse nuevamente en cualquier momento.
+
+**Probar con un ejemplo** carga una guía ficticia con $10,000, $200 por unidad, 30 actividades y capacidad operativa de 40. El ejemplo es modificable y se advierte antes de reemplazar valores ya introducidos. Las ayudas visibles junto a cada campo y resultado explican términos y ejemplos sin depender de punteros o tooltips.
 
 ## U/R/M y restricciones
 
@@ -41,7 +53,7 @@ No se infieren necesidades individuales, comportamientos ni preferencias; no hay
 
 ## Pruebas
 
-Ejecutar `npm run test:lab`, `npm run typecheck`, `npm run test:map` y `npm run build`. Las pruebas Vitest cubren el escenario de referencia, déficit, cero, entradas inválidas, desbordamiento, unidades indivisibles, restricciones, formato MXN, catálogo, guardado, comparación, eliminación, indicadores y el estado U/R/M. La revisión manual debe cubrir teclado, modo oscuro y anchos móvil/escritorio.
+Ejecutar `npm run test:lab`, `npm run typecheck`, `npm run test:map` y `npm run build`. Las pruebas Vitest cubren el escenario de referencia, déficit, cero, entradas inválidas, desbordamiento, unidades indivisibles, restricciones, formato MXN, catálogo, guardado, comparación, eliminación, indicadores, estado U/R/M, navegación, tour, ejemplo didáctico y exportación PDF. La exportación se valida comprobando el encabezado PDF, sus páginas, texto extraíble, importes, escenarios, ausencia de `NaN`/`Infinity` y conservación de supuestos extensos en páginas adicionales. La revisión manual debe cubrir teclado, modo oscuro y anchos móvil/escritorio.
 
 ## Limitaciones conocidas
 

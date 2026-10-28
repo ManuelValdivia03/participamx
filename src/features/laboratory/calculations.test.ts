@@ -17,7 +17,7 @@ describe('calculateScenario', () => {
     const result = calculateScenario(draft({ budget: '1000', plannedUnits: '30', operationalCapacity: '20' }))
     expect(result.remainingBudget).toBe(-5000)
     expect(result.feasibleCapacity).toBe(5)
-    expect(result.resourceDifference).toBe(-10)
+    expect(result.resourceDifference).toBe(-25)
   })
   it('no crea Infinity cuando presupuesto o costo son cero', () => {
     expect(calculateScenario(draft({ budget: '0' })).theoreticalCapacity).toBe(0)
@@ -35,6 +35,12 @@ describe('calculateScenario', () => {
     const result = calculateScenario(draft({ operationalCapacity: '40' }))
     expect(result.feasibleCapacity).toBe(40)
     expect(result.resourceDifference).toBe(10)
+  })
+  it('usa la capacidad factible cuando presupuesto y operación son límites distintos', () => {
+    const result = calculateScenario(draft({ plannedUnits: '60', operationalCapacity: '100' }))
+    expect(result.theoreticalCapacity).toBe(50)
+    expect(result.feasibleCapacity).toBe(50)
+    expect(result.resourceDifference).toBe(-10)
   })
   it('conserva moneda mexicana y precisión decimal', () => {
     expect(formatMXN(1234.5)).toContain('$1,234.50')
