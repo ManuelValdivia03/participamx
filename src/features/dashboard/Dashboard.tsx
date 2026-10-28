@@ -7,6 +7,11 @@ import { dashboardNumber, type DashboardDataset } from './types'
 import { loadFullDashboard } from './fullDashboardAdapter'
 import { useElectionYear } from '../../context/ElectionYearContext'
 import { NationalAgeSex } from './NationalAgeSex'
+import { StatisticalHelp } from '../../components/StatisticalHelp'
+import { describeObservedParticipation } from '../../components/statisticsPresentation'
+import { profileNames } from '../profiles/profilePresentation'
+import { ElectionSelector } from '../../components/ElectionSelector'
+import { StateSearch } from '../../components/StateSearch'
 
 type DashboardProps = {
   loadDataset?: (signal: AbortSignal) => Promise<DashboardDataset>
@@ -32,11 +37,7 @@ export function Dashboard({
         if (controller.signal.aborted) return
 
         setDataset(data)
-        setTerritoryCode(
-          data.territories.some(item => item.code === 'MX')
-            ? 'MX'
-            : data.territories[0]?.code ?? ''
-        )
+        setTerritoryCode(current => data.territories.some(item => item.code === current) ? current : data.territories[0]?.code ?? 'MX')
         setStatus('ready')
       })
       .catch(() => {
@@ -73,28 +74,28 @@ export function Dashboard({
 
   const metrics = [
     {
-      label: 'Participación electoral',
+      label: 'Participación observada',
       value: snapshot?.metrics.participation,
       suffix: '%',
-      note: 'Indicador proporcionado por el análisis'
+      note: describeObservedParticipation(snapshot?.metrics.participation)
     },
     {
-      label: 'Cobertura de información',
+      label: demo ? 'Cobertura de información' : 'Lista nominal con soporte',
       value: snapshot?.metrics.coverage,
       suffix: '%',
-      note: 'Alcance reportado de los registros'
+      note: snapshot?.metrics.coverage == null ? 'Este indicador no está publicado para la selección actual.' : 'Proporción de lista nominal en segmentos con soporte para los perfiles; no es una tasa de participación.'
     },
     {
       label: 'Lista nominal',
       value: snapshot?.metrics.nominalList,
       suffix: '',
-      note: 'Registros reportados para este corte'
+      note: 'Conteo nominal reportado en los cuadernillos disponibles (LN); no identifica personas únicas validadas.'
     },
     {
       label: 'Perfiles descriptivos',
       value: snapshot?.metrics.profileCount,
       suffix: '',
-      note: 'Agrupaciones entregadas por el análisis'
+      note: 'Categorías por reglas de edad y participación relativa; no son tipos de personas.'
     }
   ]
 
@@ -187,7 +188,7 @@ export function Dashboard({
           )}
 
           <section
-            className="dashboard-filters"
+            className="dashboard-filters dashboard-controls-unified"
             aria-labelledby="dashboard-filters-title"
           >
             <div>
@@ -204,44 +205,9 @@ export function Dashboard({
               </p>
             </div>
 
-            <div className="dashboard-filter-fields">
-              <div>
-                <label htmlFor="dashboard-territory">
-                  Territorio
-                </label>
-
-                <select
-                  id="dashboard-territory"
-                  value={territoryCode}
-                  onChange={event =>
-                    setTerritoryCode(event.target.value)
-                  }
-                >
-                  {dataset.territories.map(item => (
-                    <option key={item.code} value={item.code}>
-                      {item.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="dashboard-year">Año</label>
-
-                <select
-                  id="dashboard-year"
-                  value={year}
-                  onChange={event =>
-                    setYear(Number(event.target.value))
-                  }
-                >
-                  {dataset.years.map(item => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
-              </div>
+            <div className="dashboard-unified-controls">
+              <StateSearch options={dataset.territories} value={territoryCode} onChange={setTerritoryCode} />
+              <ElectionSelector year={year} onChange={setYear} />
 
               <button
                 className="dashboard-reset"
@@ -343,7 +309,7 @@ export function Dashboard({
             </SectionCard>
 
             <SectionCard
-              title={demo ? 'Distribución por perfiles' : 'Participación por perfil'}
+              title={demo ? 'Distribución por perfiles' : territoryCode === 'MX' ? 'Participación por perfil' : 'Lista nominal por perfil'}
               subtitle={`${context}${
                 demo ? ' · Ejemplo ficticio' : ''
               }`}
@@ -354,7 +320,7 @@ export function Dashboard({
                     {snapshot.distribution.map((item, index) => (
                       <li key={item.id}>
                         <div>
-                          <span>{item.name}</span>
+                          <span>{!demo ? profileNames[item.id] ?? item.name : item.name}</span>
                           <strong>
                             {dashboardNumber(item.percentage, '%')}
                           </strong>
@@ -416,8 +382,8 @@ export function Dashboard({
             </SectionCard>
           </div>
 
-              {!demo && territoryCode === 'MX' && (
-                <NationalAgeSex year={year} />
+              {!demo && (
+                <NationalAgeSex year={year} territoryCode={territoryCode} territoryName={territory?.name ?? ''} />
               )}
           <div className="dashboard-footnotes">
             <h2>Cómo leer esta vista</h2>
@@ -428,6 +394,8 @@ export function Dashboard({
               valor no disponible; un cero solo se muestra si fue
               entregado como tal.
             </p>
+
+            <StatisticalHelp />
 
             <p>
               Fuente: {dataset.source}

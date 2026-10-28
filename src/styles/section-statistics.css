@@ -1,0 +1,28 @@
+/* Contexto agregado del Atlas; no altera otros módulos. */
+.section-composition { --section-urban:#69388f;--section-rural:#a95536;--section-mixed:#267565;margin:20px 0;padding:18px 0;border-top:1px solid var(--territory-line);border-bottom:1px solid var(--territory-line);min-width:0; }
+[data-theme='dark'] .section-composition { --section-urban:#b398ca;--section-rural:#d5a784;--section-mixed:#95c5b7; }
+.section-composition h3 { font-size:18px;margin-bottom:10px;line-height:1.4; }
+.section-composition p { font-size:var(--text-body);line-height:1.6;color:var(--territory-muted);margin:10px 0; }
+.section-stack { display:flex;height:22px;border-radius:5px;overflow:hidden;margin:14px 0;border:1px solid var(--territory-line); }
+.section-stack [data-section-type='U'],.section-legend [data-section-type='U'] i { background:var(--section-urban); }
+.section-stack [data-section-type='R'],.section-legend [data-section-type='R'] i { background:var(--section-rural); }
+.section-stack [data-section-type='M'],.section-legend [data-section-type='M'] i { background:var(--section-mixed); }
+.section-legend { list-style:none;padding:0;display:grid;gap:10px; }
+.section-legend li { display:grid;grid-template-columns:12px 1fr auto;gap:4px 8px;align-items:center;font-size:var(--text-label); }
+.section-legend i { width:12px;height:12px;border-radius:3px; }
+.section-legend small { grid-column:2 / -1;color:var(--territory-muted);font-size:var(--text-label); }
+.section-rates summary,.section-context-help summary { min-height:44px;padding:10px 0;cursor:pointer;color:var(--territory-purple);font-size:var(--text-label); }
+.section-rates,.section-context-help { margin-top:10px; }
+.section-composition .territorial-table th,.section-composition .territorial-table td { padding:9px;font-size:var(--text-label);white-space:nowrap; }
+.territory-map-atlas { --atlas-section-U:#69388f;--atlas-section-R:#a95536;--atlas-section-M:#267565; }
+[data-theme='dark'] .territory-map-atlas { --atlas-section-U:#b398ca;--atlas-section-R:#d5a784;--atlas-section-M:#95c5b7; }
+.thematic-section-explanation { margin-top:12px;font-size:var(--text-label);line-height:1.6;color:var(--territory-muted); }
+.section-dominance-keys { display:flex;flex-wrap:wrap;gap:12px 18px;margin-top:14px; }
+.section-dominance-keys > span { display:flex;align-items:center;gap:7px;font-size:var(--text-label); }
+.section-dominance-keys i { display:inline-block;width:17px;height:17px;border:1px solid var(--territory-line);border-radius:3px; }
+.section-dominance-keys [data-section-category='U'] { background:var(--atlas-section-U); }
+.section-dominance-keys [data-section-category='R'] { background:var(--atlas-section-R); }
+.section-dominance-keys [data-section-category='M'] { background:var(--atlas-section-M); }
+.section-dominance-keys [data-section-category='tie'] { background:repeating-linear-gradient(135deg,var(--territory-soft),var(--territory-soft) 4px,var(--territory-muted) 4px,var(--territory-muted) 5px); }
+.section-dominance-keys small { color:var(--territory-muted);font-variant-numeric:tabular-nums; }
+.map-value-dominance { font-size:var(--text-label);margin:8px 0;color:var(--territory-muted); }

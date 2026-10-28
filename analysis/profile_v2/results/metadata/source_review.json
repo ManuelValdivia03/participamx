@@ -1,0 +1,80 @@
+[
+  {
+    "path": "docs/perfiles/interpretacion_2024.md",
+    "sha256": "7c451a4782f58dbc517296224bf2be7748741db15cdbcd53663d91b8574ce901",
+    "lines": 245,
+    "role": "Recuperación de reglas, denominadores, fuentes o límites; sin modificación"
+  },
+  {
+    "path": "docs/perfiles/perfiles_2024.json",
+    "sha256": "75331d80c5413611ec45cec585c814a6e0fecbc75dbe585da54eb41658bf549c",
+    "lines": 1742,
+    "role": "Recuperación de reglas, denominadores, fuentes o límites; sin modificación"
+  },
+  {
+    "path": "docs/perfiles/contexto_historico.md",
+    "sha256": "b9253d90e0024cc8d55d2dc2888a9d61974c8e9c32ed93bb5765187fd41d2dc4",
+    "lines": 79,
+    "role": "Recuperación de reglas, denominadores, fuentes o límites; sin modificación"
+  },
+  {
+    "path": "docs/perfiles/propuestas_institucionales.md",
+    "sha256": "08229c4413d22c06f35aec7c61db5a3285d2468f3315abe5d3a993418bd1f15c",
+    "lines": 532,
+    "role": "Recuperación de reglas, denominadores, fuentes o límites; sin modificación"
+  },
+  {
+    "path": "docs/perfiles/resumen_estrategias_equipo.md",
+    "sha256": "b28e14248aff09084ecb3356e2ba8e693452c1788557df95176a2bc8e34da686",
+    "lines": 110,
+    "role": "Recuperación de reglas, denominadores, fuentes o límites; sin modificación"
+  },
+  {
+    "path": "analysis/reports/profile_interpretation_2024.md",
+    "sha256": "d4dac0b3442eab0a97807ef4b79253728e021179d6b12de7d6a240626126ae93",
+    "lines": 364,
+    "role": "Recuperación de reglas, denominadores, fuentes o límites; sin modificación"
+  },
+  {
+    "path": "analysis/reports/profile_interpretation_review.md",
+    "sha256": "926b8e88e61d6e4e7009b4eee55cc856850b647efbdc5f575a615a4bfe2854c5",
+    "lines": 125,
+    "role": "Recuperación de reglas, denominadores, fuentes o límites; sin modificación"
+  },
+  {
+    "path": "analysis/reports/multiyear_profile_review.md",
+    "sha256": "76295fc936b8e4b62bc524074bb8330e9a405885f2538d2b9b93608816e03a8a",
+    "lines": 277,
+    "role": "Recuperación de reglas, denominadores, fuentes o límites; sin modificación"
+  },
+  {
+    "path": "analysis/reports/multidimensional_profile_review.md",
+    "sha256": "00d6c6bed4f5fbe43c1b99a7300b2fe6de7c8d4bf8536165e34963e9af443d5a",
+    "lines": 334,
+    "role": "Recuperación de reglas, denominadores, fuentes o límites; sin modificación"
+  },
+  {
+    "path": "analysis/reports/contextual_feature_review.md",
+    "sha256": "b91573a8288de8dd2b2af3b60413e984be344e9fd1916a526ea31c3a6ca16d69",
+    "lines": 210,
+    "role": "Recuperación de reglas, denominadores, fuentes o límites; sin modificación"
+  },
+  {
+    "path": "analysis/reports/contextual_clustering_pilot.md",
+    "sha256": "0bcaa7ec0a18c979bae2843311649a9c39dd383e04615afd946eeabd8ea2ed2f",
+    "lines": 288,
+    "role": "Recuperación de reglas, denominadores, fuentes o límites; sin modificación"
+  },
+  {
+    "path": "analysis/scripts/build_profile_candidates.py",
+    "sha256": "16704c24472148654091d0fe31fc90f18ecdc3d865856eb65ac701b966ad7376",
+    "lines": 619,
+    "role": "Recuperación de reglas, denominadores, fuentes o límites; sin modificación"
+  },
+  {
+    "path": "analysis/scripts/build_multiyear_profiles.py",
+    "sha256": "1b1ab28261e9a54695504b1069da132b7314a6e2f6274e858c7ae7f42566ee90",
+    "lines": 1038,
+    "role": "Recuperación de reglas, denominadores, fuentes o límites; sin modificación"
+  }
+]

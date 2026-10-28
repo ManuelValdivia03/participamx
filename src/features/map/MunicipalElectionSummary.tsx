@@ -4,6 +4,7 @@ import { getTerritorialDemographics } from '../../services/territorialDemographi
 import { DataQuality, ElectionMetricCards, ElectionLoading } from './ElectionMetricCards'
 import { DemographicPanel } from './DemographicPanel'
 import { useTerritorialResource } from './useTerritorialResource'
+import { SectionComposition } from './SectionComposition'
 
 export function MunicipalElectionSummary({ year, ineCode, view }: { year: string; ineCode: string | null; view: 'summary' | 'demographics' }) {
   const valid = ineCode !== null && /^\d{5}$/.test(ineCode)
@@ -24,7 +25,7 @@ export function MunicipalElectionSummary({ year, ineCode, view }: { year: string
     <div hidden={view !== 'summary'}><ElectionMetricCards totals={municipality.totals} nationalRate={national.participation_observed} territory={municipality.municipality_name} year={Number(year)} />
     <DataQuality totals={municipality.totals} sourceRows={municipality.totals.source_row_count}>
       <p>Consulta de {municipality.municipality_name}, INE {ineCode}, elección {year}. La correspondencia por nombre único permite consultar la clave; no valida límites territoriales históricos idénticos.</p>
-    </DataQuality></div>
+    </DataQuality><SectionComposition year={Number(year)} stateCode={ineCode!.slice(0, 2)} ineCode={ineCode} /></div>
     <div hidden={view !== 'demographics'}><DemographicPanel data={municipality} territory={municipality.municipality_name} year={Number(year)} /></div>
   </div>
 }

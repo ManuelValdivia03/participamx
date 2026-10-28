@@ -1,0 +1,382 @@
+{
+  "status": "passed",
+  "checks": [
+    "36 descargas comparativas: dos perfiles de igual/distinta edad y tres perfiles en las seis elecciones; selección, pestaña y medida conservadas",
+    "Claro/oscuro, teclado, escritorio/tableta/móvil, errores recuperables y categorías legibles por elección"
+  ],
+  "exports": [
+    {
+      "year": 2009,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2009.pdf",
+      "bytes": 8283
+    },
+    {
+      "year": 2009,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2009.png",
+      "bytes": 433352
+    },
+    {
+      "year": 2009,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2009.pdf",
+      "bytes": 8328
+    },
+    {
+      "year": 2009,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2009.png",
+      "bytes": 429631
+    },
+    {
+      "year": 2009,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2009.pdf",
+      "bytes": 9193
+    },
+    {
+      "year": 2009,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2009.png",
+      "bytes": 510009
+    },
+    {
+      "year": 2012,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2012.pdf",
+      "bytes": 8260
+    },
+    {
+      "year": 2012,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2012.png",
+      "bytes": 430536
+    },
+    {
+      "year": 2012,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2012.pdf",
+      "bytes": 8328
+    },
+    {
+      "year": 2012,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2012.png",
+      "bytes": 431301
+    },
+    {
+      "year": 2012,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2012.pdf",
+      "bytes": 9187
+    },
+    {
+      "year": 2012,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2012.png",
+      "bytes": 513006
+    },
+    {
+      "year": 2015,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2015.pdf",
+      "bytes": 8275
+    },
+    {
+      "year": 2015,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2015.png",
+      "bytes": 431525
+    },
+    {
+      "year": 2015,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2015.pdf",
+      "bytes": 8325
+    },
+    {
+      "year": 2015,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2015.png",
+      "bytes": 429035
+    },
+    {
+      "year": 2015,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2015.pdf",
+      "bytes": 9180
+    },
+    {
+      "year": 2015,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2015.png",
+      "bytes": 510474
+    },
+    {
+      "year": 2018,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2018.pdf",
+      "bytes": 8270
+    },
+    {
+      "year": 2018,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2018.png",
+      "bytes": 433335
+    },
+    {
+      "year": 2018,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2018.pdf",
+      "bytes": 8334
+    },
+    {
+      "year": 2018,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2018.png",
+      "bytes": 433835
+    },
+    {
+      "year": 2018,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2018.pdf",
+      "bytes": 9210
+    },
+    {
+      "year": 2018,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2018.png",
+      "bytes": 512975
+    },
+    {
+      "year": 2021,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2021.pdf",
+      "bytes": 8263
+    },
+    {
+      "year": 2021,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2021.png",
+      "bytes": 430819
+    },
+    {
+      "year": 2021,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2021.pdf",
+      "bytes": 8333
+    },
+    {
+      "year": 2021,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2021.png",
+      "bytes": 430607
+    },
+    {
+      "year": 2021,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2021.pdf",
+      "bytes": 9215
+    },
+    {
+      "year": 2021,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2021.png",
+      "bytes": 510476
+    },
+    {
+      "year": 2024,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2024.pdf",
+      "bytes": 8325
+    },
+    {
+      "year": 2024,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2024.png",
+      "bytes": 436732
+    },
+    {
+      "year": 2024,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2024.pdf",
+      "bytes": 8376
+    },
+    {
+      "year": 2024,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2024.png",
+      "bytes": 435903
+    },
+    {
+      "year": 2024,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "format": "pdf",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2024.pdf",
+      "bytes": 9234
+    },
+    {
+      "year": 2024,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "format": "png",
+      "path": "C:\\Users\\irene\\participamx\\node_modules\\.cache\\comparison-exports-ui\\downloads\\participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2024.png",
+      "bytes": 518341
+    }
+  ],
+  "errors": []
+}

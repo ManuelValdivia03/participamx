@@ -1,0 +1,61 @@
+# Diseño y límites metodológicos · experimento 2024
+
+## Recuperación de V1 y antecedentes
+
+Las seis fichas actuales son municipio × banda de edad × sexo H/M, con edad 18–34, 35–59, 60–100 y signo estricto de la diferencia nacional de igual banda/sexo/elección. Se calcula el signo con productos cruzados enteros, no porcentajes redondeados. Soporte: LN≥100, SV+NV≥100 y filas fuente≥5, tasa definida; NS≥10 % advierte y no excluye. Un empate exacto conserva su estado, no se asigna a un signo. La zona ±2 pp es advertencia de magnitud, no intervalo de confianza ni regla oficial. V1 aporta transparencia y cobertura; edad y signo son su definición, no seis clases naturales descubiertas. La comparación de sus seis fichas se reproduce en `results/comparisons/v1_six_profiles.csv`.
+
+Se revisaron interpretación 2024, revisión crítica, contexto histórico, fichas JSON, propuestas institucionales y resumen del equipo, además de los scripts `build_profile_candidates.py` y `build_multiyear_profiles.py`. Los informes contextual y multidimensional anteriores muestran que añadir contexto/forma cambia la distancia y puede producir grupos dominados por la representación, con colas de inestabilidad municipal. Este experimento no repite sus matrices ni atribuye independencia a señales derivadas de los mismos conteos. Las propuestas informativas permanecen abiertas a toda la ciudadanía; no se reasignan a grupos ni se diseñan campañas.
+
+## Unidad, cruce y soporte
+
+V2 divide el segmento V1 por **tipo de sección electoral**: municipio × banda × sexo × U/R/M × elección. El cruce simultáneo ya existe en Parquet validados para los seis años. Sus claves de sección individuales no están dentro de estas celdas, pero se conserva `section_count` distinto por celda, conteos y trazabilidad al procesamiento anterior. No se genera una población individual artificial ni se multiplican distribuciones marginales. Las ausencias de combinaciones se cuentan; no se completan con personas o tasas cero.
+
+Se mantiene 2024, H/M 18–100 y los mismos tres umbrales por celda dividida; la mayor fragmentación y pérdida de municipios se cuantifican frente a V1 y frente a un escenario de cinco bandas. SEXO=2 y 101+ permanecen en la referencia y los totales, con etiquetas de entrenamiento NULL. La ausencia histórica de SEXO=2 significa categoría no disponible, no cero personas. Los umbrales 25/50/100/200/500 y filas fuente 1/5 son diagnósticos; no se alteran los criterios principales.
+
+NS no es NV. La condición no especificada sirve como diagnóstico y sensibilidad de entrenamiento, sin imputación. Se conservan pesos nominales y denominadores para caracterización, pero no entran como coordenadas de tamaño poblacional. Filas fuente no equivalen a secciones independientes; las secciones por celda pueden repetirse entre bandas/sexos y no se suman como unión de secciones por cluster.
+
+## Referencias alternativas y población común
+
+Todas las tasas se forman después de sumar conteos: SV/(SV+NV). Las dos referencias nacionales se calculan **con todos los conteos originales de 2024 antes del filtro de soporte**, por banda/sexo o por banda/sexo/tipo. Se guardan ambas, su diferencia y denominadores. Las tres coordenadas electorales candidatas son tasa absoluta, diferencia frente a banda/sexo y diferencia frente a banda/sexo/tipo; se ajustan en modelos separados, nunca juntas como variables redundantes.
+
+La referencia banda/sexo conserva las diferencias promedio entre tipos, mientras que la referencia conjunta las descuenta. Esta última puede mejorar la descripción de pares contextuales y también retirar diferencias que interesan al objetivo; se contrasta empíricamente, sin presumir que un ajuste más detallado sea mejor. Los modelos principales comparten exactamente las mismas filas elegibles y su orden.
+
+## Codificación y geometría de datos mixtos
+
+Se usa K-Means de la biblioteca instalada sobre una representación numérica explícita, **no un algoritmo categórico nativo**. Banda, sexo y tipo de sección se codifican con one-hot simétrico, sin categoría de referencia eliminada ni códigos ordinales. La edad se trata como categoría: no se impone edad media ni una distancia lineal entre años. Los códigos territoriales, distritos, año, LN, denominadores y NS quedan como metadatos. [KMeans](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html), [OneHotEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html).
+
+La coordenada electoral se centra y estandariza con media/DE poblacional del entrenamiento, sin pesos. Cada bloque one-hot se centra por su vector medio y se divide por una única escala RMS del vector: s²=media(||one-hot−media||²)=1−Σp². No se estandariza cada dummy por separado ni se amplifica una categoría rara mediante su propia DE. Dos categorías distintas dentro de un bloque tienen distancia constante; no hay orden artificial U/R/M. Permutar los nombres de categorías conserva las distancias.
+
+Geometría principal: √0.5·electoral_z y tres bloques √(0.5/3)·categórico_RMS. A priori, la varianza total del bloque electoral es 50 %, y las tres dimensiones categóricas suman 50 %. **Son decisiones de distancia**, no información añadida ni cuotas obligatorias de separación entre centroides. Se comparan 75 % electoral / 25 % categorías y el control electoral puro. Al usar todos los dummies, las nueve columnas poseen direcciones constantes redundantes: rango máximo 6. Eso no duplica bloques independientes ni vuelve singular el objetivo de distancias K-Means. No se afirma geometría Gower, k-prototypes o Aitchison.
+
+Configuraciones: `absolute_50`, `age_sex_50`, `age_sex_section_50`, `age_sex_75`, `relative_only`. El control unidimensional no descubre perfiles demográficos: sólo ordena magnitudes de participación relativa. No se añaden variables sólo para satisfacer una lista de atributos. Se descartan en esta entrega modelos mixtos no instalados o implementaciones complejas propias: la elección utiliza biblioteca real y una geometría comprobable, sin afirmar que agote las opciones.
+
+## Ajustes, métricas y dependencia de categorías
+
+K=4/5/6 se evalúa sin ganador predefinido. Cada configuración/K usa semillas 17, 42 y 2024, 20 inicializaciones k-means++ por semilla, Lloyd, máximo 1,000 iteraciones, tol=10⁻⁶, un hilo. La representación de cada configuración/K es la semilla de menor SSE propia, sin elegir K por esa disminución. Hay 45 ajustes principales; los inicios k-means++ pueden cambiar al variar la geometría aunque se reutilice la semilla, por lo que no se afirma un banco de índices iniciales común.
+
+Se registran SSE, DB y tamaños para todas las semillas; Silhouette se calcula para las 15 soluciones representativas con 384 anclas uniformes compartidas, contra todas las observaciones de entrenamiento, por bloques 32×N. Se guarda error Monte Carlo con corrección finita. No se asignan distancias N×N. La implementación de este cálculo se contrasta con `silhouette_samples` en un caso sintético; K-Means es el de scikit-learn, no una implementación nueva del optimizador. [Silhouette](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html).
+
+Las purezas y NMI por banda, sexo y tipo miden cuánto reproduce el ajuste sus categorías de entrada. La proporción de suma de cuadrados entre centroides correspondiente a la coordenada electoral cuantifica qué parte de esa separación geométrica utiliza; no es causalidad ni importancia predictiva. El R² de tasas dentro de edad/sexo/tipo compara residuos con medias por estrato y por estrato/cluster. Si el cluster sólo reproduce esos estratos, el incremento es cero; si vuelve a segmentar tasas dentro de ellos, puede crecer. **Sigue siendo un descriptor in-sample de una variable utilizada para ajustar**, no prueba independiente de utilidad o generalización.
+
+ARI entre semillas y configuraciones compara las mismas celdas divididas. Para V1 se hereda la etiqueta de cada padre a sus hijos mediante una unión muchos-a-uno comprobada y se compara sobre esas mismas celdas: no es ARI directo entre las 14,190 filas V1 y las filas V2. Los hijos de un padre no son observaciones V1 independientes; el contraste es descriptivo. No se calcula ARI entre bandas distintas o elecciones. [ARI](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.adjusted_rand_score.html).
+
+## Ponderación y sensibilidad de calidad
+
+Principal: peso uno por segmento dividido. Un municipio puede aportar hasta 18 celdas H/M con tres bandas y tipos; los más fragmentados/elegibles reciben más masa. La sensibilidad de peso total municipal uno utiliza 1/n_celdas_elegibles del municipio. Mantiene la geometría principal fija: modifica el objetivo, no la escala. DB, R² y demás diagnósticos de esa sensibilidad se evalúan sin pesos sobre la población principal común, claramente separados del objetivo ponderado. LN sólo caracteriza volumen/concentración y no es garantía de fiabilidad o corrección de sesgo.
+
+Las dos representaciones relativas de 50 % reciben también entrenamientos temporales con NS/LN<10 % o al menos cinco secciones por celda. Cada sensibilidad usa semilla 17 y 20 inicios, mantiene escala principal y proyecta los elegibles fuera del ajuste. Las observaciones excluidas temporalmente no se borran; proyección no equivale a etiqueta de entrenamiento. Se registra cobertura y ARI en comunes y en el principal. Estas comparaciones combinan cambios de población/composición; no revelan qué habrían hecho los NS ni el efecto causal del soporte. En total son 18 ajustes de sensibilidad.
+
+## Estabilidad municipal e historia
+
+Diez sorteos sin reemplazo eligen floor(0.8×2,477)=1,981 municipios del universo original, incluidos los que no aportan celdas entrenables. Todos los segmentos elegibles del mismo municipio permanecen juntos. Semilla del sorteo 8102024, compartido por representaciones y K. Se reajustan escalas y centros sólo in-bag; los municipios OOB se transforman y asignan después. Se registran membresía, municipios activos, segmentos, LN anual/elegible y tamaño OOB.
+
+Se validan `age_sex_50` y `age_sex_section_50`, K=4/5/6, con 10 inicios y semilla 17 por sorteo: 60 ajustes. No es bootstrap con reemplazo. ARI OOB compara contra la solución principal de la misma configuración/K, no etiquetas verdaderas; se informa mediana y peor caso. **Las referencias nacionales permanecen fijas e incluyen conteos OOB:** es estabilidad condicional a una referencia contextual, no validación predictiva independiente de toda la construcción. La variación combina perturbación municipal y optimización finita.
+
+El contexto histórico usa referencias nacionales del mismo cruce en cada una de las seis elecciones, con sus propios conteos y disponibilidad; se separan presidenciales (2012/2018/2024) e intermedias (2009/2015/2021). No se trasladan etiquetas de 2024 ni se afirman transiciones de personas o municipios. TIPOSEC, marcos distritales, composición, NS y cobertura pueden cambiar. La persistencia de una asociación nacional no la vuelve causal ni valida los grupos aprendidos.
+
+## Integridad y decisión humana
+
+Se comprueban _SUCCESS/manifiesto previo y huellas de artefactos leídos, claves únicas, 7 conteos aditivos, tasas, población común, ausencia de imputaciones, conservación de complementos, lectura posterior de Parquet, etiquetas NULL de pendientes y huellas de archivos previos antes/después. Los artefactos experimentales se almacenan sólo en `analysis/profile_v2/`; no se modifican React, Atlas, perfiles publicados, estrategias, datos originales ni resultados anteriores. Las fuentes binarias se leen para hashes; eso no reinterpreta registros limpios.
+
+La recomendación debe considerar cobertura, caracterización, sensibilidad a geometría/pesos, colas OOB y claridad de los estimandos. Silhouette mayor, convergencia o seis etiquetas no prueban seis clases ciudadanas. Si ninguna solución resiste las sensibilidades, corresponde mantener V1 y usar estos cruces para enriquecer su caracterización, sin presentar las nuevas etiquetas como definitivas ni asignarles estrategias automáticamente. La conformidad formal con la convocatoria/rúbrica no se certifica sin su documento primario; el objetivo de cuatro a seis es el indicado por la solicitud.

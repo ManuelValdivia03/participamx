@@ -12,9 +12,11 @@ import { ElectionTimeline } from './ElectionTimeline'
 import { TerritorialRanking } from './TerritorialRanking'
 import type { SearchPlace } from './territorySearchData'
 import { AtlasContext, type AtlasContextData } from './AtlasContext'
+import { AtlasGuide } from './AtlasGuide'
 import '../../styles/territorial.css'
 import '../../styles/territorial-navigation.css'
 import '../../styles/territorial-atlas.css'
+import '../../styles/atlas-guide.css'
 
 export function MapPage() {
   const { year: sharedYear, setYear } = useElectionYear()
@@ -24,6 +26,7 @@ export function MapPage() {
   const [requestedName, setRequestedName] = useState('')
   const [retry, setRetry] = useState(0)
   const [context, setContext] = useState<AtlasContextData | null>(null)
+  const [stateSearchRequest, setStateSearchRequest] = useState(0)
   const [load, setLoad] = useState<{ key: string; status: 'loading' | 'ready' | 'error'; items: Municipality[] }>({ key: '', status: 'ready', items: [] })
   const key = `${stateCode}:${year}`
   const state = states.find(item => item.properties.code === stateCode)
@@ -60,12 +63,13 @@ export function MapPage() {
   }
 
   return <div className="territory-explorer" data-state-code={stateCode} data-municipality-code={municipalityCode} data-election-year={year}>
-    <header className="territorial-intro"><div><p className="territorial-kicker"><Icon name="mapa" /> Atlas Electoral · ParticipaMX</p><h2>Descubre cómo <span>participa México.</span></h2></div><span className="territorial-source"><Icon name="ballot" /> Seis elecciones · INE</span></header>
-    <div className="explorer-command"><TerritorySearch year={sharedYear} currentTerritory={currentTerritory} onSelect={selectPlace} /><ElectionTimeline year={year} onChange={setYear} /></div>
-    <AtlasContext data={context?.key === contextKey ? context : null} territory={currentTerritory} year={sharedYear} />
+    <header className="territorial-intro"><h2>Descubre cómo <span>participa México.</span></h2><span className="territorial-source"><Icon name="ballot" /> Seis elecciones · INE</span></header>
+    <AtlasGuide />
+    <div className="explorer-command"><TerritorySearch year={sharedYear} currentTerritory={currentTerritory} stateCode={stateCode} stateRequest={stateSearchRequest} onSelect={selectPlace} /><ElectionTimeline year={year} onChange={setYear} /></div>
+    <AtlasContext data={context?.key === contextKey ? context : null} territory={currentTerritory} year={sharedYear} compareNational={!!stateCode} />
     <div className="territory-layout">
       <SectionCard title="Explora el mapa">
-        <TerritoryMap year={sharedYear} stateCode={stateCode} municipalityCode={municipalityCode} items={items} loading={loading} failed={failed} onState={selectState} onMunicipality={setMunicipalityCode} onRetry={() => setRetry(value => value + 1)} onContextChange={setContext} />
+        <TerritoryMap year={sharedYear} stateCode={stateCode} municipalityCode={municipalityCode} items={items} loading={loading} failed={failed} onState={selectState} onMunicipality={setMunicipalityCode} onRetry={() => setRetry(value => value + 1)} onContextChange={setContext} onChangeState={() => setStateSearchRequest(value => value + 1)} />
       </SectionCard>
       <TerritoryPanel year={year} stateCode={stateCode} stateName={state?.properties.name} municipality={municipality} municipalityCount={items.length} loading={loading} failed={failed} pendingMunicipalityName={municipalityCode && !municipality ? requestedName || 'Municipio seleccionado' : undefined} />
     </div>

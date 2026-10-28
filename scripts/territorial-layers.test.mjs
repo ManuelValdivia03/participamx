@@ -1,12 +1,11 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { readFileSync } from 'node:fs'
-import ts from 'typescript'
+import { loadMapModule } from './load_map_module.mjs'
 import { buildTerritorialLayers } from './build-territorial-layers.mjs'
 
 import { createThematicScale } from '../src/features/map/thematicScale.ts'
-const source = readFileSync('src/features/map/thematicData.ts', 'utf8').replace("from './territorialData'", `from '${new URL('../src/features/map/territorialData.ts', import.meta.url).href}'`).replace("from './thematicScale'", `from '${new URL('../src/features/map/thematicScale.ts', import.meta.url).href}'`)
-const { layerValue, layerDefinitions, validateLayerIndex, thematicFill, layerUniverse, layerExplanation, formatLayerPercent } = await import('data:text/javascript;base64,' + Buffer.from(ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 } }).outputText).toString('base64'))
+const { layerValue, layerDefinitions, validateLayerIndex, thematicFill, layerUniverse, layerExplanation, formatLayerPercent } = await loadMapModule('thematicData')
 const read = path => JSON.parse(readFileSync(path, 'utf8'))
 const years = [2009, 2012, 2015, 2018, 2021, 2024]
 const close = (a, b) => assert.ok(Math.abs(a - b) < 1e-13, `${a} != ${b}`)
@@ -30,6 +29,7 @@ test('capas estatales: generación determinista, contratos, categorías oficiale
 function verifyProfile(profile, sexes) {
   const total = profile.totals, cells = [...profile.segments, ...profile.complementary]
   for (const [key, definition] of Object.entries(layerDefinitions)) {
+    if (definition.group === 'section') continue // El marginal TIPOSEC tiene su propia prueba y fuente.
     const result = layerValue(profile, key, sexes)
     if (definition.sex && !sexes.includes(definition.sex)) { assert.equal(result.status, 'unavailable_category'); assert.equal(result.value, null); continue }
     const matching = definition.sex ? cells.filter(cell => cell.sex_code === definition.sex) : definition.band ? cells.filter(cell => cell.age_band === definition.band) : null

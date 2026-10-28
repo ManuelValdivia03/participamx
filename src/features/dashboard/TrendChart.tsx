@@ -46,7 +46,7 @@ export function TrendChart({
           La serie temporal no está disponible para este territorio.
         </p>
       ) : (
-        <svg
+        <><p className="trend-scroll-hint">Desplaza la gráfica para ver todos los años o consulta la tabla de valores.</p><div className="trend-plot-scroll" role="region" tabIndex={0} aria-label="Gráfica temporal; desplaza horizontalmente si es necesario"><svg
           viewBox="0 0 700 270"
           role="img"
           aria-label={`Evolución de la participación en porcentaje${demo ? ', datos ficticios' : ''}. Valores disponibles en la tabla inferior.`}
@@ -93,12 +93,7 @@ export function TrendChart({
                   cy={y(point.value)}
                   r={point.year === selectedYear ? 7 : 4}
                 >
-                  <title>
-                    {point.year}: {point.value}%
-                    {demo ? ' (ficticio)' : ''}
-                    {' · '}
-                    {electionType(point.year)}
-                  </title>
+                  <title>{`${point.year}: ${dashboardNumber(point.value, '%')}${demo ? ' (ficticio)' : ''} · ${electionType(point.year)}`}</title>
                 </circle>
               )}
 
@@ -112,7 +107,7 @@ export function TrendChart({
               </text>
             </g>
           ))}
-        </svg>
+        </svg></div></>
       )}
 
       <div

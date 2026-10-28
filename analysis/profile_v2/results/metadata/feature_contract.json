@@ -1,0 +1,31 @@
+{
+  "experimental": true,
+  "unit": "municipality_age_band_sex_section_type_2024",
+  "main_population": "H/M, 18-100; LN>=100, SV+NV>=100, source_row_count>=5; referencias antes de soporte",
+  "excluded_from_distance": [
+    "EDOCVE",
+    "MPIOCVE",
+    "election_year",
+    "LN",
+    "SV",
+    "NV",
+    "NS",
+    "source_row_count",
+    "section_count"
+  ],
+  "columns": {
+    "x0": "Coordenada electoral estandarizada y ponderada según configuración",
+    "x1": "18-34 one-hot centrado/RMS",
+    "x2": "35-59 one-hot centrado/RMS",
+    "x3": "60-100 one-hot centrado/RMS",
+    "x4": "Hombres one-hot centrado/RMS",
+    "x5": "Mujeres one-hot centrado/RMS",
+    "x6": "Urbana one-hot centrado/RMS",
+    "x7": "Rural one-hot centrado/RMS",
+    "x8": "Mixta one-hot centrado/RMS"
+  },
+  "control": "relative_only conserva únicamente x0; no es representación multivariable",
+  "scalers": "metadata/block_parameters.json; entrenamiento principal sólo sobre elegibles; remuestras con parámetros in-bag propios en metadata de cada modelo",
+  "labels": "assignments/: todas las celdas originales; cluster NULL para pendientes; claves sólo para alineación",
+  "redundancy": "Las categorías de cada bloque suman uno antes de centrar; 9 columnas, rango máximo 6. No son nueve fuentes independientes."
+}

@@ -6,6 +6,7 @@ import { DemographicPanel } from './DemographicPanel'
 import { useTerritorialResource } from './useTerritorialResource'
 import { profileLabels } from './profileLabels'
 import { Icon } from '../../components/Icon'
+import { SectionComposition } from './SectionComposition'
 
 // México y entidades comparten el sistema de fichas; la selección vacía tiene datos propios.
 export function StateElectionSummary({ year, stateCode, view }: { year: number; stateCode: string; view: 'summary' | 'demographics' }) {
@@ -22,6 +23,7 @@ export function StateElectionSummary({ year, stateCode, view }: { year: number; 
     <DataQuality totals={summary.totals} sourceRows={summary.totals.source_row_count}>
       <p>{stateCode ? 'Estadísticas de toda la entidad, no de un municipio. El soporte agregado no garantiza el soporte de cada segmento municipal.' : 'Totales nacionales de las 32 entidades, conciliados con los resúmenes de edad y sexo de esta elección.'}</p>
     </DataQuality>
+    <SectionComposition year={year} stateCode={stateCode} />
     <details className="territorial-profiles"><summary><Icon name="perfiles" /> Perfiles presentes · {year}</summary><p>Segmentos con soporte. No son clasificaciones exclusivas de {stateCode ? 'la entidad' : 'México'}.</p>
       {summary.profile_ids.length ? <ul className="profile-presence">{summary.profile_ids.map(id => <li key={id}>{profileLabels[id] ?? id}</li>)}</ul> : <p>No hay perfiles con soporte disponibles.</p>}
     </details></div>

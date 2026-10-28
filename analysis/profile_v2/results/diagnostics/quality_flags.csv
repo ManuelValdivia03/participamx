@@ -1,0 +1,7 @@
+flag,segments,LN,eligible_segments,eligible_LN
+low_LN,6764,170123,0,0
+low_specified,7330,329945,0,0
+few_source_rows,3806,6205,0,0
+high_ns,7436,17071442,6216,16899810
+few_sections,24783,9951289,17898,9669021
+split_sign_opposes_parent,3541,5712790,2704,5688327

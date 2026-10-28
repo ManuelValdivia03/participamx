@@ -4,15 +4,24 @@ import { getTerritorySearch } from '../../services/territorySearch'
 import { searchTerritories, type SearchPlace } from './territorySearchData'
 import { useTerritorialResource } from './useTerritorialResource'
 
-export function TerritorySearch({ year, currentTerritory, onSelect }: { year: number; currentTerritory: string; onSelect: (place: SearchPlace) => void }) {
+export function TerritorySearch({ year, currentTerritory, stateCode, stateRequest, onSelect }: { year: number; currentTerritory: string; stateCode: string; stateRequest: number; onSelect: (place: SearchPlace) => void }) {
   const loader = useCallback((signal: AbortSignal) => getTerritorySearch(signal), [])
   const { active, retry } = useTerritorialResource('national-search', loader)
   const [query, setQuery] = useState(''), [open, setOpen] = useState(false), [highlight, setHighlight] = useState(-1)
+  const [statesOnly, setStatesOnly] = useState(false)
   const root = useRef<HTMLDivElement>(null)
   const id = useId()
-  const results = active?.status === 'ready' ? searchTerritories(active.data, query, year) : []
+  const results = active?.status !== 'ready' ? [] : statesOnly
+    ? query.trim() ? searchTerritories({ ...active.data, municipalities: [] }, query, year, 32) : [...active.data.states].sort((a, b) => a.name.localeCompare(b.name, 'es'))
+    : searchTerritories(active.data, query, year)
   const selected = results[highlight]
   useEffect(() => { setHighlight(-1) }, [year])
+  useEffect(() => {
+    if (!stateRequest) return
+    setStatesOnly(true); setQuery(''); setOpen(true); setHighlight(-1)
+    document.getElementById('territory-search-input')?.focus({ preventScroll: true })
+    root.current?.scrollIntoView({ block: 'nearest', behavior: 'instant' })
+  }, [stateRequest])
   useEffect(() => {
     const close = (event: PointerEvent) => { if (!root.current?.contains(event.target as Node)) setOpen(false) }
     document.addEventListener('pointerdown', close)
@@ -20,11 +29,12 @@ export function TerritorySearch({ year, currentTerritory, onSelect }: { year: nu
   }, [])
   useEffect(() => { if (open && selected) document.getElementById(`${id}-${selected.kind}-${selected.code}`)?.scrollIntoView({ block: 'nearest' }) }, [highlight, open, selected?.code, selected?.kind, id])
   function choose(place: SearchPlace) {
-    setQuery(''); setOpen(false); setHighlight(-1); onSelect(place)
+    setQuery(''); setOpen(false); setHighlight(-1); setStatesOnly(false); onSelect(place)
   }
   return <div className="territory-search" ref={root} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOpen(false) }}>
-    <label htmlFor="territory-search-input">Encuentra tu territorio</label>
-    <div className="territory-search-field"><Icon name="location" /><input id="territory-search-input" role="combobox" type="text" autoComplete="off" placeholder="Busca un estado, municipio o clave…" value={query} aria-expanded={open} aria-autocomplete="list" aria-controls={`${id}-listbox`} aria-activedescendant={open && selected ? `${id}-${selected.kind}-${selected.code}` : undefined}
+    <label htmlFor="territory-search-input">{statesOnly ? 'Cambiar estado' : 'Encuentra tu territorio'}</label>
+    {statesOnly && <button className="search-all-territories" type="button" onClick={() => { setStatesOnly(false); setHighlight(-1); setOpen(true); document.getElementById('territory-search-input')?.focus() }}>Buscar también municipios</button>}
+    <div className="territory-search-field"><Icon name="location" /><input id="territory-search-input" role="combobox" type="text" autoComplete="off" placeholder={statesOnly ? 'Busca entre las 32 entidades…' : 'Busca un estado, municipio o clave…'} value={query} aria-expanded={open} aria-autocomplete="list" aria-controls={`${id}-listbox`} aria-activedescendant={open && selected ? `${id}-${selected.kind}-${selected.code}` : undefined}
       onFocus={() => setOpen(true)} onChange={event => { setQuery(event.target.value); setOpen(true); setHighlight(-1) }}
       onKeyDown={event => {
         if (event.key === 'Escape') { setOpen(false); setHighlight(-1); return }
@@ -35,13 +45,13 @@ export function TerritorySearch({ year, currentTerritory, onSelect }: { year: nu
     </div>
     <p className="search-scope" role="status"><span className="selection-dot" aria-hidden="true" /> Explorando: <strong>{currentTerritory}</strong></p>
     {open && <div className="territory-suggestions">
-      {!active ? <p role="status">Cargando catálogo territorial…</p> : active.status === 'error' ? <div role="alert"><p>No se pudo cargar la búsqueda.</p><button className="map-reset" onClick={retry}>Reintentar catálogo</button></div> : !query.trim() ? <p>Escribe un nombre o clave. Por ejemplo, «Chih» o «Xalapa».</p> : !results.length ? <p role="status">Sin coincidencias. Prueba otro nombre, clave o agrega la entidad.</p> : <p className="suggestion-count" role="status">{results.length} sugerencias · usa flechas y Enter</p>}
+      {!active ? <p role="status">Cargando catálogo territorial…</p> : active.status === 'error' ? <div role="alert"><p>No se pudo cargar la búsqueda.</p><button className="map-reset" onClick={retry}>Reintentar catálogo</button></div> : !query.trim() && !statesOnly ? <p>Escribe un nombre o clave. Por ejemplo, «Chih» o «Xalapa».</p> : !results.length ? <p role="status">Sin coincidencias. Prueba otro nombre, clave o agrega la entidad.</p> : <p className="suggestion-count" role="status">{results.length} {statesOnly ? 'entidades' : 'sugerencias'} · usa flechas y Enter</p>}
       <ul id={`${id}-listbox`} role="listbox" aria-label="Territorios encontrados">{results.map((place, index) => {
         const state = active?.status === 'ready' ? active.data.states.find(item => item.code === place.state_code)?.name : ''
         const ineCode = active?.status === 'ready' ? place.ine_codes[active.data.years.indexOf(year)] : null
         const pending = place.kind === 'municipality' && !ineCode
-        return <li key={`${place.kind}:${place.code}`} id={`${id}-${place.kind}-${place.code}`} role="option" data-place-kind={place.kind} data-place-code={place.code} data-place-state={place.state_code} aria-selected={index === highlight} onPointerDown={event => event.preventDefault()} onPointerEnter={() => setHighlight(index)} onClick={() => choose(place)}>
-          <span className="suggestion-kind">{place.kind === 'state' ? 'Entidad' : 'Municipio'}</span><strong>{place.name}</strong><small>{place.kind === 'municipality' ? `${state} · INEGI ${place.code}${ineCode ? ` · INE ${ineCode} (${year})` : ''}` : `Clave ${place.code}`}{pending ? ` · Correspondencia pendiente ${year}` : ''}</small>
+        return <li key={`${place.kind}:${place.code}`} id={`${id}-${place.kind}-${place.code}`} role="option" data-place-kind={place.kind} data-place-code={place.code} data-place-state={place.state_code} data-current-state={place.kind === 'state' && place.code === stateCode || undefined} aria-selected={index === highlight} onPointerDown={event => event.preventDefault()} onPointerEnter={() => setHighlight(index)} onClick={() => choose(place)}>
+          <span className="suggestion-kind">{place.kind === 'state' ? 'Entidad' : 'Municipio'}{place.kind === 'state' && place.code === stateCode ? ' · Estado actual' : ''}</span><strong>{place.name}</strong><small>{place.kind === 'municipality' ? `${state} · INEGI ${place.code}${ineCode ? ` · INE ${ineCode} (${year})` : ''}` : `Clave ${place.code}`}{pending ? ` · Correspondencia pendiente ${year}` : ''}</small>
         </li>
       })}</ul>
     </div>}

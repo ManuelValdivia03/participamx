@@ -25,10 +25,10 @@ export function DemographicPanel({ data, territory, year, registeredSexes = year
       ['sex', 'Por sexo', 'sex'], ['age', 'Por edad', 'age'], ['crossed', 'Edad y sexo', 'perfiles'],
     ] as const).map(([value, label, icon]) => <button key={value} type="button" data-demographic-axis={value} aria-pressed={axis === value} onClick={() => setAxis(value)}><Icon name={icon} />{label}</button>)}</div>
     <div className="demographic-switch" role="group" aria-label="Indicador de la gráfica demográfica"><button type="button" aria-pressed={mode === 'participation'} onClick={() => setMode('participation')}>Tasa de participación</button><button type="button" aria-pressed={mode === 'distribution'} onClick={() => setMode('distribution')}>Distribución de participantes</button></div>
-    <p className="demographic-definition" id={`${id}-definition`}>{mode === 'participation' ? 'Tasa dentro de cada grupo; no incluye registros con participación no especificada.' : `Reparto de participantes del universo mostrado: ${axis === 'sex' ? 'todas las edades registradas' : '18–100 años, universo parcial'}.`}</p>
+    <p className="demographic-definition" id={`${id}-definition`}>{mode === 'participation' ? 'Cada barra indica qué proporción participó entre los registros con condición de voto conocida de ese grupo.' : `Reparto de participantes del universo mostrado: ${axis === 'sex' ? 'todas las edades registradas' : '18–100 años, universo parcial'}.`}</p>
     {lowSupport > 0 && <p className="demographic-support-note quality-warning"><Icon name="warning" /> † Soporte reducido en {lowSupport} grupos. Consulta las bases y criterios.</p>}
     {axis !== 'age' && <div className="demographic-legend">{sexes.map(sex => <span key={sex}><i className={`sex-key sex-${sex}`} />{sexLabels[sex]}</span>)}</div>}
-    <figure className="demographic-chart" aria-describedby={`${id}-definition`}><figcaption>{title} · {territory} · {year}</figcaption>
+    <figure className="demographic-chart" aria-describedby={`${id}-definition`}><figcaption>{title}</figcaption>
       <div className="demographic-scale" aria-hidden="true"><span>0 %</span><span>50 %</span><span>100 %</span></div>
       {groups.map(group => <div className="demographic-age" key={group}>{axis === 'crossed' && <h4>{group.replace('-', '–')} <small>años</small></h4>}
         {rows.filter(row => axis !== 'crossed' || row.age_band === group).map(row => <div className={`demographic-bar-row sex-${row.sex_code ?? 'age'}`} key={row.key}>

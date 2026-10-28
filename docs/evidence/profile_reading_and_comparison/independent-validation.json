@@ -1,0 +1,321 @@
+{
+  "status": "passed",
+  "reader": "1.26.7",
+  "comparisons": 18,
+  "pdf_pages": 54,
+  "downloads": 36,
+  "results": [
+    {
+      "year": 2009,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2009.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2009.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2009,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2009.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2009.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2009,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2009.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2009.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2012,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2012.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2012.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2012,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2012.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2012.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2012,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2012.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2012.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2015,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2015.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2015.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2015,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2015.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2015.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2015,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2015.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2015.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2018,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2018.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2018.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2018,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2018.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2018.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2018,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2018.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2018.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2021,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2021.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2021.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2021,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2021.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2021.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2021,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2021.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2021.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2024,
+      "ids": [
+        "young_favorable",
+        "young_unfavorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2024.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_02_jovenes_menor_2024.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2024,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2024.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_2024.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    },
+    {
+      "year": 2024,
+      "ids": [
+        "young_favorable",
+        "adult_unfavorable",
+        "older_favorable"
+      ],
+      "pdf": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2024.pdf",
+      "pages": 3,
+      "text_selectable": true,
+      "values_checked": true,
+      "no_text_overlap": true,
+      "png": "participamx_comparacion_01_jovenes_mayor_04_adultos_menor_05_mayores_mayor_2024.png",
+      "dimensions": [
+        1600,
+        2357
+      ]
+    }
+  ]
+}

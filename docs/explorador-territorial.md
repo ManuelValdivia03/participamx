@@ -1,10 +1,166 @@
 # Explorador Territorial 2.0 · entrega para revisión
 
-Actualizado para el **refinamiento visual y simplificación del Atlas Electoral**: diez capas, cuantiles permanentes, leyenda compacta y presentación neutra de datos no comparables. Se conservan exactamente los grupos Participación / Sexo / Edad y sus subopciones, las seis paletas y la navegación de las seis elecciones. Los 193 archivos municipales, 199 resúmenes, índice nacional de búsqueda y siete archivos de capas mantienen sus contratos y cifras. Esta revisión no regenera JSON ni modifica datos analíticos. No se hicieron commits, push, merge ni PR; el archivo local extraño sin seguimiento se dejó intacto.
+## Entrega actual · cuarta categoría visible y predominio nominal
+
+**«Tipo de sección electoral» es la cuarta categoría principal de «Colorear mapa por»**, junto a Participación, Sexo y Edad. Se elimina el acceso «Más indicadores». Conserva iconos y estados activos; la cuadrícula usa cuatro columnas cuando el contenedor dispone de al menos 720 px y dos columnas en espacios menores. La etiqueta completa se envuelve sin recortarse. Cambiar categoría sólo cambia la capa: conserva elección, entidad y municipio.
+
+Al abrirla se selecciona **Composición nominal → Predominante**. Esta modalidad ofrece Predominante / Urbana / Rural / Mixta; **Participación observada** ofrece Urbana / Rural / Mixta. Una explicación visible bajo las opciones distingue composición LN/LN de participación SV/(SV+NV). Las seis capas cuantitativas existentes conservan fórmulas, paletas, cuantiles, rangos, rankings, cifras y advertencias.
+
+La vista **Predominante** compara los conteos LN_U/R/M del territorio, equivalentes a sus proporciones con denominador común. Usa tres colores fijos: Urbana morado, Rural terracota, Mixta verde azulado. Es categórica: no calcula cuantiles, no ordena las categorías y no ofrece un ranking de predominancia. Predominante no exige superar 50 % del nominal. Un empate exacto conserva todos los tipos líderes mediante una trama neutra y una etiqueta explícita; no se desempata por redondeo, orden o código. La tarjeta y la tabla muestran la proporción y LN de cada líder, sin sumar sus porcentajes como si fueran uno.
+
+Se respetan ausencia de archivo/clave, correspondencia pendiente, base nominal nula y soporte reducido, con estados y neutros propios. Sólo se colorea cuando el total y cada tipo líder satisfacen los criterios exploratorios existentes LN≥100, SV+NV≥100 y filas fuente≥5. NS alto en total/líderes permanece como advertencia y no altera el máximo. No se identifica residencia individual, localidad, nivel socioeconómico ni causa electoral. La guía de cinco pasos incorpora la cuarta categoría y explica los colores categóricos cuando esta vista está activa.
+
+Se reutilizan los servicios y JSON U/R/M existentes, **sin volver a generar datos ni modificar fórmulas, criterios o el algoritmo de cuantiles**. Se añade `SectionDominanceLegend.tsx`; se ajustan controles, presentación de valores, rellenos SVG y reglas de cuadrícula en los módulos del Atlas, junto con la descripción de la guía y una prueba de predominio en `scripts/section-statistics.test.mjs`. `sectionStatistics.ts` incorpora la clasificación pura sobre agregados disponibles; no se modifica el servicio de carga, los perfiles ni el Laboratorio.
+
+**Validación actual:** pasan `npm.cmd run typecheck`, `npm.cmd run build` y las cuatro pruebas específicas de `section-statistics.test.mjs`. El nuevo caso cubre máximos sin mayoría absoluta, empates de dos/tres tipos, diferencias que redondearían igual, colores fijos sin escala, falta de información, base cero, soporte y NS. Las otras pruebas verifican integridad de los JSON existentes y conciliación de sus conteos. No se ejecutó la suite extensa. La compilación conserva el aviso cartográfico (aproximadamente 1,858 KB / 528 KB gzip).
+
+La revisión dirigida en Chrome verificó cuatro botones visibles a 1920 px y disposición 2×2 a 1440/390 px; siete opciones U/R/M con clics sobre controles visibles; valores, rellenos y leyendas contra los agregados de 2024; ausencia de rampa y cortes en Predominante; selección municipal de Aguascalientes conservada al alternar las cuatro categorías; claro/oscuro, tarjeta categórica, guía y móvil sin desbordamiento ni etiquetas cortadas. En México 2024 predominan U en 30 entidades y R en dos; M conserva su leyenda con cero entidades predominantes, sin inventar un caso. Los empates se verificaron con casos sintéticos porque no aparecieron en esa vista nacional. Evidencia local ignorada: `node_modules/.cache/section-category-review/review.json` y capturas de controles, mapa, leyenda y móvil. Quedan pendientes las regresiones extensas, tecnologías de apoyo y dispositivos físicos ya enumerados más abajo. No hubo commits, push o merges.
+
+## Antecedente · incorporación de tipo de sección electoral U/R/M
+
+Se incorpora el **tipo de sección electoral** al Atlas sin reemplazar Participación / Sexo / Edad ni sus fórmulas o cuantiles. U = Urbana, R = Rural, M = Mixta. La clasificación describe secciones del marco electoral: **no identifica residencia individual, localidad, nivel socioeconómico ni causas de participación o abstención**. Se mantienen los cambios locales anteriores en `feat/explorador-territorial-v2`; no se crean commits, push, merges o PR.
+
+### Auditoría y disponibilidad real
+
+Antes de incorporar los cálculos se revisaron los esquemas reales y scripts existentes. `cluster_features/reference/exact_age_2024.parquet` y los JSON demográficos del Atlas no ofrecen el cruce TIPOSEC. Los campos `LN_U/R/M` y `section_ln_share_U/R/M` de los escenarios contextuales de 2024 describen segmentos específicos; no acreditan por sí mismos disponibilidad en otros años o ámbitos.
+
+La fuente reutilizada es **`data/processed/descriptive/municipality_section_type/table.parquet`**, con 34,206 agregados de las seis elecciones. Contiene TIPOSEC, LN, SV, NV, NS, filas fuente y las dos métricas de SEXO=2. No hay nulos ni categorías fuera de U/R/M. Se concilian siete conteos aditivos por municipio contra `descriptive/municipality`, y por tipo/año contra `descriptive/section_type_year`; los cinco conteos del Atlas coinciden además con todos sus archivos municipales, estatales y nacionales. Los JSON previos `participamx_multiyear/elections/YEAR/section_statistics.json` ya ofrecen el marginal nacional y también se contrastan. Los diccionarios conservados definen el tipo de sección en el año correspondiente, con U/R/M explícito en 2024.
+
+| Elección | México | Entidades con U/R/M | Municipios con desglose | Combinaciones municipio–tipo observadas | Tipos no observados dentro de municipios conciliados | Presentes con SV+NV=0 | Presentes con tasa definida y soporte reducido |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 2009 | Disponible | 32, los tres tipos en cada entidad | 2,458 | 5,678 | 1,696 | 26 | 11 |
+| 2012 | Disponible | 32, los tres tipos en cada entidad | 2,455 | 5,655 | 1,710 | 6 | 13 |
+| 2015 | Disponible | 32, los tres tipos en cada entidad | 2,458 | 5,687 | 1,687 | 94 | 11 |
+| 2018 | Disponible | 32, los tres tipos en cada entidad | 2,463 | 5,705 | 1,684 | 60 | 11 |
+| 2021 | Disponible | 32, los tres tipos en cada entidad | 2,468 | 5,727 | 1,677 | 50 | 7 |
+| 2024 | Disponible | 32, los tres tipos en cada entidad | 2,477 | 5,754 | 1,677 | 55 | 5 |
+
+Hay conteos SV/NV/NS por tipo en todos estos ámbitos, por lo que fue viable implementar también las tasas. Las ausencias de un tipo municipal **no son archivos faltantes**: las celdas presentes concilian con el total completo. Una categoría sin registros puede tener LN=0 en esa partición exhaustiva; su tasa de participación sin base permanece no definida. Los 14,779 municipios–elección conservan la cobertura nominal completa del Atlas, todas las edades (incluidas 101+) y todas las categorías de sexo registradas. Esto no garantiza soporte de cada tipo ni correspondencia cartográfica: las uniones históricas pendientes siguen sin colorearse.
+
+En 2024 se conserva LN total=98,330,348: Urbana=68,291,361 (**69.45 %**), Rural=17,216,522 (**17.51 %**), Mixta=12,822,465 (**13.04 %**). Las participaciones por tipo son, respectivamente, **59.88 %, 60.11 % y 57.94 %**. Son cocientes de sumas, no promedios municipales ni inferencias de conducta individual. Hay 1,159 celdas municipio–tipo presentes con NS/LN≥10 % en 2024; esa alerta no elimina sus conteos.
+
+### Tarjetas, capas e interpretación
+
+La ficha de México, entidad o municipio incorpora **«Composición por tipo de sección electoral»** en Resumen: barra horizontal apilada, Urbana morado, Rural terracota y Mixta verde azulado; leyenda textual con porcentaje y LN, base total y explicación. El detalle desplegable muestra participación por tipo, SV, NV, SV+NV, NS, NS/LN y filas fuente. Las advertencias de soporte y NS siguen visibles fuera del detalle. Carga, error y clave sin desglose tienen estados propios; no se retienen cifras de otro año ni se sustituyen por cero.
+
+**«Más indicadores» → «Tipo de sección electoral»** añade un acceso secundario sin rediseñar los tres botones principales. Permite elegir Composición nominal o Participación observada y después Urbana / Rural / Mixta: seis capas. Se reutilizan las paletas morada, terracota y turquesa, los cuantiles, rangos reales, tarjeta contextual, geometrías, buscador, selección y cámara actuales. El mapa no introduce clasificación ordinal U=1/R=2/M=3.
+
+En «Ver rangos y metodología», la tabla U/R/M ofrece un **ranking del indicador seleccionado**, descendente por fracción exacta, con desempate por clave INE. Los valores sin soporte o sin tasa permanecen al final, sin posición. El ranking general inferior conserva su indicador de participación total, identificado por su título; no se presenta como un ranking U/R/M.
+
+«Lo más destacado» incorpora **como máximo un hallazgo U/R/M**, sustituyendo el tercer hallazgo de base cuando existe un contraste no nulo de al menos 0.01 pp entre dos o más tipos con tasas y soporte. Describe la distancia máxima observada en ese territorio y elección, sin ajuste por edad/sexo ni atribución causal. El umbral evita comunicar diferencias redondeadas a cero y no es una prueba estadística. Si sólo dos tipos son comparables, lo explicita; una categoría ausente o sin soporte no participa en ese contraste. NS alto advierte cautela. Sin contraste elegible se conserva el hallazgo de base. Nunca se superan tres hallazgos totales. La guía conserva sus cinco pasos y menciona el nuevo acceso secundario.
+
+### Fórmulas y criterios
+
+- Composición: **LN del tipo / LN total territorial**, todas las edades y categorías registradas. No se utiliza número de secciones ni SV como denominador.
+- Participación: **SV del tipo / (SV del tipo + NV del tipo)**; primero se suman los conteos. Denominador cero produce NULL/«No disponible», nunca participación cero. NS no se suma a NV.
+- Cobertura no especificada: **NS del tipo / LN del tipo**; alerta desde 10 %. No mide causalidad, abstención ni representatividad.
+- Soporte cartográfico: mismos criterios exploratorios LN≥100, SV+NV≥100 y filas fuente≥5 por tipo presente. Para un cero nominal de tipo no observado, sólo es comparable si la partición completa está conciliada y su total satisface el soporte; su tasa sin denominador sigue fuera de la escala. Los valores calculables con soporte reducido se muestran, usando el neutro y sin posición comparable. La barra de composición conserva las cantidades conocidas, incluso con advertencia.
+
+Los cuantiles siguen siendo relativos al ámbito y elección, sin ponderación nominal de los cortes. No se alteró `thematicScale.ts`. La clasificación U/R/M y los límites pueden variar entre años: se habilita consulta dentro de cada elección, **no transiciones municipales ni efectos históricos atribuibles al tipo de sección**. Los diccionarios comparables no prueban continuidad territorial. Persisten las limitaciones de cuadernillos, NS, casillas especiales y voto exterior de la fuente original.
+
+### Datos derivados, contratos y reproducción
+
+Se crean **199 archivos nuevos** (aproximadamente 5.07 MB en conjunto) bajo `public/data/territorial/sections/`: seis `YEAR/index.json` (México y 32 entidades), 192 `YEAR/STATE.json` municipales y `manifest.json`. La carga nacional no descarga todos los municipios; se solicita sólo la entidad pertinente y se reutiliza caché por elección/ámbito. Las respuestas se validan antes de almacenar: versión, año, ámbito, claves únicas, categorías, enteros no negativos e identidades de conteos. Cancelación e invalidación por clave evitan mostrar datos de una selección anterior. Un error U/R/M no impide consultar las capas originales.
+
+`sectionStatistics.ts` declara `SectionType`, `SectionCell`, `SectionProfile`, `SectionIndex` y `SectionMunicipalities`; el servicio homónimo permite reutilizar los conteos como contexto agregado en futuras investigaciones. Los archivos son **marginales territoriales**, no un cruce nuevo edad×sexo×tipo. No deben asignarse a segmentos multiplicando marginales o suponiendo independencia. Para caracterizar perfiles por edad/sexo habrá que reutilizar cruces validados como los escenarios contextuales de 2024 y revisar su soporte. No se crean perfiles ni se modifican reglas, estrategias, laboratorio o exportaciones.
+
+El exportador `scripts/build_section_statistics.py` lee sólo Parquet descriptivos y JSON agregados. No lee CSV, ZIP ni los 54 millones de registros limpios. Audita antes de escribir, protege destinos distintos, compara lectura posterior y hashes de fuentes; los resultados analíticos previos permanecen intactos. `--check` no escribe y un destino ya idéntico se conserva. Requiere Pandas/PyArrow del entorno existente, sin nuevas dependencias.
+
+```powershell
+.venv_pattern_algorithms/Scripts/python.exe scripts/build_section_statistics.py --audit-only
+.venv_pattern_algorithms/Scripts/python.exe scripts/build_section_statistics.py
+.venv_pattern_algorithms/Scripts/python.exe scripts/build_section_statistics.py --check
+node --experimental-strip-types --test scripts/section-statistics.test.mjs
+npm.cmd run typecheck
+npm.cmd run build
+```
+
+Archivos nuevos: exportador y prueba anteriores, `scripts/load_map_module.mjs` (carga de módulos puros para pruebas), `src/features/map/sectionStatistics.ts`, `useSectionStatistics.ts`, `SectionComposition.tsx`, `src/services/sectionStatistics.ts`, `src/styles/section-statistics.css` y los JSON nuevos. Se integran cambios locales en `thematicData.ts`, `useThematicMap.ts`, `ThematicMapControls.tsx`, `TerritoryMap.tsx`, `StateElectionSummary.tsx`, `MunicipalElectionSummary.tsx`, `AtlasContext.tsx`, `electoralInterpretation.ts` y la descripción del paso de indicadores de `AtlasGuide.tsx`. `package.json` incorpora la prueba específica a la futura suite territorial; se adaptan importaciones/expectativas de las pruebas anteriores sin ejecutarlas extensivamente.
+
+### Validación de esta entrega y pendientes
+
+Pasaron **TypeScript, compilación, tres pruebas específicas y el exportador en modo `--check`**. Las pruebas comprueban huellas de todos los JSON nuevos, 192 entidades, 14,779 municipios, conciliación, las seis fórmulas nuevas, ausencias, ceros, denominadores nulos, soporte, NS, contratos inválidos, ranking y máximo de hallazgos. Sigue la advertencia del fragmento cartográfico (aproximadamente 1,849 KB / 526 KB gzip).
+
+La revisión básica dirigida en Chrome cubrió México 2024 (seis capas y cifras cartográficas), Aguascalientes estatal/municipal, cambio a 2009, Cuauhtémoc sin R/M, claro/oscuro, pantalla de 390 px, movimiento reducido, apertura/cierre de guía y fallo simulado de archivos U/R/M. No hubo excepciones JavaScript ni desbordamiento horizontal en el móvil revisado. La tabla extensa se desplaza dentro de su región. Se inspeccionaron capturas; el fallo de U/R/M muestra error y conserva disponible el mapa de participación total. Evidencia local ignorada: `node_modules/.cache/section-basic-review/review.json` y sus capturas nacionales, estatales, municipales, móviles y de fallo. Los intentos iniciales fallidos del guion fueron esperas durante desmontaje y una expectativa de formato decimal de cero; no se presentan como fallos de los datos ni de la interfaz.
+
+**No se ejecutó la batería extensa.** Quedan pendientes regresiones completas de las seis elecciones, navegación/ranking/búsqueda/cámara y todas las fichas; cobertura cartográfica de casos extremos; lectores de pantalla, recorrido completo de teclado, contraste integral/simulaciones cromáticas, Safari/iOS y dispositivos físicos. También conviene evaluar deduplicación de solicitudes simultáneas y tamaños de transferencia antes de una optimización posterior. La interpretación o segmentación futura requiere revisión específica del cruce edad/sexo/tipo; la cobertura nominal alta no elimina las carencias por categoría. No se modificaron datos originales, resultados analíticos previos, cuantiles, módulo del Laboratorio ni perfiles actuales.
+
+## Antecedente · contraste claro y exploración guiada
+
+Se continúa sobre los cambios locales de `feat/explorador-territorial-v2`. Se conservan Participación / Sexo / Edad, subopciones, datos, fórmulas, cuantiles, navegación y ranking. **La validación de esta entrega es básica y dirigida**: TypeScript, compilación y cuatro recorridos acotados en Chrome. Las 23 pruebas y 33 comprobaciones extensivas documentadas como antecedentes más abajo no se repitieron.
+
+### Cambios visuales y selección
+
+- **Claro:** seis paletas de cinco niveles con primeros tonos más distinguibles del fondo frío `#f4f6fa`. Participación utiliza `#dcc5eb`, `#b893d4`, `#9263bb`, `#69388f`, `#421b65`. La tabla de paletas de este documento recoge los extremos actuales. Mapa y leyenda comparten variables CSS. Los colores oscuros y neutros anteriores se conservan.
+- **Contorno:** doble trazo continuo, sin relleno ni eventos, dibujado al final. Los estados de contexto en la vista municipal no reciben puntero. En selección se evita que las reglas discontinuas generales de hover/foco compitan con el borde; el foco por teclado refuerza el halo hasta 13 px. Los territorios no seleccionados mantienen su indicador de foco.
+- **Sonora:** la captura señalada no se reprodujo exactamente: la inspección inicial en reposo registró `stroke-dasharray: none`. Sí se identificaron reglas generales discontinuas aplicables al hover/foco de los caminos de estado. Se limitaron en selección/contexto y se comprobaron después Sonora y un municipio. No se corrigieron ni eliminaron islas o partes de geometrías compuestas.
+- **Encuadre:** se ajusta la proporción visual del SVG al espacio disponible para reducir el espacio vacío; no se cambian proyección, geometrías, cálculo de cámara ni gestos. La ruta territorial queda en una fila encima del SVG para no cubrir Baja California.
+- **Tarjeta:** permanece dentro del contenedor, debajo de la geometría también en escritorio, con dos columnas; en móvil usa una columna. Así conserva márgenes y tipografía sin cubrir territorios ni los controles de zoom. Su botón sigue abriendo la ficha electoral.
+
+### Guía de cinco pasos y ayuda bajo demanda
+
+El botón **«¿Cómo usar el Atlas?»** abre `AtlasGuide.tsx`: elección, búsqueda, indicador, leyenda y tarjeta/ficha. Una invitación discreta permite empezar u omitir; no se abre automáticamente el diálogo. El recorrido utiliza controles reales, resalta el destino, lo desplaza a la vista y ofrece progreso, Anterior, Siguiente, Omitir y Finalizar. Sin escala cuantitativa señala la leyenda neutral y adapta la explicación. Si falta un destino usa las alternativas disponibles y mantiene operativa la navegación.
+
+Se usa un `dialog` nativo, foco en el título de cada paso y retorno al botón de origen al cerrar; Escape omite la guía. Se respeta movimiento reducido. El estado `completed`/`skipped` se guarda bajo `participamx-atlas-guide-v1` cuando está disponible `localStorage`, sin datos personales. Un fallo de almacenamiento no impide usarla y el botón permite reabrirla. Los atajos anteriores de «Cómo navegar» se reutilizan en el paso final y en la descripción accesible del mapa, evitando dos bloques visibles de instrucciones.
+
+Las ayudas informativas de participación, no participación, LN, SV, NV y NS se abren mediante desplegables nativos. La tarjeta y la leyenda conservan los detalles de composición nominal/participantes, edad, cuantiles y soporte. Las advertencias críticas continúan visibles.
+
+### Hallazgos del territorio
+
+**«Lo más destacado» reemplaza la franja anterior de tres métricas**; no se añade otra copia de esa franja. La función pura `buildTerritoryHighlights` en `electoralInterpretation.ts` genera hasta tres observaciones desde los conteos existentes: participación en contexto o diferencia frente a México, condición no especificada y base conocida. La ficha conserva sus cifras exactas y su lectura detallada.
+
+La referencia nacional suma los conteos estatales del índice de la misma elección y utiliza la función de tasa existente. La diferencia es descriptiva, sin ajuste demográfico; sólo se presenta con tasa y soporte suficientes. No se infieren cambios históricos, causas, preferencias ni necesidades individuales. Un denominador cero produce un estado informativo y no una tasa cero; soporte insuficiente produce cautela. NS sigue separado de NV. Al cambiar territorio/año se invalida el contexto anterior hasta recibir la base correspondiente.
+
+Ejemplos del recorrido: México 2024 tiene base especificada **92,004,694** y NS/LN **6.43 %**; Xalapa 2024 muestra base **342,843** y diferencia nacional **+2.96 pp**. Ziracuaretiro muestra «Sin tasa disponible», sin diferencia nacional inventada. Son ejemplos verificados, no valores fijados en el componente.
+
+### Archivos y comprobaciones actuales
+
+Se añaden `src/features/map/AtlasGuide.tsx` y `src/styles/atlas-guide.css`. Se extiende `electoralInterpretation.ts` y se integran `AtlasContext.tsx`, `useThematicMap.ts`, `MapPage.tsx`, `TerritoryMap.tsx`, `ThematicMapControls.tsx`, `ElectionMetricCards.tsx` y `territorial-atlas.css`. Se conservan los otros cambios locales previos. `scripts/check-territorial-ui.mjs` adapta selectores y expectativas al nuevo contexto y ayuda; **la suite extensa no se ejecutó**.
+
+Se ejecutaron `npm.cmd run typecheck` y `npm.cmd run build` correctamente. Persiste la advertencia del paquete cartográfico: aproximadamente **1,836 KB / 522 KB gzip** en el fragmento del mapa. `git diff --check` no detecta errores de espacios. La revisión dirigida en Chrome comprobó:
+
+1. Los cinco pasos, destinos reales, progreso, Finalizar, persistencia de finalización, retorno de foco, reapertura y Escape; invitación sin diálogo automático.
+2. Sonora, foco de selección municipal, tema oscuro y tarjeta fuera de la geometría; cambio directo Sonora → Veracruz y selección de Xalapa.
+3. Hallazgos nacionales, referencia de la misma elección y protección ante denominador cero.
+4. Pantalla de 390 px, movimiento reducido, guía con leyenda sin comparables, omisión y ausencia de desbordamiento horizontal en ese recorrido.
+
+No se observaron excepciones JavaScript en estos recorridos. Evidencia local ignorada: `node_modules/.cache/atlas-final-review/final-review.json` y capturas `guide-step-1.png`, `guide-step-4.png`, `national-map-light.png`, `sonora-light.png`, `municipality-dark.png`, `highlights-xalapa.png`, `guide-mobile-no-comparable.png` y `mobile-neutral.png`. El guion temporal de revisión queda en caché; no es una nueva suite del producto.
+
+**Pendientes:** repetir regresiones extensas de datos, búsqueda/ranking, seis elecciones, cámara/gestos, fichas y capas; revisar geometrías extremas y pantallas pequeñas/bajas adicionales; probar navegación Tab/Shift+Tab completa, lectores de pantalla, almacenamiento bloqueado, persistencia tras recarga, zoom de texto y contraste/simulaciones cromáticas de todas las paletas. También quedan teléfonos físicos y Safari/iOS. El uso de controles nativos y la revisión dirigida no certifican accesibilidad completa.
+
+Para revisar: `npm.cmd run dev -- --host 127.0.0.1`, abrir `/#mapa`, iniciar la guía y recorrer los cinco pasos. Contrastar el mapa claro y oscuro, seleccionar Sonora/Hermosillo, cambiar a Veracruz/Xalapa, consultar la ficha y comprobar los hallazgos. En móvil revisar No binario y su leyenda sin comparables. No se modificaron datos, JSON, correspondencias, algoritmo de cuantiles, ranking, laboratorio, perfiles/exportaciones ni estilos globales. No se hicieron commits, push, merges ni PR.
+
+## Antecedente · contraste oscuro, navegación y lectura
+
+La iteración anterior se centró en contraste oscuro, navegación directa e interpretación. Los párrafos siguientes conservan su alcance y evidencia histórica; el encabezado de entrega actual indica los cambios y verificaciones más recientes.
+
+- **Oscuro:** cinco tonos más luminosos en cada una de las seis paletas, fondo separado `#251d2d`–`#1b1521` y fronteras `#201728`. No cambian clases ni valores; mapa y leyenda comparten las mismas variables CSS. Los dos neutros mantienen sus colores y motivos.
+- **Selección:** halo exterior de 9 px y borde interior de 3.5 px, constantes al acercar. Claro: halo `#fff9e9`, borde `#6d301c`; oscuro: halo `#181120`, borde `#ffe2a6`. Se dibujan después de todos los territorios, sin relleno ni eventos de puntero. Aparición de 160 ms, desactivada con movimiento reducido. Cursor y foco mantienen trazos discontinuos distintos de la selección sólida.
+- **Cambiar estado:** botón compacto en las migas de pan; abre el buscador existente, enfoca el campo y muestra las 32 entidades. Se puede filtrar por nombre, recorrer con flechas y elegir con Enter. La entidad actual se identifica por texto y borde. «Buscar también municipios» devuelve el mismo campo al buscador general. No hay otro servicio ni catálogo. Elegir otra entidad limpia el municipio, conserva año/capa y actualiza geometría, ficha, contexto y ranking.
+- **Lectura:** `electoralInterpretation.ts` genera textos desde los conteos/valores ya calculados. «¿Qué nos dicen estos datos?» aparece en Resumen; la tarjeta del mapa explica la capa consultada. Se distingue tasa observada, composición nominal y composición de participantes. Ante denominador cero, ausencia o soporte insuficiente se comunica el límite en lugar de interpretar un porcentaje comparable.
+- **Texto:** se retira la repetición del título del Atlas, territorio/año en líneas cercanas y notas repetidas bajo los cuatro conteos. Las cifras exactas siguen visibles; fórmulas, definición nominal y base de la tasa siguen en los detalles. Alertas de NS y soporte permanecen visibles.
+
+Ejemplos revisados: México 2024 explica aproximadamente **60 de cada 100 registros con condición de voto especificada** con participación y 40 sin ella; **6.43 %** del nominal es no especificado, sin convertirlo en abstención. Xalapa 2024 muestra aproximadamente **63/37** y **13.03 %** no especificado; la capa Mujeres entre participantes muestra **57.13 % de participaciones registradas**, no tasa de participación femenina. El redondeo sólo facilita la lectura, conserva el porcentaje original y no identifica personas.
+
+### Archivos y validación del antecedente oscuro
+
+Nuevo: `src/features/map/electoralInterpretation.ts`. Modificados: `ElectionMetricCards.tsx`, `ThematicMapControls.tsx`, `DemographicPanel.tsx`, `TerritorySearch.tsx`, `MapPage.tsx`, `TerritoryMap.tsx` (todos en `src/features/map/`), `src/styles/territorial-atlas.css`, `scripts/check-territorial-ui.mjs` y este documento. El guion extenso sólo adapta su comprobación del contorno seleccionado a los nuevos colores; **no se ejecutó**. No se alteraron conteos, perfiles, datos generados, correspondencias, ordenamiento, búsqueda general ni algoritmo de cuantiles.
+
+Se ejecutaron `npm.cmd run typecheck` y `npm.cmd run build`. La compilación conserva la advertencia de tamaño cartográfico (aproximadamente 1.828 MB / 520 KB gzip). La revisión básica usó Chrome para navegar y capturar México oscuro, Oaxaca municipal → Veracruz desde «Cambiar estado», Xalapa, cambio 2024→2018 y móvil de 390 px con movimiento reducido. Se inspeccionaron las capturas; no se observaron excepciones JavaScript en ese recorrido. Se verificó que el contorno no recibe clics ni introduce relleno, y que no hay desbordamiento horizontal en el móvil revisado. Es un recorrido limitado, no una regresión completa ni una certificación de accesibilidad.
+
+Un cálculo puntual de luminancia de los colores CSS frente al extremo más claro del nuevo fondo oscuro dio un contraste mínimo aproximado de **3.16:1** en violeta, 3.62 en cálido, 3.51 en rosa, 3.91 en azul, 3.96 en turquesa y 4.30 en ámbar. Describe separación relleno/fondo, no contraste entre todos los niveles ni legibilidad de todo el sitio. Faltan repetir simulaciones cromáticas y la batería extensa con las nuevas tonalidades.
+
+Evidencia local ignorada por Git: `node_modules/.cache/atlas-basic-review/`, con `review.json`, `national-dark.png`, `national-map-dark.png`, `change-state-search.png`, `state-dark.png`, `municipality-dark.png`, `municipality-panel-dark.png` y `municipality-mobile.png`. El guion temporal utilizado para guiar la revisión está en la caché; no forma parte del producto ni sustituye la suite. Los marcadores/capturas de la suite extensa anterior no representan una validación de este cambio.
+
+Para revisión humana: iniciar Vite, abrir `/#mapa`, activar oscuro y contrastar una capa baja/alta con la leyenda. Seleccionar un municipio, usar «Cambiar estado», escribir otra entidad y elegir con teclado. Comprobar que se conserva año/capa y desaparece el municipio anterior. Revisar las lecturas de Resumen y las capas nominal/participantes, luego abrir los detalles para sus bases. Pendientes: regresiones completas de mapas/datos/navegación, casos límite de lectura, contraste integral, lectores de pantalla, teléfonos físicos y Safari/iOS. No se hicieron commits, push, merges ni PR.
+
+## Refinamiento anterior · funciones conservadas
+
+La entrega anterior incorporó diez capas, cuantiles permanentes, leyenda compacta y neutros para datos no comparables. Los 193 archivos municipales, 199 resúmenes, índice de búsqueda y siete archivos de capas mantienen sus contratos y cifras. Esta revisión no regenera JSON ni modifica datos analíticos; el archivo local extraño sin seguimiento permanece intacto.
 
 Esta revisión trabaja en la rama encontrada al inicio: **`feat/explorador-territorial-v2`**. El rediseño de navegación anterior se desarrolló en `feat/mapa-fichas-demograficas`; se reutiliza su implementación en la rama actual.
 
-## Refinamiento y simplificación · entrega actual
+### Organización temática y leyenda heredadas
 
 | Etapa | Implementación |
 | --- | --- |
@@ -14,7 +170,7 @@ Esta revisión trabaja en la rama encontrada al inicio: **`feat/explorador-terri
 | 4 · Tarjetas | Nombre destacado, año, cifra, base, estado de soporte e iconos. «Ver ficha electoral» y cálculo desplegable. Barra proporcional sólo para valores comparables. |
 | 5 · Pulido y validación | Tipografía legible, menos filas y texto permanente, mismos colores cuantitativos, temas, foco y movimiento reducido. Conciliación, regresiones y revisión visual. |
 
-La franja de contexto muestra participación observada, LN total y NS/LN del territorio **seleccionado**, no del territorio señalado con el cursor ni del subconjunto con soporte cartográfico. Reutiliza los conteos ya cargados; no añade descargas. Al cambiar territorio/año invalida cifras anteriores hasta disponer de la nueva base. La ficha lateral conserva su indicador general aunque se consulte una capa de composición.
+La franja de contexto original mostraba participación observada, LN total y NS/LN del territorio **seleccionado**. En la entrega actual se sustituye por «Lo más destacado», conservando el ámbito seleccionado y la invalidación al cambiar territorio/año. La ficha lateral conserva su indicador general aunque se consulte una capa de composición.
 
 La tarjeta del mapa muestra nombre/año, capa, porcentaje y base. Con soporte, la barra representa la proporción real sobre 0–100, no el cuantil. Un valor con soporte insuficiente conserva su cifra con texto neutro y advertencia, sin barra cuantitativa; una ausencia conserva su motivo, nunca cero. El estado de soporte y NS alto permanecen visibles; «Cómo se calcula» contiene universo y conteos. «Ver ficha electoral» selecciona el territorio consultado y lleva el foco al panel. En móvil la tarjeta queda debajo del SVG. Cursor/foco se diferencian de selección: borde señalado discontinuo frente a contorno sólido cálido con halo neutro. El contorno nunca sustituye el relleno temático.
 
@@ -24,14 +180,14 @@ La leyenda visible muestra el indicador, año y ámbito nacional/estatal, una pr
 
 | Capa | Paleta | Claro: menor → mayor | Oscuro: menor → mayor |
 | --- | --- | --- | --- |
-| Participación, 35–59 y No binario cuando hubiera soporte | Violeta | `#f0e6f8` → `#4e2568` | `#3d2c4d` → `#dec6ef` |
-| No participación | Durazno/terracota | `#fff0e4` → `#82402d` | `#4e3028` → `#f2c9a6` |
-| Mujeres: nominal o participantes | Rosa/magenta | `#fce7f0` → `#76204f` | `#4b2b40` → `#f2bfda` |
-| Hombres: nominal o participantes | Azul | `#e4f0fb` → `#214c78` | `#263e56` → `#c2dff3` |
-| 18–34 | Turquesa | `#e2f3ef` → `#195c56` | `#25433f` → `#bce6dc` |
-| 60–100 | Ámbar | `#fff4d5` → `#805b1d` | `#493d25` → `#f1d9a1` |
+| Participación, 35–59 y No binario cuando hubiera soporte | Violeta | `#dcc5eb` → `#421b65` | `#7b658d` → `#f0dffd` |
+| No participación | Durazno/terracota | `#efc5ad` → `#78331f` | `#996d58` → `#ffe8ce` |
+| Mujeres: nominal o participantes | Rosa/magenta | `#e9b6cf` → `#6d204b` | `#98667f` → `#ffe2f0` |
+| Hombres: nominal o participantes | Azul | `#b6d1e8` → `#1f466f` | `#5e809e` → `#e4f3ff` |
+| 18–34 | Turquesa | `#9fd4c8` → `#115347` | `#51877e` → `#e2f8ef` |
+| 60–100 | Ámbar | `#e6cf8c` → `#6d4e16` | `#97814d` → `#fff0c9` |
 
-Cada paleta tiene cinco niveles discretos definidos localmente en `territorial-atlas.css`. En oscuro la progresión asciende en luminosidad; conserva el orden estadístico y cambia los colores, no los valores. Rosa/azul son identificadores visuales solicitados, sin significado demográfico adicional. Leyenda numérica, títulos, consulta y tabla evitan depender sólo del matiz. Las simulaciones de protanopía, deuteranopía y tritanopía comprueban orden y separación de luminancia; no constituyen certificación clínica ni auditoría exhaustiva de accesibilidad.
+Cada paleta tiene cinco niveles discretos definidos localmente en `territorial-atlas.css`. En oscuro la progresión asciende en luminosidad; conserva el orden estadístico y cambia los colores, no los valores. Rosa/azul son identificadores visuales solicitados, sin significado demográfico adicional. Leyenda numérica, títulos, consulta y tabla evitan depender sólo del matiz. La entrega anterior incluyó simulaciones cromáticas; falta repetirlas para estas tonalidades oscuras. No constituyen certificación clínica ni auditoría exhaustiva de accesibilidad.
 
 ### Archivos de esta iteración
 
@@ -311,7 +467,9 @@ Se generan **192 archivos estatales y un índice/manifiesto**, aproximadamente 2
 | `src/features/dashboard/NationalAgeSex.tsx` | Ajuste editorial de etiqueta No binario, sin cambiar cálculos |
 | `src/services/electionData.ts` | Validación de conteos estatales completos y filas fuente para el ranking |
 
-## Reproducción y resultados de pruebas
+## Reproducción y resultados extensivos de la entrega anterior
+
+Esta sección conserva el alcance de la suite anterior como referencia. No se ejecutó la batería completa para los cambios de contraste/navegación/lectura de la entrega actual; consultar su validación limitada al inicio del documento.
 
 Desde la raíz, con las dependencias existentes instaladas. En PowerShell se utiliza `npm.cmd` porque la política local bloquea `npm.ps1`; no se cambia esa política.
 
