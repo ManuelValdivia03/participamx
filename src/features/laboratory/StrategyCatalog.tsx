@@ -1,0 +1,6 @@
+import type { Strategy } from './types'
+import { strategies } from './strategies'
+
+export function StrategyCatalog({ selectedId, onSelect }: { selectedId: string; onSelect: (strategy: Strategy) => void }) {
+  return <section aria-labelledby="lab-catalog-title"><div className="lab-section-heading"><p className="eyebrow">PASO 1</p><h2 id="lab-catalog-title">Seleccionar estrategia</h2><p>Seis propuestas hipotéticas para revisión; no son servicios oficiales implementados.</p></div><div className="lab-catalog">{strategies.map(strategy => <article className={`lab-strategy ${selectedId === strategy.id ? 'selected' : ''}`} key={strategy.id}><p className="lab-type">{strategy.component}</p><h3>{strategy.name}</h3><p>{strategy.description}</p><dl><div><dt>Propósito</dt><dd>{strategy.purpose}</dd></div><div><dt>Unidad operativa</dt><dd>{strategy.unit}</dd></div></dl><p className="lab-contribution"><strong>Contribución hipotética:</strong> {strategy.contribution}</p><ul>{strategy.indicators.slice(0, 2).map(indicator => <li key={indicator}>{indicator}</li>)}</ul><button type="button" className="lab-button secondary" aria-pressed={selectedId === strategy.id} onClick={() => onSelect(strategy)}>{selectedId === strategy.id ? 'Estrategia seleccionada' : 'Crear escenario'}</button></article>)}</div></section>
+}
