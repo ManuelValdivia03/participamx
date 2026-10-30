@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { calculateScenario, formatMXN, formatNumber } from './calculations'
-import { downloadScenarioPdf } from './export'
+import { downloadScenarioPdf, downloadScenarioPng } from './export'
+import { scenarioDiagnosis } from './diagnosis'
 import { strategyById } from './strategies'
 import type { ScenarioDraft } from './types'
 
-export function ScenarioResults({ draft, onSave, canSave, showValidation = false }: { draft: ScenarioDraft; onSave: () => void; canSave: boolean; showValidation?: boolean }) {
+export function ScenarioResults({ draft, onSave, canSave, showValidation = false, saveError = '' }: { draft: ScenarioDraft; onSave: () => void; canSave: boolean; showValidation?: boolean; saveError?: string }) {
   const [exportError, setExportError] = useState('')
-  const [exporting, setExporting] = useState(false)
+  const [exporting, setExporting] = useState<'pdf' | 'png' | null>(null)
   const metrics = calculateScenario(draft)
   const strategy = strategyById(draft.strategyId)
   const plannedUnits = metrics.plannedUnits
@@ -21,10 +22,11 @@ export function ScenarioResults({ draft, onSave, canSave, showValidation = false
   const budgetPercent = metrics.budgetPercent ?? 0
   const budgetChartWidth = Math.min(Math.max(budgetPercent, 0), 100)
   const activityChartWidth = metrics.plannedUnits !== null && capacityForChart > 0 ? Math.min(metrics.plannedUnits / capacityForChart * 100, 100) : 0
-  function exportScenario() {
+  const diagnosis = scenarioDiagnosis(metrics, strategy.unit)
+  async function exportScenario(format: 'pdf' | 'png') {
     setExportError('')
-    setExporting(true)
-    try { downloadScenarioPdf(draft) } catch (error) { setExportError(error instanceof Error ? error.message : 'No se pudo generar el PDF.') } finally { setExporting(false) }
+    setExporting(format)
+    try { if (format === 'pdf') downloadScenarioPdf(draft); else await downloadScenarioPng(draft) } catch (error) { setExportError(error instanceof Error ? error.message : 'No se pudo generar el documento.') } finally { setExporting(null) }
   }
 
   return <section className="lab-results" aria-labelledby="lab-results-title">
@@ -37,13 +39,14 @@ export function ScenarioResults({ draft, onSave, canSave, showValidation = false
     <section className="lab-diagnosis" aria-labelledby="lab-diagnosis-title">
       <div>
         <p className="eyebrow">RESUMEN DEL ESCENARIO</p>
-        <h3 id="lab-diagnosis-title">{!hasCompleteData ? 'Completa la información para revisar el escenario' : budgetEnough && (!operationKnown || operationEnough) ? 'El dinero y la capacidad alcanzan con estos datos' : 'Hay algo que debes revisar'}</h3>
+        <h3 id="lab-diagnosis-title">{diagnosis.title}</h3>
       </div>
       <div className="lab-diagnosis-status">
         <Status label="Presupuesto" state={!hasCompleteData ? 'incomplete' : budgetEnough ? 'ok' : 'warning'} text={!hasCompleteData ? 'Información incompleta' : budgetEnough ? 'Suficiente' : 'Insuficiente'} />
         <Status label="Capacidad de trabajo" state={!hasCompleteData || !operationKnown ? 'incomplete' : operationEnough ? 'ok' : 'warning'} text={!hasCompleteData || !operationKnown ? 'Todavía no has indicado este dato' : operationEnough ? 'Suficiente' : 'Insuficiente'} />
       </div>
     </section>
+    {hasCompleteData && <div className="lab-diagnosis-explanation"><p>{diagnosis.budget}</p><p>{diagnosis.operation}</p></div>}
     <dl className="lab-metrics lab-metrics-expanded">
       <Metric label="Presupuesto disponible" value={formatMXN(metrics.budget)} help="El dinero con el que comenzarías este escenario." />
       <Metric label="¿Cuánto costaría?" value={formatMXN(metrics.projectedCost)} help="Lo que costaría realizar las actividades que elegiste." />
@@ -58,9 +61,10 @@ export function ScenarioResults({ draft, onSave, canSave, showValidation = false
       <ComparisonBar title="Actividades frente a lo que podrías completar" detail={plannedUnits === null || feasibleCapacity === null ? 'Completa los datos para comparar.' : `Quieres realizar ${formatNumber(plannedUnits)} y podrías completar ${formatNumber(feasibleCapacity, 2)}.`} valueLabel={plannedUnits === null ? 'Completa los datos' : `${formatNumber(plannedUnits)} planeadas`} width={activityChartWidth} warning={hasCompleteData && metrics.resourceDifference !== null && metrics.resourceDifference < 0} />
     </div>
     {hasCompleteData && metrics.resourceDifference !== null && <p className={metrics.resourceDifference < 0 ? 'lab-deficit' : 'lab-capacity'}>{metrics.resourceDifference < 0 ? `Planeaste ${formatNumber(plannedUnits)} ${strategy.unit}, pero con los recursos que indicaste sólo podrías completar ${formatNumber(Math.max(0, metrics.resourceDifference + (plannedUnits ?? 0)), 2)}. Te faltarían ${formatNumber(Math.abs(metrics.resourceDifference), 2)} para completar el plan.` : `Planeaste ${formatNumber(plannedUnits)} ${strategy.unit} y todavía podrías completar ${formatNumber(metrics.resourceDifference, 2)} más con los recursos indicados.`}</p>}
-    <p className="lab-result-note">{!hasCompleteData ? 'Completa los datos para revisar si el dinero y la capacidad alcanzan.' : operationKnown && !operationEnough ? 'Planeaste más actividades de las que podrías realizar con la capacidad indicada, aunque el dinero alcance.' : !budgetEnough ? 'El costo de las actividades supera el dinero disponible. Puedes cambiar la cantidad, el costo o el presupuesto.' : 'El dinero y la capacidad indicados alcanzan para este plan. Esto sólo describe una relación matemática entre tus supuestos.'}</p>
+    <p className="lab-result-note">{!hasCompleteData ? 'Completa los datos para revisar si el dinero y la capacidad alcanzan.' : operationKnown && !operationEnough ? 'Planeaste más actividades de las que podrías realizar con la capacidad indicada. Revisa por separado la disponibilidad de presupuesto.' : !budgetEnough ? 'El costo de las actividades supera el dinero disponible. Puedes cambiar la cantidad, el costo o el presupuesto.' : 'El dinero y la capacidad indicados alcanzan para este plan. Esto sólo describe una relación matemática entre tus supuestos.'}</p>
     <button type="button" className="lab-button" onClick={onSave} disabled={!draft.name.trim()} aria-disabled={!canSave}>Guardar escenario</button>
-    <button type="button" className="lab-button secondary" onClick={exportScenario} disabled={!canSave || exporting}>{exporting ? 'Generando PDF…' : 'Descargar resultados en PDF'}</button>
+    {saveError && <p className="lab-alert" role="alert">{saveError}</p>}
+    <div className="lab-export-actions"><button type="button" className="lab-button secondary lab-export-button" onClick={() => exportScenario('pdf')} disabled={!canSave || exporting !== null}>{exporting === 'pdf' ? 'Generando PDF…' : 'Descargar resultados en PDF'}</button><button type="button" className="lab-button secondary lab-export-button" onClick={() => exportScenario('png')} disabled={!canSave || exporting !== null}>{exporting === 'png' ? 'Generando PNG…' : 'Descargar resultados en PNG'}</button></div>
     {exportError && <p className="lab-alert" role="alert">{exportError}</p>}
     <section id="lab-evaluation" className="lab-evaluation"><h3>¿Cómo evaluaríamos esta propuesta?</h3><p>Los indicadores de evaluación describen qué podría observarse durante una implementación; no son resultados logrados.</p><ol><li><strong>Resultados calculados:</strong> presupuesto, costo, saldo y capacidades provienen exclusivamente de los supuestos de este escenario.</li><li><strong>Indicadores durante una implementación:</strong> {strategy.indicators.join('; ')}.</li><li><strong>Resultados reales:</strong> todavía no disponibles. Ningún cálculo estima voto, abstención ni efecto electoral.</li></ol></section>
   </section>

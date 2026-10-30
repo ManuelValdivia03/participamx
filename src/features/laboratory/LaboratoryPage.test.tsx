@@ -4,14 +4,15 @@ import { describe, expect, it, vi } from 'vitest'
 import { LaboratoryPage } from './LaboratoryPage'
 
 describe('LaboratoryPage', () => {
-  it('muestra las seis estrategias y el estado U/R/M pendiente', () => {
+  it('conserva las seis estrategias y retira únicamente el apartado U/R/M pendiente', () => {
     render(<LaboratoryPage />)
     expect(screen.getAllByRole('article')).toHaveLength(6)
     expect(screen.getAllByText('¿Qué vamos a calcular?')).toHaveLength(6)
     expect(screen.getAllByText('¿Cómo comprobaríamos si ayuda?')).toHaveLength(6)
     expect(screen.getByText(/Cada guía revisada representa un procedimiento/)).toBeInTheDocument()
     expect(screen.getByText('Mejora del trabajo interno')).toBeInTheDocument()
-    expect(screen.getByText('Estos datos todavía no están disponibles en el laboratorio.')).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: 'Tipos de sección electoral' })).not.toBeInTheDocument()
+    expect(screen.getAllByRole('button', { name: /^Ver detalles:/ })).toHaveLength(6)
     expect(screen.getByText('¿Cómo evaluaríamos esta propuesta?')).toBeInTheDocument()
   })
   it('organiza el escenario y muestra contexto y errores accesibles', async () => {
@@ -34,7 +35,10 @@ describe('LaboratoryPage', () => {
     await fill('¿Cuánto costaría cada actividad? (MXN)', '200')
     await fill('¿Cuántas actividades quieres realizar?', '60')
     await fill('¿Cuántas actividades podrían realizarse como máximo? (opcional)', '100')
-    expect(screen.getByRole('heading', { name: 'Hay algo que debes revisar' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'El escenario supera el presupuesto disponible' })).toBeInTheDocument()
+    expect(screen.getByText(/Se necesitarían \$2,000.00 adicionales/)).toHaveTextContent('50 guías revisadas completas')
+    expect(screen.getByRole('button', { name: 'Descargar resultados en PDF' })).toBeEnabled()
+    expect(screen.getByRole('button', { name: 'Descargar resultados en PNG' })).toBeEnabled()
     expect(screen.getByText('Presupuesto', { exact: true }).parentElement).toHaveTextContent('Insuficiente')
     expect(screen.getAllByText('Capacidad de trabajo', { exact: true })[0].parentElement).toHaveTextContent('Suficiente')
     expect(screen.getByText(/sólo podrías completar 50/i)).toBeInTheDocument()

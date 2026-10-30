@@ -8,6 +8,13 @@ export function downloadPdf(blob: Blob, fileName: string) {
   const link = document.createElement('a')
   link.href = url
   link.download = fileName
+  document.body.append(link)
   link.click()
-  window.setTimeout(() => URL.revokeObjectURL(url), 0)
+  link.remove()
+  window.setTimeout(() => URL.revokeObjectURL(url), 3000)
+}
+
+export async function downloadPngs(images: Promise<Blob[]>, name: string) {
+  const blobs = await images
+  blobs.forEach((blob, index) => downloadPdf(blob, `${name}${blobs.length > 1 ? `_parte_${index + 1}_de_${blobs.length}` : ''}.png`))
 }

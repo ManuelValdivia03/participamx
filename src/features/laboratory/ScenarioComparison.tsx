@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { calculateScenario, formatMXN, formatNumber } from './calculations'
-import { downloadComparisonPdf, downloadScenarioPdf } from './export'
+import { downloadComparisonPdf, downloadScenarioPdf, downloadComparisonPng, downloadScenarioPng } from './export'
 import { strategyById } from './strategies'
 import type { SavedScenario, ScenarioMetrics } from './types'
 
@@ -27,7 +27,7 @@ export function ScenarioComparison({ scenarios, selected, onToggle, onRemove }: 
         <div className="lab-saved-card-heading"><div><p className="lab-type">{strategyById(scenario.strategyId).name}</p><h3 id={`saved-scenario-${scenario.id}`}>{scenario.name}</h3></div><button type="button" className="lab-card-remove" onClick={() => onRemove(scenario.id)} aria-label={`Eliminar ${scenario.name}`}>Eliminar</button></div>
         <p className="lab-card-assumptions">{scenario.assumptions || 'No has escrito condiciones para este escenario.'}</p>
         <label className="lab-compare-check"><input type="checkbox" checked={isSelected} disabled={selectionBlocked} onChange={() => onToggle(scenario.id)} /> {isSelected ? 'Elegido para comparar' : 'Elegir para comparar'}</label>
-        <button type="button" className="lab-button secondary" onClick={() => exportSavedScenario(scenario)} disabled={exporting}>Descargar PDF</button>
+        <button type="button" className="lab-button secondary lab-export-button" onClick={() => exportSavedScenario(scenario, 'pdf')} disabled={exporting}>Descargar PDF</button><button type="button" className="lab-button secondary lab-export-button" onClick={() => exportSavedScenario(scenario, 'png')} disabled={exporting}>Descargar PNG</button>
       </article>
     })}</div>}
     {compared.length === 1 && <p className="lab-compare-prompt">Elige un segundo escenario para ver la comparación.</p>}
@@ -35,26 +35,26 @@ export function ScenarioComparison({ scenarios, selected, onToggle, onRemove }: 
     {exportError && <p className="lab-alert" role="alert">{exportError}</p>}
   </section>
 
-  function exportSavedScenario(scenario: SavedScenario) {
+  async function exportSavedScenario(scenario: SavedScenario, format: 'pdf' | 'png') {
     setExportError('')
     setExporting(true)
-    try { downloadScenarioPdf(scenario) } catch (error) { setExportError(error instanceof Error ? error.message : 'No se pudo generar el PDF.') } finally { setExporting(false) }
+    try { if (format === 'pdf') downloadScenarioPdf(scenario); else await downloadScenarioPng(scenario) } catch (error) { setExportError(error instanceof Error ? error.message : 'No se pudo generar el documento.') } finally { setExporting(false) }
   }
 
-  function exportComparison() {
+  async function exportComparison(format: 'pdf' | 'png') {
     setExportError('')
     setExporting(true)
-    try { downloadComparisonPdf(compared) } catch (error) { setExportError(error instanceof Error ? error.message : 'No se pudo generar el PDF.') } finally { setExporting(false) }
+    try { if (format === 'pdf') downloadComparisonPdf(compared); else await downloadComparisonPng(compared) } catch (error) { setExportError(error instanceof Error ? error.message : 'No se pudo generar el documento.') } finally { setExporting(false) }
   }
 }
 
-function ComparisonView({ values, differentUnits, maxCost, maxCapacity, exporting, onExport }: { values: { scenario: SavedScenario; metrics: ScenarioMetrics; strategy: ReturnType<typeof strategyById> }[]; differentUnits: boolean; maxCost: number; maxCapacity: number; exporting: boolean; onExport: () => void }) {
+function ComparisonView({ values, differentUnits, maxCost, maxCapacity, exporting, onExport }: { values: { scenario: SavedScenario; metrics: ScenarioMetrics; strategy: ReturnType<typeof strategyById> }[]; differentUnits: boolean; maxCost: number; maxCapacity: number; exporting: boolean; onExport: (format: 'pdf' | 'png') => void }) {
   const [first, second] = values
   const costDifference = (second.metrics.projectedCost ?? 0) - (first.metrics.projectedCost ?? 0)
   const budgetDifference = (second.metrics.budget ?? 0) - (first.metrics.budget ?? 0)
   const capacityDifference = (second.metrics.feasibleCapacity ?? 0) - (first.metrics.feasibleCapacity ?? 0)
   return <div className="lab-comparison-results">
-    <button type="button" className="lab-button" onClick={onExport} disabled={exporting || values.length !== 2 || values.some(item => item.metrics.errors.length > 0)}>{exporting ? 'Generando PDF…' : 'Descargar comparación en PDF'}</button>
+    <button type="button" className="lab-button lab-export-button" onClick={() => onExport('pdf')} disabled={exporting || values.length !== 2 || values.some(item => item.metrics.errors.length > 0)}>{exporting ? 'Generando documento…' : 'Descargar comparación en PDF'}</button><button type="button" className="lab-button secondary lab-export-button" onClick={() => onExport('png')} disabled={exporting || values.length !== 2 || values.some(item => item.metrics.errors.length > 0)}>Descargar comparación en PNG</button>
     <p className="lab-compare-reading">La primera tarjeta sirve como referencia. Las diferencias dependen de las condiciones que escribiste en cada escenario.</p>
     <div className="lab-compare-summary" role="status"><strong>Lo que cambia:</strong> {formatDifference('El dinero disponible', budgetDifference)}; {formatDifference('el costo', costDifference)}.{differentUnits ? ' Las actividades usan medidas distintas, así que sus capacidades no se comparan como equivalentes.' : ` La diferencia en lo que podrías completar es de ${formatNumber(Math.abs(capacityDifference), 2)} ${first.strategy.unit}.`}</div>
     <div className="lab-cost-chart" aria-label="Gráfica comparativa de costos">{values.map(item => <ComparisonBar key={item.scenario.id} label={item.scenario.name} value={item.metrics.projectedCost} max={maxCost} format={formatMXN} />)}</div>
