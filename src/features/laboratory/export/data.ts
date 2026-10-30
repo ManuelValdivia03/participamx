@@ -1,5 +1,7 @@
 import { calculateScenario, formatMXN, formatNumber } from '../calculations'
 import { strategyById } from '../strategies'
+import { scenarioDiagnosis } from '../diagnosis'
+import { proposalNotice } from '../strategyDetails'
 import type { SavedScenario, ScenarioDraft, ScenarioMetrics, Strategy } from '../types'
 
 export type ScenarioReport = {
@@ -23,9 +25,8 @@ export function prepareScenarioReport(draft: ScenarioDraft): ScenarioReport {
   const strategy = strategyById(draft.strategyId)
   const metrics = calculateScenario(draft)
   if (metrics.errors.length > 0) throw new Error('No se puede exportar un escenario con datos incompletos o inválidos.')
-  const budgetOk = metrics.remainingBudget !== null && metrics.remainingBudget >= 0
+  const diagnosis = scenarioDiagnosis(metrics, strategy.unit)
   const operationKnown = metrics.operationalCapacity !== null
-  const operationOk = !operationKnown || (metrics.plannedUnits !== null && metrics.plannedUnits <= metrics.operationalCapacity!)
   return {
     draft,
     strategy,
@@ -36,17 +37,16 @@ export function prepareScenarioReport(draft: ScenarioDraft): ScenarioReport {
       ['Actividades planificadas', `${formatNumber(metrics.plannedUnits)} ${strategy.unit}`],
       ['Capacidad de trabajo indicada', operationKnown ? `${formatNumber(metrics.operationalCapacity)} ${strategy.unit}` : 'No indicada'],
       ['Costo total', formatMXN(metrics.projectedCost)],
-      ['Dinero restante', formatMXN(metrics.remainingBudget)],
+      [metrics.remainingBudget !== null && metrics.remainingBudget < 0 ? 'Déficit presupuestario (saldo)' : 'Dinero restante', formatMXN(metrics.remainingBudget)],
       ['Parte del presupuesto utilizada', metrics.budgetPercent === null ? 'No disponible' : `${formatNumber(metrics.budgetPercent, 1)}%`],
       ['Actividades que podrías pagar', formatCapacity(metrics.theoreticalCapacity, strategy.unit)],
       ['Actividades que podrías completar', formatCapacity(metrics.feasibleCapacity, strategy.unit)],
     ],
     diagnosis: [
-      `Presupuesto: ${budgetOk ? 'alcanza' : 'no alcanza'} según los datos escritos.`,
-      `Capacidad de trabajo: ${operationOk ? operationKnown ? 'alcanza' : 'no indicada' : 'no alcanza'} para el plan.`,
+      diagnosis.title, diagnosis.budget, diagnosis.operation,
     ],
     indicators: strategy.indicators,
-    limitations: [...strategy.limitations, 'Los costos y recursos son supuestos del escenario.', 'Este reporte no predice votos, abstención ni participación electoral.'],
+    limitations: [...strategy.limitations, 'Fuente: valores hipotéticos escritos por la persona usuaria; no son costos ni capacidades oficiales del INE o de los OPLE.', 'Los costos y recursos son supuestos del escenario.', 'Este reporte no predice votos, abstención ni participación electoral.', proposalNotice],
   }
 }
 

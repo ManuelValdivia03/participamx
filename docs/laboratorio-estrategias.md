@@ -14,6 +14,8 @@ Está integrado en `src/app/App.tsx` mediante carga diferida con la ruta `#labor
 
 Las seis propuestas —Guía de pasos; Localizador de fuentes; Registro de consistencia; Mesa de dudas; Biblioteca de formatos; Directorio de orientación— proceden de `docs/perfiles/propuestas_institucionales.md`. Son propuestas pendientes de validación, de acceso universal y no partidistas. El catálogo conserva propósito, tipo, recursos, contribución hipotética, indicadores y límites documentados.
 
+Cada tarjeta conserva su contenido y selección e incorpora **Ver detalles**. `StrategyDetailModal.tsx` presenta trece apartados con índice desplegable, desplazamiento interno, aislamiento del fondo, navegación por teclado, cierre con Escape y devolución del foco al botón de origen. `strategyDetails.ts` lee directamente el desarrollo institucional, la síntesis del equipo y las cifras de `docs/perfiles/perfiles_2024.json`; no mantiene una segunda copia editorial ni cambia los datos. La relación perfil–estrategia se conserva como contexto hipotético de 2024, sin asignación exclusiva de servicios.
+
 ## Escenarios y fórmulas
 
 Variables editables: nombre, estrategia, presupuesto hipotético MXN, costo unitario supuesto, unidades planificadas, capacidad operativa opcional y supuestos. El constructor las organiza en identificación, recursos, planificación y supuestos; explica cada término con ejemplos, distingue valores obligatorios y opcionales y muestra errores junto al campo. Cada estrategia conserva una unidad propia (por ejemplo, guías revisadas, versiones auditadas o servicios confirmados), nunca una medida universal de personas.
@@ -35,9 +37,15 @@ La sección “¿Cómo evaluaríamos esta propuesta?” distingue resultados mat
 
 El análisis muestra un diagnóstico separado para presupuesto y capacidad operativa, siete indicadores principales y comparaciones visuales de presupuesto utilizado y actividades planificadas frente a la capacidad disponible. Cuando faltan datos o existe una restricción, se comunica como información incompleta o insuficiente; no se presenta el escenario como viable.
 
+`diagnosis.ts` comparte los mensajes entre pantalla y documentos. Si el costo supera el presupuesto, informa el déficit y las actividades completas financiables. La capacidad operativa se evalúa de manera independiente. Se permite guardar y exportar escenarios con déficit, incluso cuando el costo unitario supera todo el presupuesto; las fórmulas y las condiciones de validez se conservan.
+
 ## Exportación de reportes
 
-El laboratorio genera reportes PDF directamente en el navegador, sin servidor ni envío de datos a servicios externos. La exportación individual sólo se habilita con un escenario válido y usa la copia propia del escenario guardado; la comparación sólo se habilita cuando hay exactamente dos escenarios válidos seleccionados. La exportación está separada en `src/features/laboratory/export/`: preparación de datos, diseño, serialización byte-safe, descarga y validación. Los reportes incluyen resultados calculados, gráficas vectoriales, supuestos, indicadores todavía no evaluados y limitaciones metodológicas. Las unidades incompatibles se advierten y no se interpretan como equivalentes. Los reportes son informativos: no agregan predicciones electorales ni resultados de implementación.
+El laboratorio genera PDF y PNG directamente en el navegador, sin servidor ni envío de datos a servicios externos. La exportación individual sólo se habilita con un escenario válido y usa la copia propia del escenario guardado; la comparación sólo se habilita cuando hay exactamente dos escenarios válidos seleccionados. También se exporta el detalle completo de las seis estrategias, independientemente del escenario.
+
+La exportación está separada en `src/features/laboratory/export/`: preparación de datos, plano de dibujo paginado, renderizado con jsPDF o canvas, descarga y validación. El mismo plano asegura contenido equivalente en PDF y PNG. El diseño sigue la identidad de las fichas de perfiles: papel claro, franja morada, indicadores en recuadros lilas, jerarquía de títulos y pies numerados. El PDF conserva texto seleccionable y gráficas vectoriales. El PNG tiene 1600 píxeles de ancho; los documentos muy largos se dividen en imágenes numeradas para limitar el tamaño del canvas.
+
+Los escenarios y comparaciones incluyen todos los indicadores, diagnóstico independiente de presupuesto y operación, gráficas con escala compartida y barras cero vacías, supuestos, indicadores todavía no evaluados, fuentes y limitaciones. Las unidades incompatibles se advierten y no se comparan como equivalentes. Las estrategias conservan actividades, recursos, métodos de medición, evidencia requerida y validaciones pendientes. Los botones de descarga distinguen estados habilitado/deshabilitado, hover y foco en ambos temas. Los documentos no agregan predicciones electorales ni resultados de implementación.
 
 ## Guía y uso asistido
 
@@ -47,13 +55,15 @@ El botón **¿Cómo funciona?** abre un recorrido contextual de trece pasos: des
 
 ## U/R/M y restricciones
 
-El adaptador U/R/M está deliberadamente en estado “Información no disponible”: el módulo no duplica procesamiento del Atlas. Si se integra un contrato validado, debe mostrar año, universo, fuente, denominador, cobertura y limitaciones sólo como contexto descriptivo. U/R/M no identifica residencia individual, no modifica recursos y no decide destinatarios.
+Se retiró únicamente el apartado incompleto “Tipos de sección electoral” del Laboratorio. Los datos U/R/M del Atlas y los perfiles se conservan intactos. U/R/M no identifica residencia individual, no modifica recursos y no decide destinatarios.
 
 No se infieren necesidades individuales, comportamientos ni preferencias; no hay rankings de eficacia, segmentación por edad/sexo/municipio ni causalidad atribuida a datos agregados.
 
 ## Pruebas
 
-Ejecutar `npm run test:lab`, `npm run typecheck`, `npm run test:map` y `npm run build`. Las pruebas Vitest cubren el escenario de referencia, déficit, cero, entradas inválidas, desbordamiento, unidades indivisibles, restricciones, formato MXN, catálogo, guardado, comparación, eliminación, indicadores, estado U/R/M, navegación, tour, ejemplo didáctico y exportación PDF. La exportación se valida comprobando el encabezado PDF, sus páginas, texto extraíble, importes, escenarios, ausencia de `NaN`/`Infinity` y conservación de supuestos extensos en páginas adicionales. La revisión manual debe cubrir teclado, modo oscuro y anchos móvil/escritorio.
+Ejecutar `npm run typecheck`, `npm run test:lab` y `npm run build`. En PowerShell con scripts deshabilitados puede usarse `npm.cmd`. Las pruebas Vitest cubren cálculos existentes, déficit, cero, entradas inválidas, restricciones, catálogo, guardado, comparación, eliminación, navegación, tour y ejemplo. Se verifican además las seis asociaciones documentales y sus cifras, el contenido completo de los PDF, teclado y foco del modal, fallos de exportación, igualdad de contenido PNG/PDF, barras, límites de página, ausencia de superposiciones y conservación de textos extensos.
+
+Después del build, `node scripts/check-laboratory-ui.mjs` verifica en Chrome local los modos claro/oscuro, contraste de botones de al menos 4.5:1, foco y Escape, modal de 390 px y descargas reales de PDF/PNG de seis estrategias, un escenario y una comparación. Requiere Chrome instalado (o `CHROME_PATH`). Guarda capturas, descargas y resultados en `node_modules/.cache/laboratory-ui/`, sin publicar ni desplegar.
 
 ## Limitaciones conocidas
 
